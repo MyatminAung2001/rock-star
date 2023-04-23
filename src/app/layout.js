@@ -1,6 +1,6 @@
 import './globals.css';
 import Navigation from '@/components/navigation/navigation.mobile';
-import { Providers } from './providers';
+import { ReactQueryProviders } from './providers';
 
 export const metadata = {
   title: 'Rock Star',
@@ -12,10 +12,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
         <body>
-          <Providers>
+          <ReactQueryProviders>
             <Navigation />
             {children}
-          </Providers>
+          </ReactQueryProviders>
         </body>
     </html>
   )
