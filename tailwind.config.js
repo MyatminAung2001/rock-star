@@ -6,6 +6,16 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2rem',
+        lg: '4rem',
+        xl: '5rem',
+        '2xl': '6rem',
+      }
+    },
     extend: {
       fontSize: {
         "tiny": "0.7rem",
@@ -25,7 +35,8 @@ module.exports = {
         "primary-black": "#141301"
       },
       colors: {
-        "primary-bg-black": "#141301"
+        "primary-bg-black": "#141301",
+        "primary-bg-white": "#E5E7E6",
       }
     },
   },

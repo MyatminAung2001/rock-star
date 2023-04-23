@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-    baseURL: "https://api.rawg.io/api/"
+    baseURL: process.env.BASE_URL
 });
 
 export default axiosInstance;
