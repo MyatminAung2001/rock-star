@@ -1,7 +1,9 @@
 const Page = () => {
     return (
         <div>
-            Enter
+            <p className="text-[#E5E7E6]"> 
+                Hello
+            </p>
         </div>
     );
 }
