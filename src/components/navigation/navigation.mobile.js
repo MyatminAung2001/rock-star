@@ -30,10 +30,50 @@ const Navigation = () => {
             </div>
             <div>
                 {isMenuOpen && (
-                    <div className="bg-primary-bg-white h-screen w-[70%] fixed right-0 top-0">
-                        <p onClick={() => router.push(GENRES)}>
-                            Genres
-                        </p>
+                    <div className="bg-primary-bg-white min-h-screen w-[70%] fixed right-0 top-0">
+                        <div className="pt-16 px-8">
+                            <header className="text-sub-heading font-semibold tracking-wider">
+                                Browse
+                            </header>
+                            <div className="mt-3 flex flex-col gap-y-3">
+                                <p onClick={() => {
+                                    router.push(GENRES);
+                                    setIsMenuOpen(false)
+                                }} className="cursor-pointer">
+                                    Genres
+                                </p>
+                                <p onClick={() => {
+                                    router.push(GENRES);
+                                    setIsMenuOpen(false)
+                                }} className="cursor-pointer">
+                                    Platforms
+                                </p>
+                                <p onClick={() => {
+                                    router.push(GENRES);
+                                    setIsMenuOpen(false)
+                                }} className="cursor-pointer">
+                                    Stores
+                                </p>
+                                <p onClick={() => {
+                                    router.push(GENRES);
+                                    setIsMenuOpen(false)
+                                }} className="cursor-pointer">
+                                    Tags
+                                </p>
+                                <p onClick={() => {
+                                    router.push(GENRES);
+                                    setIsMenuOpen(false)
+                                }} className="cursor-pointer">
+                                    Developers
+                                </p>
+                                <p onClick={() => {
+                                    router.push(GENRES);
+                                    setIsMenuOpen(false)
+                                }} className="cursor-pointer">
+                                    Publishers
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 )}
             </div>
