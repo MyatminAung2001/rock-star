@@ -13,7 +13,7 @@ const Navigation = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <nav className="container absolute top-0 left-0 right-0 w-screen">
+        <nav className="container absolute top-0 left-0 right-0 w-screen bg-primary-bg-black">
             <div className="flex items-center justify-between">
                 <p className="text-primary-white text-md">
                     RockStar
@@ -43,31 +43,31 @@ const Navigation = () => {
                                     Genres
                                 </p>
                                 <p onClick={() => {
-                                    router.push(GENRES);
+                                    // router.push(GENRES);
                                     setIsMenuOpen(false)
                                 }} className="cursor-pointer">
                                     Platforms
                                 </p>
                                 <p onClick={() => {
-                                    router.push(GENRES);
+                                    // router.push(GENRES);
                                     setIsMenuOpen(false)
                                 }} className="cursor-pointer">
                                     Stores
                                 </p>
                                 <p onClick={() => {
-                                    router.push(GENRES);
+                                    // router.push(GENRES);
                                     setIsMenuOpen(false)
                                 }} className="cursor-pointer">
                                     Tags
                                 </p>
                                 <p onClick={() => {
-                                    router.push(GENRES);
+                                    // router.push(GENRES);
                                     setIsMenuOpen(false)
                                 }} className="cursor-pointer">
                                     Developers
                                 </p>
                                 <p onClick={() => {
-                                    router.push(GENRES);
+                                    // router.push(GENRES);
                                     setIsMenuOpen(false)
                                 }} className="cursor-pointer">
                                     Publishers

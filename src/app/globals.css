@@ -12,9 +12,14 @@
 
 body {
     background-color: #2a0800;
+    overflow-x: hidden;
 }
 
 @layer components {
+    .default-section-padding {
+        @apply px-4 py-16
+    }
+
     .browse-nav {
         @apply cursor-pointer relative text-primary-black tracking-wider hover:text-primary-bg-black 
         /* after */
