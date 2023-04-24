@@ -1,10 +1,14 @@
 "use client"
 
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Squash as Hamburger } from 'hamburger-react';
 
+import { GENRES } from '@/constants/locationPathname';
 
 const Navigation = () => {
+
+    const router = useRouter();
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -27,7 +31,9 @@ const Navigation = () => {
             <div>
                 {isMenuOpen && (
                     <div className="bg-primary-bg-white h-screen w-[70%] fixed right-0 top-0">
-                        
+                        <p onClick={() => router.push(GENRES)}>
+                            Genres
+                        </p>
                     </div>
                 )}
             </div>
