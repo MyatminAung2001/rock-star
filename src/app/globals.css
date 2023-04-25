@@ -11,21 +11,12 @@
 }
 
 body {
-    background-color: #2a0800;
+    background-color: #000814;
     overflow-x: hidden;
 }
 
 @layer components {
     .default-section-padding {
         @apply px-4 py-16
-    }
-
-    .browse-nav {
-        @apply cursor-pointer relative text-primary-black tracking-wider hover:text-primary-bg-black 
-        /* after */
-        after:absolute after:bg-primary-bg-black after:h-[3px] after:w-[0%] after:left-0 after:-bottom-[5px] 
-        after:rounded-xl after:duration-300 
-        /* hover after */
-        hover:after:w-[100%]
     }
 }

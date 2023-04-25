@@ -32,10 +32,10 @@ module.exports = {
         "primary-grey": "#B7B5B3",
         "primary-red": "#B80C09",
         "primary-brown": "#6B2B06",
-        "primary-black": "#2a0800"
+        "primary-black": "#000814"
       },
       colors: {
-        "primary-bg-black": "#2a0800",
+        "primary-bg-black": "#000814",
         "primary-bg-white": "#E5E7E6",
       }
     },
