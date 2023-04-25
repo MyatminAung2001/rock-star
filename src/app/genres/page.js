@@ -49,20 +49,20 @@ const Genres = () => {
                             </p>
                             <div>
                                 <div className="flex items-center justify-between">
-                                    <p className="text-[#EEEEEE] text-sm font-semibold">
+                                    <p className="text-secondary-white text-sm font-semibold">
                                         Total Games:
                                     </p>
-                                    <p className="text-[#797979]">
+                                    <p className="text-secondary-gray">
                                         {data.games_count}
                                     </p>
                                 </div>
                                 <hr className="my-3" />
                                 {data.games?.slice(0, NUMBER_OF_ITEMS)?.map(data => (
                                     <div key={data.id} className="flex items-center justify-between gap-y-1">
-                                        <p className="text-[#EEEEEE] font-light underline text-sm">
+                                        <p className="text-secondary-white font-light underline text-sm">
                                             {data.name}
                                         </p>
-                                        <p className="text-[#797979] text-sm">
+                                        <p className="text-secondary-gray text-sm">
                                             {data.added}
                                         </p>
                                     </div>

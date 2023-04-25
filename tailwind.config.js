@@ -29,14 +29,17 @@ module.exports = {
       },
       textColor: {
         "primary-white": "#FFFFFF",
-        "primary-grey": "#B7B5B3",
+        "primary-gray": "#B7B5B3",
         "primary-red": "#B80C09",
         "primary-brown": "#6B2B06",
-        "primary-black": "#000814"
+        "primary-black": "#000814",
+        "secondary-gray": "#797979",
+        "secondary-white": "#EEEEEE",
       },
       colors: {
         "primary-bg-black": "#000814",
         "primary-bg-white": "#FFFFFF",
+        "primary-bg-grey": "#797979",
       }
     },
   },
