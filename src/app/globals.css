@@ -20,7 +20,11 @@ body {
         @apply px-4 py-16
     }
 
+    .title {
+        @apply font-semibold text-md tracking-wider text-primary-white
+    }
+
     .heading {
-        @apply font-semibold text-4xl text-primary-white text-center lg:text-start
+        @apply font-semibold tracking-wider text-4xl text-primary-white text-center lg:text-start
     }
 }
