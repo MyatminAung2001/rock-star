@@ -1,5 +1,6 @@
 "use client"
 
+import { useRouter } from 'next/navigation';
 import { useQuery } from 'react-query';
 
 import { NUMBER_OF_ITEMS } from '@/constants/numberOfItems';
@@ -9,6 +10,8 @@ import { getGenres } from '@/services/services.genres';
 import GenreIcon from '@/assets/icons/GenreIcon';
 
 const Genres = () => {
+
+    const router = useRouter();
 
     const { isLoading, isError, data: genresData } = useQuery("genres", getGenres);
 
@@ -44,7 +47,10 @@ const Genres = () => {
                             }}
                         />
                         <div className="w-[100%] px-6 relative h-full flex flex-col justify-evenly bg-[#00000030]">
-                            <p className="text-white text-lg font-semibold tracking-wider text-center underline">
+                            <p 
+                                onClick={() => router.push(`genres/${data.slug}`)}
+                                className="text-white text-lg font-semibold tracking-wider text-center underline"
+                            >
                                 {data.name}
                             </p>
                             <div>

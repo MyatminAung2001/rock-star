@@ -15,7 +15,7 @@ const Navigation = () => {
     return (
         <nav className="container absolute z-50 top-0 left-0 right-0 w-screen bg-primary-bg-black">
             <div className="flex items-center justify-between">
-                <p className="title cursor-pointer" onClick={() => router.back()}>
+                <p className="title cursor-pointer" onClick={() => router.push("/")}>
                     RockStar
                 </p>
                 <div className="sticky z-[150] top-0 right-0">
