@@ -1,20 +1,25 @@
 "use client"
 
-import { useRouter } from "next/navigation";
+import { getGenresDetails } from "@/services/services.genres";
+import { useParams } from "next/navigation";
 import { useQuery } from "react-query";
 
 const GenreDetails = () => {
 
-    const router = useRouter();
+    const { slug } = useParams();
 
-    
+    const { isLoading, isError, data: genreDetails } = useQuery(["genres-detail", slug], () => getGenresDetails(slug));
 
-    // const { isLoading, isError, data } = useQuery(["genres-detail", id])
+    const myString = genreDetails?.description;
+    const description = myString?.replace(/<p>|<\/p>/gi, '')
 
     return (
-        <div>
-            <p className="text-primary-white pt-16">
-                Details Page
+        <div className="default-section-padding">
+            <p className="heading">
+                {genreDetails?.name}
+            </p>
+            <p className="text-primary-white text-[16px]">
+                {description}
             </p>
         </div>
     );
