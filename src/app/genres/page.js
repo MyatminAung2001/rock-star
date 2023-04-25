@@ -5,6 +5,9 @@ import { useQuery } from 'react-query';
 import { NUMBER_OF_ITEMS } from '@/constants/numberOfItems';
 import { getGenres } from '@/services/services.genres';
 
+// icons
+import GenreIcon from '@/assets/icons/GenreIcon';
+
 const Genres = () => {
 
     const { isLoading, isError, data: genresData } = useQuery("genres", getGenres);
@@ -13,9 +16,12 @@ const Genres = () => {
 
     return (
         <div className="default-section-padding w-[100%]">
-            <header className="text-primary-white text-center"> 
-                Genres
-            </header>
+            <div className="flex items-center justify-center gap-x-2 mb-5">
+                <GenreIcon />
+                <header className="heading"> 
+                    Genres
+                </header>
+            </div>
             <div className="grid grid-cols-1 gap-y-3">
                 {genresData?.results?.map(data => (
                     <div 

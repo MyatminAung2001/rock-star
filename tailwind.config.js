@@ -28,7 +28,7 @@ module.exports = {
         "sub-heading": "1.25rem"
       },
       textColor: {
-        "primary-white": "#E5E7E6",
+        "primary-white": "#FFFFFF",
         "primary-grey": "#B7B5B3",
         "primary-red": "#B80C09",
         "primary-brown": "#6B2B06",
@@ -36,7 +36,7 @@ module.exports = {
       },
       colors: {
         "primary-bg-black": "#000814",
-        "primary-bg-white": "#E5E7E6",
+        "primary-bg-white": "#FFFFFF",
       }
     },
   },

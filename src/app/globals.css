@@ -19,4 +19,8 @@ body {
     .default-section-padding {
         @apply px-4 py-16
     }
+
+    .heading {
+        @apply font-semibold text-4xl text-primary-white text-center lg:text-start
+    }
 }
