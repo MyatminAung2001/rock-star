@@ -49,7 +49,7 @@ const Genres = () => {
                         <div className="w-[100%] px-6 relative h-full flex flex-col justify-evenly bg-[#00000030]">
                             <p 
                                 onClick={() => router.push(`genres/${data.slug}`)}
-                                className="text-white text-lg font-semibold tracking-wider text-center underline"
+                                className="text-white text-lg font-semibold tracking-wider text-center underline cursor-pointer"
                             >
                                 {data.name}
                             </p>
