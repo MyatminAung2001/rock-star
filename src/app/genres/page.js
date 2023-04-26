@@ -58,7 +58,7 @@ const Genres = () => {
                                     <p className="text-secondary-white text-sm font-semibold">
                                         Total Games:
                                     </p>
-                                    <p className="text-secondary-gray">
+                                    <p className="text-secondary-gray text-sm">
                                         {data.games_count}
                                     </p>
                                 </div>

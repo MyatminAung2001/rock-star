@@ -15,7 +15,7 @@ const GenreDetails = () => {
 
     return (
         <div className="default-section-padding">
-            <p className="heading">
+            <p className="heading mb-5">
                 {genreDetails?.name}
             </p>
             <p className="text-primary-white text-[16px]">
