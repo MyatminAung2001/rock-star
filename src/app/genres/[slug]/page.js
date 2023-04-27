@@ -4,12 +4,15 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { useInfiniteQuery, useQuery } from "react-query";
+import { useInView } from "react-intersection-observer";
 
 import { getGenresDetails, getGenresGames } from "@/services/services.genres";
 
 const GenreDetails = () => {
 
     const { slug } = useParams();
+
+    const { ref, inView } = useInView();
 
     const { isLoading, isError, data: genreDetails } = useQuery(["genres-detail", slug], () => getGenresDetails(slug));
 
@@ -29,19 +32,11 @@ const GenreDetails = () => {
     );
 
     useEffect(() => {
-        const handleScroll = () => {
-            if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
-                if (hasNextPage && !isFetchingNextPage) {
-                    fetchNextPage();
-                    setPage(page + 1)
-                }
-            }
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [hasNextPage, isFetchingNextPage, fetchNextPage, page])
+        if (inView && hasNextPage && !isFetchingNextPage) {
+            fetchNextPage();
+            setPage(page + 1)
+        }
+    }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage])
 
     const gamesData = genresGames?.pages.flatMap(page => page);
 
@@ -85,7 +80,7 @@ const GenreDetails = () => {
             </div>
             <div>
                 {realData?.map((data) => (
-                    <div key={data.id}>
+                    <div key={data.id} ref={ref}>
                         <Image 
                             src={data.background_image}
                             alt="name"
