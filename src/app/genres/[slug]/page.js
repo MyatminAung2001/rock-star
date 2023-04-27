@@ -6,6 +6,7 @@ import { useInfiniteQuery, useQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { TailSpin } from "react-loader-spinner";
 
 import { getGenresDetails, getGenresGames } from "@/services/services.genres";
 
@@ -103,7 +104,18 @@ const GenreDetails = () => {
                         </div>
                     </div>
                 ))}
-                {isFetchingNextPage && <p className="text-primary-white">Fetching more posts...</p>}
+                {isFetchingNextPage && (
+                    <div className="w-[100%] flex items-center justify-center">
+                        <TailSpin
+                            height="60"
+                            width="60"
+                            color="#212529"
+                            ariaLabel="tail-spin-loading"
+                            radius="1"
+                            visible={true}
+                        />
+                    </div>
+                )}
             </div>
         </div>
     );
