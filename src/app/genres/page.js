@@ -15,8 +15,6 @@ const Genres = () => {
 
     const { isLoading, isError, data: genresData } = useQuery("genres", getGenres);
 
-    console.log(genresData);
-
     return (
         <div className="default-section-padding w-[100%]">
             <div className="flex items-center justify-center gap-x-2 mb-5">
