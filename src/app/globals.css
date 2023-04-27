@@ -15,6 +15,10 @@ body {
     overflow-x: hidden;
 }
 
+.lazy-load-image-background {
+    width: 100%;
+}
+
 @layer components {
     .default-section-padding {
         @apply px-4 py-16

@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { useInfiniteQuery, useQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import { getGenresDetails, getGenresGames } from "@/services/services.genres";
 
@@ -46,6 +48,8 @@ const GenreDetails = () => {
         ? [].concat(...formatted)
         : [];
 
+    console.log("real-data", realData);
+
     // content
     // remove p tag from a string
     const myString = genreDetails?.description;
@@ -78,14 +82,15 @@ const GenreDetails = () => {
                     )}
                 </p>
             </div>
-            <div>
+            <div className="grid grid-cols-1 gap-y-5">
                 {realData?.map((data) => (
-                    <div key={data.id} ref={ref}>
-                        <Image 
+                    <div key={data.id} ref={ref} className="bg-[#212529] rounded-xl">
+                        <LazyLoadImage 
                             src={data.background_image}
-                            alt="name"
-                            width={500}
-                            height={500}
+                            alt={data.name}
+                            effect="blur"
+                            threshold={100}
+                            className="object-cover w-[100%] h-[230px] rounded-t-xl"
                         />
                         <p className="text-primary-white">
                             {data.name}
