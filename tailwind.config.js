@@ -33,6 +33,7 @@ module.exports = {
         "primary-red": "#B80C09",
         "primary-brown": "#6B2B06",
         "primary-black": "#000814",
+        "primary-yellow": "#ffb703",
         "secondary-gray": "#797979",
         "secondary-white": "#EEEEEE",
       },
@@ -40,6 +41,7 @@ module.exports = {
         "primary-bg-black": "#000814",
         "primary-bg-white": "#FFFFFF",
         "primary-bg-grey": "#797979",
+        "primary-bg-yellow": "#ffb703",
       }
     },
   },

@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { useInfiniteQuery, useQuery } from "react-query";
@@ -66,7 +65,7 @@ const GenreDetails = () => {
 
     return (
         <div className="default-section-padding">
-            <div>
+            <div className="mb-5">
                 <p className="heading mb-5">
                     {genreDetails?.name} Games
                 </p>
@@ -82,19 +81,26 @@ const GenreDetails = () => {
                     )}
                 </p>
             </div>
-            <div className="grid grid-cols-1 gap-y-5">
+            <div className="grid grid-cols-1 gap-y-5 xl:grid-cols-4">
                 {realData?.map((data) => (
                     <div key={data.id} ref={ref} className="bg-[#212529] rounded-xl">
                         <LazyLoadImage 
                             src={data.background_image}
                             alt={data.name}
                             effect="blur"
-                            threshold={100}
+                            threshold={50}
                             className="object-cover w-[100%] h-[230px] rounded-t-xl"
                         />
-                        <p className="text-primary-white">
-                            {data.name}
-                        </p>
+                        <div className="py-2 px-4">
+                            <div className="w-[100%] flex items-start justify-between">
+                                <p className="text-primary-white text-xl font-semibold w-[220px]">
+                                    {data.name}
+                                </p>
+                                <p className="px-2 rounded mt-1 text-sm text-primary-yellow border border-primary-bg-yellow">
+                                    {data.metacritic}
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 ))}
                 {isFetchingNextPage && <p className="text-primary-white">Fetching more posts...</p>}
