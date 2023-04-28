@@ -11,7 +11,7 @@ import { TailSpin } from "react-loader-spinner";
 import { getGenresDetails, getGenresGames } from "@/services/service.genres";
 import StarIcon from "@/assets/icons/StarIcon";
 
-const GenreDetails = () => {
+const GenreGames = () => {
     const { slug } = useParams();
 
     const { ref, inView } = useInView();
@@ -160,4 +160,4 @@ const GenreDetails = () => {
     );
 };
 
-export default GenreDetails;
+export default GenreGames;
