@@ -1,18 +1,17 @@
-"use client"
+"use client";
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { useInfiniteQuery, useQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import { TailSpin } from "react-loader-spinner";
 
-import { getGenresDetails, getGenresGames } from "@/services/services.genres";
+import { getGenresDetails, getGenresGames } from "@/services/service.genres";
 import StarIcon from "@/assets/icons/StarIcon";
 
 const GenreDetails = () => {
-
     const { slug } = useParams();
 
     const { ref, inView } = useInView();
@@ -25,44 +24,43 @@ const GenreDetails = () => {
         ["genres-games", slug],
         ({ pageParam = 1 }) => getGenresGames(slug, pageParam),
         {
-            getNextPageParam: (lastPage) => {
-                if (lastPage.length === 0) {
-                  return undefined;
-                }
-                return page + 1;
-              },
+        getNextPageParam: (lastPage) => {
+            if (lastPage.length === 0) {
+            return undefined;
+            }
+            return page + 1;
+        },
         }
     );
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {
             fetchNextPage();
-            setPage(page + 1)
+            setPage(page + 1);
         }
-    }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage])
+    }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage]);
 
-    const gamesData = genresGames?.pages.flatMap(page => page);
+    const gamesData = genresGames?.pages.flatMap((page) => page);
 
-    const formatted = gamesData?.map(d => d.results)
+    const formatted = gamesData?.map((d) => d.results);
 
-    const realData = gamesData
-        ? [].concat(...formatted)
-        : [];
+    const realData = gamesData ? [].concat(...formatted) : [];
 
     console.log("real-data", realData);
 
     // content
     // remove p tag from a string
     const myString = genreDetails?.description;
-    const description = myString?.replace(/<p>|<\/p>/gi, '');
+    const description = myString?.replace(/<p>|<\/p>/gi, "");
 
     // control read more state
     const [showFullContent, setShowFullContent] = useState(false);
 
     const cutOff = 165;
 
-    const displayContent = description?.length <= cutOff || showFullContent 
-        ? description 
+    const displayContent =
+        description?.length <= cutOff || showFullContent
+        ? description
         : `${description?.substring(0, cutOff)}`;
 
     return (
@@ -72,9 +70,9 @@ const GenreDetails = () => {
                     {genreDetails?.name} Games
                 </p>
                 <p className="text-primary-white text-[16px] font-light">
-                    {displayContent}... {" "}
+                    {displayContent}...{" "}
                     {!showFullContent && description?.length > cutOff && (
-                        <button 
+                        <button
                             onClick={() => setShowFullContent(true)}
                             className="text-[12px] bg-primary-bg-white text-primary-bg-black px-2 rounded"
                         >
@@ -86,7 +84,7 @@ const GenreDetails = () => {
             <div className="grid grid-cols-1 gap-y-5 xl:grid-cols-4">
                 {realData?.map((data) => (
                     <div key={data.id} ref={ref} className="bg-[#212529] rounded-xl">
-                        <LazyLoadImage 
+                        <LazyLoadImage
                             src={data.background_image}
                             alt={data.name}
                             effect="blur"
@@ -107,7 +105,11 @@ const GenreDetails = () => {
                                     Release date
                                 </p>
                                 <p className="text-primary-white text-sm font-light">
-                                    {new Date(data.released).toLocaleDateString('en-us', { year: "numeric", month: "long", day: "numeric" })}
+                                    {new Date(data.released).toLocaleDateString("en-us", {
+                                        year: "numeric",
+                                        month: "long",
+                                        day: "numeric",
+                                    })}
                                 </p>
                             </div>
                             <div className="mb-2 bg-primary-bg-grey w-[100%] h-[0.5px]" />
@@ -128,8 +130,11 @@ const GenreDetails = () => {
                                     Genres
                                 </p>
                                 <div className="flex items-center gap-x-1">
-                                    {data.genres.map(data => (
-                                        <p key={data.id} className="text-primary-white text-sm font-light underline">
+                                    {data.genres.map((data) => (
+                                        <p
+                                            key={data.id}
+                                            className="text-primary-white text-sm font-light underline"
+                                        >
                                             {data.name}
                                         </p>
                                     ))}
@@ -153,6 +158,6 @@ const GenreDetails = () => {
             </div>
         </div>
     );
-}
+};
 
 export default GenreDetails;
