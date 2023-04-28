@@ -1,6 +1,11 @@
+import { useRouter } from "next/navigation";
+
 import { NUMBER_OF_ITEMS } from "@/constants/numberOfItems";
 
 const Card = ({ data }) => {
+
+    const router = useRouter();
+
     return (
         <div
             key={data.id}
@@ -19,7 +24,7 @@ const Card = ({ data }) => {
                 opacity: 0.4,
                 borderRadius: "0.5rem",
             }}/>
-            <div className="w-[100%] px-6 relative h-full flex flex-col justify-evenly bg-[#00000030]">
+            <div className="w-[100%] p-6 relative h-full flex flex-col justify-between bg-[#00000030]">
                 <p
                     onClick={() => router.push(`genres/${data.slug}`)}
                     className="text-white text-lg font-semibold tracking-wider text-center underline cursor-pointer"
