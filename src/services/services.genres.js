@@ -7,7 +7,7 @@ export const getGenres = async () => {
 };
 
 export const getGenresDetails = async (data) => {
-    return await axiosInstance.get(`${GET_GENRES_DETAILS}/${data}?key=${apiKEY}`).then(res => res.data)
+    return await axiosInstance.get(`${GET_GENRES_DETAILS}/${data}?key=${apiKEY}`).then(res => res.data);
 };
 
 export const getGenresGames = async (slug, pageParam) => {

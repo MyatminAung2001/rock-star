@@ -9,6 +9,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import { TailSpin } from "react-loader-spinner";
 
 import { getGenresDetails, getGenresGames } from "@/services/services.genres";
+import StarIcon from "@/assets/icons/StarIcon";
 
 const GenreDetails = () => {
 
@@ -93,13 +94,46 @@ const GenreDetails = () => {
                             className="object-cover w-[100%] h-[230px] rounded-t-xl"
                         />
                         <div className="py-2 px-4">
-                            <div className="w-[100%] flex items-start justify-between">
+                            <div className="mb-2 w-[100%] flex items-start justify-between">
                                 <p className="text-primary-white text-xl font-semibold w-[220px]">
                                     {data.name}
                                 </p>
                                 <p className="px-2 rounded mt-1 text-sm text-primary-yellow border border-primary-bg-yellow">
                                     {data.metacritic}
                                 </p>
+                            </div>
+                            <div className="mb-2 flex items-center justify-between">
+                                <p className="text-secondary-gray">
+                                    Release date
+                                </p>
+                                <p className="text-primary-white text-sm font-light">
+                                    {new Date(data.released).toLocaleDateString('en-us', { year: "numeric", month: "long", day: "numeric" })}
+                                </p>
+                            </div>
+                            <div className="mb-2 bg-primary-bg-grey w-[100%] h-[0.5px]" />
+                            <div className="mb-2 flex items-center justify-between">
+                                <p className="text-secondary-gray">
+                                    Total rating
+                                </p>
+                                <div className="flex items-center gap-x-1">
+                                    <StarIcon />
+                                    <p className="text-primary-white text-sm font-light">
+                                        {data.ratings_count}
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="mb-2 bg-primary-bg-grey w-[100%] h-[0.5px]" />
+                            <div className="flex items-center justify-between">
+                                <p className="text-secondary-gray">
+                                    Genres
+                                </p>
+                                <div className="flex items-center gap-x-1">
+                                    {data.genres.map(data => (
+                                        <p key={data.id} className="text-primary-white text-sm font-light underline">
+                                            {data.name}
+                                        </p>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>
