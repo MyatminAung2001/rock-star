@@ -93,7 +93,7 @@ const GenreGames = () => {
                         />
                         <div className="py-2 px-4">
                             <div className="mb-2 w-[100%] flex items-start justify-between">
-                                <p className="text-primary-white text-xl font-semibold w-[220px]">
+                                <p className="text-primary-white text-xl font-semibold w-[220px] line-clamp-2">
                                     {data.name}
                                 </p>
                                 <p className="px-2 rounded mt-1 text-sm text-primary-yellow border border-primary-bg-yellow">
