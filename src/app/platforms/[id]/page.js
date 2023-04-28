@@ -8,45 +8,48 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { TailSpin } from "react-loader-spinner";
 
-import { getPlatformsDetails } from "@/services/service.platform";
+import { getPlatformsDetails, getPlatformsGames } from "@/services/service.platform";
 import StarIcon from "@/assets/icons/StarIcon";
 
 const PlatformsGames = () => {
-    const { slug } = useParams();
+
+    const { id } = useParams();
 
     const { ref, inView } = useInView();
 
-    const { isLoading, isError, data: platformDetails } = useQuery(["platformDetails", slug], () => getPlatformsDetails(slug));
+    const { isLoading, isError, data: platformDetails } = useQuery(["platformDetails", id], () => getPlatformsDetails(id));
 
-    // const [page, setPage] = useState(1);
+    console.log(platformDetails);
 
-    // const { data: genresGames, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-    //     ["genres-games", slug],
-    //     ({ pageParam = 1 }) => getGenresGames(slug, pageParam),
-    //     {
-    //     getNextPageParam: (lastPage) => {
-    //         if (lastPage.length === 0) {
-    //         return undefined;
-    //         }
-    //         return page + 1;
-    //     },
-    //     }
-    // );
+    const [page, setPage] = useState(1);
 
-    // useEffect(() => {
-    //     if (inView && hasNextPage && !isFetchingNextPage) {
-    //         fetchNextPage();
-    //         setPage(page + 1);
-    //     }
-    // }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage]);
+    const { data: platformGames, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+        ["platforms-games", id],
+        ({ pageParam = 1 }) => getPlatformsGames(id, pageParam),
+        {
+        getNextPageParam: (lastPage) => {
+            if (lastPage.length === 0) {
+            return undefined;
+            }
+            return page + 1;
+        },
+        }
+    );
 
-    // const gamesData = genresGames?.pages.flatMap((page) => page);
+    useEffect(() => {
+        if (inView && hasNextPage && !isFetchingNextPage) {
+            fetchNextPage();
+            setPage(page + 1);
+        }
+    }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage]);
 
-    // const formatted = gamesData?.map((d) => d.results);
+    const gamesData = platformGames?.pages.flatMap((page) => page);
 
-    // const realData = gamesData ? [].concat(...formatted) : [];
+    const formatted = gamesData?.map((d) => d.results);
 
-    console.log("real-data", platformDetails);
+    const realData = gamesData ? [].concat(...formatted) : [];
+
+    console.log(platformGames);
 
     // content
     // remove p tag from a string
@@ -83,7 +86,7 @@ const PlatformsGames = () => {
                     </p>
                 )}
             </div>
-            {/* <div className="grid grid-cols-1 gap-y-5 xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-y-5 xl:grid-cols-4">
                 {realData?.map((data) => (
                     <div key={data.id} ref={ref} className="bg-[#212529] rounded-xl">
                         <LazyLoadImage
@@ -157,7 +160,7 @@ const PlatformsGames = () => {
                         />
                     </div>
                 )}
-            </div> */}
+            </div>
         </div>
     );
 };
