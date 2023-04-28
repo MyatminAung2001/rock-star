@@ -26,9 +26,9 @@ const Genres = () => {
             </div>
             <div className="grid grid-cols-1 gap-y-5">
                 {platformsData?.results?.map((data) => (
-                    <Fragment key={data.id}>
+                    <div key={data.id} onClick={() => router.push(`platforms/${data.slug}`)}>
                         <Card data={data} />
-                    </Fragment>
+                    </div>
                 ))}
             </div>
         </div>

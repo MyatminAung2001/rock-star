@@ -1,5 +1,6 @@
 "use client";
 
+import { Fragment } from "react";
 import { useRouter } from "next/navigation";
 import { useQuery } from "react-query";
 
@@ -8,7 +9,6 @@ import Card from "@/components/card";
 
 // icons
 import GenreIcon from "@/assets/icons/GenreIcon";
-import { Fragment } from "react";
 
 const Genres = () => {
 
@@ -24,9 +24,9 @@ const Genres = () => {
             </div>
             <div className="grid grid-cols-1 gap-y-5">
                 {genresData?.results?.map((data) => (
-                    <Fragment key={data.id}>
+                    <div key={data.id} onClick={() => router.push(`genres/${data.slug}`)}>
                         <Card data={data} />
-                    </Fragment>
+                    </div>
                 ))}
             </div>
         </div>
