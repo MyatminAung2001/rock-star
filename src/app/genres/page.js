@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import { useQuery } from "react-query";
 
-import { NUMBER_OF_ITEMS } from "@/constants/numberOfItems";
 import { getGenres } from "@/services/service.genres";
 import Card from "@/components/card";
 
@@ -12,7 +11,7 @@ import GenreIcon from "@/assets/icons/GenreIcon";
 import { Fragment } from "react";
 
 const Genres = () => {
-    
+
     const router = useRouter();
 
     const { isLoading, isError, data: genresData } = useQuery("genres", getGenres);
