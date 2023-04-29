@@ -13,7 +13,7 @@ const Navigation = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <nav className="container absolute z-50 top-0 left-0 right-0 w-screen bg-primary-bg-black">
+        <nav className="container fixed py-2 z-50 top-0 left-0 right-0 w-screen bg-primary-bg-black">
             <div className="flex items-center justify-between">
                 <p className="title cursor-pointer" onClick={() => router.push("/")}>
                     RockStar
