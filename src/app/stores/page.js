@@ -23,7 +23,7 @@ const Stores = () => {
             </div>
             <div className="grid grid-cols-1 gap-y-5">
                 {storesData?.results?.map((data) => (
-                    <div key={data.id} onClick={() => router.push(`platforms/${data.id}`)}>
+                    <div key={data.id} onClick={() => router.push(`stores/${data.id}`)}>
                         <Card data={data} />
                     </div>
                 ))}
