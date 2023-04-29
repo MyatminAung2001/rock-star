@@ -99,7 +99,7 @@ const GenreGames = () => {
                                 {data.metacritic}
                             </p>
                         </div>
-                        <div className="pb-2 px-4 mt-auto">
+                        <div className="pt-1 pb-2 px-4 mt-auto">
                             <div className="mb-2 flex items-center justify-between">
                                 <p className="text-secondary-gray">
                                     Release date
