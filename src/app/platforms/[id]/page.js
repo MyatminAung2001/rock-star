@@ -88,7 +88,7 @@ const PlatformsGames = () => {
             </div>
             <div className="grid grid-cols-1 gap-y-5 xl:grid-cols-4">
                 {realData?.map((data) => (
-                    <div key={data.id} ref={ref} className="bg-[#212529] rounded-xl">
+                    <div key={data.id} ref={ref} className="bg-[#212529] rounded-xl flex flex-col">
                         <LazyLoadImage
                             src={data.background_image}
                             alt={data.name}
@@ -96,15 +96,15 @@ const PlatformsGames = () => {
                             threshold={50}
                             className="object-cover w-[100%] h-[230px] rounded-t-xl"
                         />
-                        <div className="py-2 px-4">
-                            <div className="mb-2 w-[100%] flex items-start justify-between">
-                                <p className="text-primary-white text-xl font-semibold w-[220px] line-clamp-2">
-                                    {data.name}
-                                </p>
-                                <p className="px-2 rounded mt-1 text-sm text-primary-yellow border border-primary-bg-yellow">
-                                    {data.metacritic}
-                                </p>
-                            </div>
+                        <div className="pt-2 px-4 w-[100%] flex items-start justify-between">
+                            <p className="text-primary-white text-xl font-semibold w-[220px] line-clamp-2">
+                                {data.name}
+                            </p>
+                            <p className="px-2 rounded mt-1 text-sm text-primary-yellow border border-primary-bg-yellow">
+                                {data.metacritic}
+                            </p>
+                        </div>
+                        <div className="pb-2 px-4 mt-auto">
                             <div className="mb-2 flex items-center justify-between">
                                 <p className="text-secondary-gray">
                                     Release date
