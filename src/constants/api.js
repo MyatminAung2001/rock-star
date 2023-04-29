@@ -9,3 +9,6 @@ export const GET_GENRES = `${baseURL}/genres`;
 
 // platforms
 export const GET_PLATFORMS = `${baseURL}/platforms`;
+
+// stores
+export const GET_STORES = `${baseURL}/stores`;
