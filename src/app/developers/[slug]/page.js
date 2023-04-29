@@ -1,26 +1,27 @@
-"use client"
+"use client";
 
-import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 import { useInfiniteQuery, useQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
 import { TailSpin } from "react-loader-spinner";
 
-import { getDevelopers } from "@/services/service.developers";
-import CodeIcon from "@/assets/icons/CodeIcon";
-import Card from "@/components/Card";
+import { getDevelopersDetails, getDevelopersGames } from "@/services/service.developers";
+import GameCard from "@/components/GameCard";
 
-const Developers = () => {
+const DevelopersGames = () => {
 
-    const router = useRouter();
+    const { slug } = useParams();
 
     const { ref, inView } = useInView();
 
+    const { isLoading, isError, data: tagDetails } = useQuery("developers-detail", () => getDevelopersDetails(slug));
+
     const [page, setPage] = useState(1);
 
-    const { data: tags, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-        "developers",
-        ({ pageParam = 1 }) => getDevelopers(pageParam),
+    const { data: platformGames, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+        "developers-games",
+        ({ pageParam = 1 }) => getDevelopersGames(slug, pageParam),
         {
         getNextPageParam: (lastPage) => {
             if (lastPage.length === 0) {
@@ -38,24 +39,23 @@ const Developers = () => {
         }
     }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage]);
 
-    const gamesData = tags?.pages.flatMap((page) => page);
+    const gamesData = platformGames?.pages.flatMap((page) => page);
 
     const formatted = gamesData?.map((d) => d.results);
 
     const realData = gamesData ? [].concat(...formatted) : [];
 
     return (
-        <div className="default-section-padding w-[100%]">
-            <div className="flex items-center justify-center gap-x-2 mb-5">
-                <CodeIcon />
-                <header className="heading">
-                    Developers
-                </header>
+        <div className="default-section-padding">
+            <div className="mb-5">
+                <p className="heading mb-5">
+                    Developed By {tagDetails?.name}
+                </p>
             </div>
-            <div className="grid grid-cols-1 gap-y-5">
+            <div className="grid grid-cols-1 gap-y-5 xl:grid-cols-4">
                 {realData?.map((data) => (
-                    <div key={data.id} ref={ref} onClick={() => router.push(`developers/${data.id}`)}>
-                        <Card data={data} />
+                    <div key={data.id} ref={ref}>
+                        <GameCard data={data} />
                     </div>
                 ))}
                 {isFetchingNextPage && (
@@ -73,6 +73,6 @@ const Developers = () => {
             </div>
         </div>
     );
-}
+};
 
-export default Developers;
+export default DevelopersGames;

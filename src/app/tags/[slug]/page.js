@@ -45,8 +45,6 @@ const TagsGames = () => {
 
     const realData = gamesData ? [].concat(...formatted) : [];
 
-    console.log(tagDetails);
-
     return (
         <div className="default-section-padding">
             <div className="mb-5">
