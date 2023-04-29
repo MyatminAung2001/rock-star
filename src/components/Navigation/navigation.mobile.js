@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Squash as Hamburger } from 'hamburger-react';
 
-import { GENRES, PLATFORMS, STORES, TAGS } from '@/constants/locationPathname';
+import { GENRES, PLATFORMS, STORES, TAGS, DEVELOPERS } from '@/constants/locationPathname';
 
 const Navigation = () => {
 
@@ -61,7 +61,7 @@ const Navigation = () => {
                                     Tags
                                 </p>
                                 <p onClick={() => {
-                                    // router.push(GENRES);
+                                    router.push(DEVELOPERS);
                                     setIsMenuOpen(false)
                                 }} className="cursor-pointer">
                                     Developers

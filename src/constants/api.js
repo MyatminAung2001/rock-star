@@ -15,3 +15,6 @@ export const GET_STORES = `${baseURL}/stores`;
 
 // tags
 export const GET_TAGS = `${baseURL}/tags`;
+
+// developers
+export const GET_DEVELOPERS = `${baseURL}/developers`;

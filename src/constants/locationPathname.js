@@ -5,3 +5,5 @@ export const PLATFORMS = "/platforms";
 export const STORES = "/stores";
 
 export const TAGS = "/tags";
+
+export const DEVELOPERS = "/developers";
