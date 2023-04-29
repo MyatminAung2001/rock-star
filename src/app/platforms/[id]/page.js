@@ -15,11 +15,11 @@ const PlatformsGames = () => {
 
     const { ref, inView } = useInView();
 
-    const { isLoading, isError, data: platformDetails } = useQuery("platforms-detail", () => getPlatformsDetails(id));
+    const { isLoading, isError, data: platformsDetail } = useQuery("platforms-detail", () => getPlatformsDetails(id));
 
     const [page, setPage] = useState(1);
 
-    const { data: platformGames, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+    const { data: platformsGames, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
         "platforms-games",
         ({ pageParam = 1 }) => getPlatformsGames(id, pageParam),
         {
@@ -39,7 +39,7 @@ const PlatformsGames = () => {
         }
     }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage]);
 
-    const gamesData = platformGames?.pages.flatMap((page) => page);
+    const gamesData = platformsGames?.pages.flatMap((page) => page);
 
     const formatted = gamesData?.map((d) => d.results);
 
@@ -47,7 +47,7 @@ const PlatformsGames = () => {
 
     // content
     // remove p tag from a string
-    const myString = platformDetails?.description;
+    const myString = platformsDetail?.description;
     const description = myString?.replace(/<p>|<\/p>/gi, "");
 
     // control read more state
@@ -64,9 +64,9 @@ const PlatformsGames = () => {
         <div className="default-section-padding">
             <div className="mb-5">
                 <p className="heading mb-5">
-                    {platformDetails?.name} Games
+                    {platformsDetail?.name} Games
                 </p>
-                {platformDetails?.description && (
+                {platformsDetail?.description && (
                     <p className="text-primary-white text-[16px] font-light">
                         {displayContent}...{" "}
                         {!showFullContent && description?.length > cutOff && (

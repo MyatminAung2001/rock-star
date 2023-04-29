@@ -14,7 +14,7 @@ const GenreGames = () => {
 
     const { ref, inView } = useInView();
 
-    const { isLoading, isError, data: genreDetails } = useQuery("genres-detail", () => getGenresDetails(slug));
+    const { isLoading, isError, data: genresDetail } = useQuery("genres-detail", () => getGenresDetails(slug));
 
     const [page, setPage] = useState(1);
 
@@ -46,7 +46,7 @@ const GenreGames = () => {
 
     // content
     // remove p tag from a string
-    const myString = genreDetails?.description;
+    const myString = genresDetail?.description;
     const description = myString?.replace(/<p>|<\/p>/gi, "");
 
     // control read more state
@@ -63,7 +63,7 @@ const GenreGames = () => {
         <div className="default-section-padding">
             <div className="mb-5">
                 <p className="heading mb-5">
-                    {genreDetails?.name} Games
+                    {genresDetail?.name} Games
                 </p>
                 <p className="text-primary-white text-[16px] font-light">
                     {displayContent}...{" "}

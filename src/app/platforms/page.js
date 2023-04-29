@@ -11,7 +11,7 @@ const Genres = () => {
 
     const router = useRouter();
 
-    const { isLoading, isError, data: platformsData } = useQuery("platforms", getPlatforms);
+    const { isLoading, isError, data: platforms } = useQuery("platforms", getPlatforms);
 
     return (
         <div className="default-section-padding w-[100%]">
@@ -22,7 +22,7 @@ const Genres = () => {
                 </header>
             </div>
             <div className="grid grid-cols-1 gap-y-5">
-                {platformsData?.results?.map((data) => (
+                {platforms?.results?.map((data) => (
                     <div key={data.id} onClick={() => router.push(`platforms/${data.id}`)}>
                         <Card data={data} />
                     </div>

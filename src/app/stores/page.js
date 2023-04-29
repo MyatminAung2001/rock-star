@@ -11,7 +11,7 @@ const Stores = () => {
 
     const router = useRouter();
 
-    const { isLoading, isError, data: storesData } = useQuery("stores", getStores);
+    const { isLoading, isError, data: stores } = useQuery("stores", getStores);
 
     return (
         <div className="default-section-padding w-[100%]">
@@ -22,7 +22,7 @@ const Stores = () => {
                 </header>
             </div>
             <div className="grid grid-cols-1 gap-y-5">
-                {storesData?.results?.map((data) => (
+                {stores?.results?.map((data) => (
                     <div key={data.id} onClick={() => router.push(`stores/${data.id}`)}>
                         <Card data={data} />
                     </div>

@@ -15,11 +15,11 @@ const DevelopersGames = () => {
 
     const { ref, inView } = useInView();
 
-    const { isLoading, isError, data: tagDetails } = useQuery("developers-detail", () => getDevelopersDetails(slug));
+    const { isLoading, isError, data: developersDetail } = useQuery("developers-detail", () => getDevelopersDetails(slug));
 
     const [page, setPage] = useState(1);
 
-    const { data: platformGames, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+    const { data: developersGames, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
         "developers-games",
         ({ pageParam = 1 }) => getDevelopersGames(slug, pageParam),
         {
@@ -39,7 +39,7 @@ const DevelopersGames = () => {
         }
     }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage]);
 
-    const gamesData = platformGames?.pages.flatMap((page) => page);
+    const gamesData = developersGames?.pages.flatMap((page) => page);
 
     const formatted = gamesData?.map((d) => d.results);
 
@@ -49,7 +49,7 @@ const DevelopersGames = () => {
         <div className="default-section-padding">
             <div className="mb-5">
                 <p className="heading mb-5">
-                    Developed By {tagDetails?.name}
+                    Developed By {developersDetail?.name}
                 </p>
             </div>
             <div className="grid grid-cols-1 gap-y-5 xl:grid-cols-4">

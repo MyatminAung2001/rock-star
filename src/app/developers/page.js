@@ -18,7 +18,7 @@ const Developers = () => {
 
     const [page, setPage] = useState(1);
 
-    const { data: tags, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+    const { data: developers, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
         "developers",
         ({ pageParam = 1 }) => getDevelopers(pageParam),
         {
@@ -38,7 +38,7 @@ const Developers = () => {
         }
     }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage]);
 
-    const gamesData = tags?.pages.flatMap((page) => page);
+    const gamesData = developers?.pages.flatMap((page) => page);
 
     const formatted = gamesData?.map((d) => d.results);
 
