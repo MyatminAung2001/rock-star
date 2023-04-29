@@ -1,26 +1,27 @@
-"use client"
+"use client";
 
-import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 import { useInfiniteQuery, useQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
 import { TailSpin } from "react-loader-spinner";
 
-import { getTags } from "@/services/service.tags";
-import TagIcon from "@/assets/icons/TagIcon";
-import Card from "@/components/Card";
+import { getTagsGames, getTagsDetails } from "@/services/service.tags";
+import GameCard from "@/components/GameCard";
 
-const Tags = () => {
+const TagsGames = () => {
 
-    const router = useRouter();
+    const { slug } = useParams();
 
     const { ref, inView } = useInView();
 
+    const { isLoading, isError, data: tagDetails } = useQuery(["tagDetails", slug], () => getTagsDetails(slug));
+
     const [page, setPage] = useState(1);
 
-    const { data: tags, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-        "tags",
-        ({ pageParam = 1 }) => getTags(pageParam),
+    const { data: platformGames, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+        ["tags-games", slug],
+        ({ pageParam = 1 }) => getTagsGames(slug, pageParam),
         {
         getNextPageParam: (lastPage) => {
             if (lastPage.length === 0) {
@@ -38,24 +39,25 @@ const Tags = () => {
         }
     }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage]);
 
-    const gamesData = tags?.pages.flatMap((page) => page);
+    const gamesData = platformGames?.pages.flatMap((page) => page);
 
     const formatted = gamesData?.map((d) => d.results);
 
     const realData = gamesData ? [].concat(...formatted) : [];
 
+    console.log(tagDetails);
+
     return (
-        <div className="default-section-padding w-[100%]">
-            <div className="flex items-center justify-center gap-x-2 mb-5">
-                <TagIcon />
-                <header className="heading">
-                    Tags
-                </header>
+        <div className="default-section-padding">
+            <div className="mb-5">
+                <p className="heading mb-5">
+                    {tagDetails?.name} Games
+                </p>
             </div>
-            <div className="grid grid-cols-1 gap-y-5">
+            <div className="grid grid-cols-1 gap-y-5 xl:grid-cols-4">
                 {realData?.map((data) => (
-                    <div key={data.id} ref={ref} onClick={() => router.push(`tags/${data.id}`)}>
-                        <Card data={data} />
+                    <div key={data.id} ref={ref}>
+                        <GameCard data={data} />
                     </div>
                 ))}
                 {isFetchingNextPage && (
@@ -73,6 +75,6 @@ const Tags = () => {
             </div>
         </div>
     );
-}
+};
 
-export default Tags;
+export default TagsGames;
