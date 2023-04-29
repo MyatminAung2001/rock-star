@@ -12,3 +12,6 @@ export const GET_PLATFORMS = `${baseURL}/platforms`;
 
 // stores
 export const GET_STORES = `${baseURL}/stores`;
+
+// tags
+export const GET_TAGS = `${baseURL}/tags`;
