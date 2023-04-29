@@ -14,12 +14,12 @@ const GenreGames = () => {
 
     const { ref, inView } = useInView();
 
-    const { isLoading, isError, data: genreDetails } = useQuery(["genres-detail", slug], () => getGenresDetails(slug));
+    const { isLoading, isError, data: genreDetails } = useQuery("genres-detail", () => getGenresDetails(slug));
 
     const [page, setPage] = useState(1);
 
     const { data: genresGames, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-        ["genres-games", slug],
+        "genres-games",
         ({ pageParam = 1 }) => getGenresGames(slug, pageParam),
         {
         getNextPageParam: (lastPage) => {

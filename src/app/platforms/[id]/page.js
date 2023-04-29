@@ -15,12 +15,12 @@ const PlatformsGames = () => {
 
     const { ref, inView } = useInView();
 
-    const { isLoading, isError, data: platformDetails } = useQuery(["platformDetails", id], () => getPlatformsDetails(id));
+    const { isLoading, isError, data: platformDetails } = useQuery("platforms-detail", () => getPlatformsDetails(id));
 
     const [page, setPage] = useState(1);
 
     const { data: platformGames, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-        ["platforms-games", id],
+        "platforms-games",
         ({ pageParam = 1 }) => getPlatformsGames(id, pageParam),
         {
         getNextPageParam: (lastPage) => {

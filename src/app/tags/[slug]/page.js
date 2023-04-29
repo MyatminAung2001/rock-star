@@ -15,12 +15,12 @@ const TagsGames = () => {
 
     const { ref, inView } = useInView();
 
-    const { isLoading, isError, data: tagDetails } = useQuery(["tagDetails", slug], () => getTagsDetails(slug));
+    const { isLoading, isError, data: tagDetails } = useQuery("tags-detail", () => getTagsDetails(slug));
 
     const [page, setPage] = useState(1);
 
     const { data: platformGames, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-        ["tags-games", slug],
+        "tags-games",
         ({ pageParam = 1 }) => getTagsGames(slug, pageParam),
         {
         getNextPageParam: (lastPage) => {
