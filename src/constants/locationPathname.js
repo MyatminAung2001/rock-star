@@ -7,3 +7,5 @@ export const STORES = "/stores";
 export const TAGS = "/tags";
 
 export const DEVELOPERS = "/developers";
+
+export const PUBLISHERS = "/publishers";
