@@ -18,9 +18,11 @@ const GameCard = ({ data }) => {
                 <p className="text-primary-white text-xl font-semibold w-[220px] line-clamp-2">
                     {data.name}
                 </p>
-                <p className="px-2 rounded mt-1 text-sm text-primary-yellow border border-primary-bg-yellow">
-                    {data.metacritic}
-                </p>
+                {data.metacritic && (
+                    <p className="px-2 rounded mt-1 text-sm text-primary-yellow border border-primary-bg-yellow">
+                        {data.metacritic}
+                    </p>
+                )}
             </div>
             <div className="pt-1 pb-2 px-4 mt-auto">
                 <div className="mb-2 flex items-center justify-between">
