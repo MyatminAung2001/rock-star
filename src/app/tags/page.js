@@ -18,7 +18,7 @@ const Tags = () => {
 
     const [page, setPage] = useState(1);
 
-    const { data: tags, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+    const { data: tags, hasNextPage, fetchNextPage, isFetchingNextPage, isLoading } = useInfiniteQuery(
         "tags",
         ({ pageParam = 1 }) => getTags(pageParam),
         {
