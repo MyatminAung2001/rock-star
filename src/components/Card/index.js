@@ -1,4 +1,4 @@
-import { NUMBER_OF_ITEMS } from "@/constants/numberOfItems";
+import { NUMBER_OF_ITEMS } from "@/constants/restrict";
 
 const Card = ({ data }) => {
     return (

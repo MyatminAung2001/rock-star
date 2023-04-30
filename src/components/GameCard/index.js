@@ -2,10 +2,11 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 import StarIcon from "@/assets/icons/StarIcon";
+import { NUMBER_OF_GENRES } from "@/constants/restrict";
 
 const GameCard = ({ data }) => {
     return (
-        <div className="bg-[#212529] rounded-xl flex flex-col">
+        <div className="bg-[#212529] h-full rounded-xl flex flex-col">
             <LazyLoadImage
                 src={data.background_image}
                 alt={data.name}
@@ -52,7 +53,7 @@ const GameCard = ({ data }) => {
                         Genres
                     </p>
                     <div className="flex items-center gap-x-1">
-                        {data.genres.map((data) => (
+                        {data?.genres?.slice(0, NUMBER_OF_GENRES).map((data) => (
                             <p
                                 key={data.id}
                                 className="text-primary-white text-sm font-light underline"
