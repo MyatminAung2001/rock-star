@@ -21,3 +21,6 @@ export const GET_DEVELOPERS = `${baseURL}/developers`;
 
 // publishers
 export const GET_PUBLISHERS = `${baseURL}/publishers`;
+
+// creators
+export const GET_CREATORS = `${baseURL}/creators`;

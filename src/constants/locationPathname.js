@@ -9,3 +9,5 @@ export const TAGS = "/tags";
 export const DEVELOPERS = "/developers";
 
 export const PUBLISHERS = "/publishers";
+
+export const CREATORS = "/creators";
