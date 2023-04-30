@@ -1,6 +1,6 @@
 "use client";
 
-import { TailSpin } from "react-loader-spinner";
+import { RotatingLines } from "react-loader-spinner";
 
 import GameCard from "@/components/GameCard";
 import useDevelopers from "./hook";
@@ -18,9 +18,15 @@ const DevelopersGames = () => {
 
     if (isLoading) {
         return (
-            <p className="text-primary-white text-center mt-[5rem]">
-                Loading...
-            </p>
+            <div className="w-[100%] flex items-center justify-center">
+                <RotatingLines
+                    strokeColor="#B7B5B3"
+                    strokeWidth="2"
+                    animationDuration="0.75"
+                    width="50"
+                    visible={true}
+                />
+            </div>
         )
     }
 
@@ -39,12 +45,11 @@ const DevelopersGames = () => {
                 ))}
                 {isFetchingNextPage && (
                     <div className="w-[100%] flex items-center justify-center">
-                        <TailSpin
-                            height="60"
-                            width="60"
-                            color="#212529"
-                            ariaLabel="tail-spin-loading"
-                            radius="1"
+                        <RotatingLines
+                            strokeColor="#B7B5B3"
+                            strokeWidth="2"
+                            animationDuration="0.75"
+                            width="50"
                             visible={true}
                         />
                     </div>

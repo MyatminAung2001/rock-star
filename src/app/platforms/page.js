@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useQuery } from "react-query";
+import { RotatingLines } from "react-loader-spinner";
 
 import { getPlatforms } from "@/services/service.platform";
 import Card from "@/components/Card";
@@ -12,6 +13,20 @@ const Genres = () => {
     const router = useRouter();
 
     const { isLoading, isError, data: platforms } = useQuery("platforms", getPlatforms);
+
+    if (isLoading) {
+        return (
+            <div className="w-screen h-screen flex items-center justify-center"> 
+                <RotatingLines
+                    strokeColor="#B7B5B3"
+                    strokeWidth="2"
+                    animationDuration="0.75"
+                    width="50"
+                    visible={true}
+                />
+            </div>
+        )
+    }
 
     return (
         <div className="default-section-padding w-[100%]">

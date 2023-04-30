@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useInfiniteQuery, useQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
-import { TailSpin } from "react-loader-spinner";
+import { RotatingLines } from "react-loader-spinner";
 
 import { getDevelopers } from "@/services/service.developers";
 import CodeIcon from "@/assets/icons/CodeIcon";
@@ -18,7 +18,7 @@ const Developers = () => {
 
     const [page, setPage] = useState(1);
 
-    const { data: developers, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+    const { data: developers, hasNextPage, fetchNextPage, isFetchingNextPage, isLoading, isError } = useInfiniteQuery(
         "developers",
         ({ pageParam = 1 }) => getDevelopers(pageParam),
         {
@@ -44,6 +44,20 @@ const Developers = () => {
 
     const realData = gamesData ? [].concat(...formatted) : [];
 
+    if (isLoading) {
+        return (
+            <div className="w-screen h-screen flex items-center justify-center"> 
+                <RotatingLines
+                    strokeColor="#B7B5B3"
+                    strokeWidth="2"
+                    animationDuration="0.75"
+                    width="50"
+                    visible={true}
+                />
+            </div>
+        )
+    }
+
     return (
         <div className="default-section-padding w-[100%]">
             <div className="flex items-center justify-center gap-x-2 mb-5">
@@ -60,12 +74,11 @@ const Developers = () => {
                 ))}
                 {isFetchingNextPage && (
                     <div className="w-[100%] flex items-center justify-center">
-                        <TailSpin
-                            height="60"
-                            width="60"
-                            color="#212529"
-                            ariaLabel="tail-spin-loading"
-                            radius="1"
+                        <RotatingLines
+                            strokeColor="#B7B5B3"
+                            strokeWidth="2"
+                            animationDuration="0.75"
+                            width="50"
                             visible={true}
                         />
                     </div>

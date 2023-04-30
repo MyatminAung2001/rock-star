@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { useInfiniteQuery, useQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
-import { TailSpin } from "react-loader-spinner";
+import { RotatingLines } from "react-loader-spinner";
 
 import { getPlatformsDetails, getPlatformsGames } from "@/services/service.platform";
 import GameCard from "@/components/GameCard";
@@ -60,6 +60,20 @@ const PlatformsGames = () => {
         ? description
         : `${description?.substring(0, cutOff)}`;
 
+    if (isLoading) {
+        return (
+            <div className="w-screen h-screen flex items-center justify-center"> 
+                <RotatingLines
+                    strokeColor="#B7B5B3"
+                    strokeWidth="2"
+                    animationDuration="0.75"
+                    width="50"
+                    visible={true}
+                />
+            </div>
+        )
+    }
+
     return (
         <div className="default-section-padding">
             <div className="mb-5">
@@ -88,12 +102,11 @@ const PlatformsGames = () => {
                 ))}
                 {isFetchingNextPage && (
                     <div className="w-[100%] flex items-center justify-center">
-                        <TailSpin
-                            height="60"
-                            width="60"
-                            color="#212529"
-                            ariaLabel="tail-spin-loading"
-                            radius="1"
+                        <RotatingLines
+                            strokeColor="#B7B5B3"
+                            strokeWidth="2"
+                            animationDuration="0.75"
+                            width="50"
                             visible={true}
                         />
                     </div>
