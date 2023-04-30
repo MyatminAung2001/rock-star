@@ -1,49 +1,28 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import { useInfiniteQuery, useQuery } from "react-query";
-import { useInView } from "react-intersection-observer";
 import { TailSpin } from "react-loader-spinner";
 
-import { getDevelopersDetails, getDevelopersGames } from "@/services/service.developers";
 import GameCard from "@/components/GameCard";
+import useDevelopers from "./hook";
 
 const DevelopersGames = () => {
 
-    const { slug } = useParams();
+    const {
+        ref,
+        isLoading,
+        isError,
+        developersDetail,
+        realData,
+        isFetchingNextPage
+    } = useDevelopers();
 
-    const { ref, inView } = useInView();
-
-    const { isLoading, isError, data: developersDetail } = useQuery("developers-detail", () => getDevelopersDetails(slug));
-
-    const [page, setPage] = useState(1);
-
-    const { data: developersGames, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-        "developers-games",
-        ({ pageParam = 1 }) => getDevelopersGames(slug, pageParam),
-        {
-        getNextPageParam: (lastPage) => {
-            if (lastPage.length === 0) {
-            return undefined;
-            }
-            return page + 1;
-        },
-        }
-    );
-
-    useEffect(() => {
-        if (inView && hasNextPage && !isFetchingNextPage) {
-            fetchNextPage();
-            setPage(page + 1);
-        }
-    }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage]);
-
-    const gamesData = developersGames?.pages.flatMap((page) => page);
-
-    const formatted = gamesData?.map((d) => d.results);
-
-    const realData = gamesData ? [].concat(...formatted) : [];
+    if (isLoading) {
+        return (
+            <p className="text-primary-white text-center mt-[5rem]">
+                Loading...
+            </p>
+        )
+    }
 
     return (
         <div className="default-section-padding">
