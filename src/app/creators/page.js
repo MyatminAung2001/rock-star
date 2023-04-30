@@ -6,8 +6,8 @@ import { useInfiniteQuery, useQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
 import { RotatingLines } from "react-loader-spinner";
 
-import CodeIcon from "@/assets/icons/CodeIcon";
-import Card from "@/components/Card";
+import UserIcon from "@/assets/icons/UserIcon";
+import CreatorCard from "@/components/CreatorCard";
 import { getCreators } from "@/services/service.creator";
 
 const Creators = () => {
@@ -61,7 +61,7 @@ const Creators = () => {
     return (
         <div className="default-section-padding w-[100%]">
             <div className="flex items-center justify-center gap-x-2 mb-5">
-                <CodeIcon />
+                <UserIcon />
                 <header className="heading">
                     Creators
                 </header>
@@ -69,7 +69,7 @@ const Creators = () => {
             <div className="grid grid-cols-1 gap-y-5">
                 {realData?.map((data) => (
                     <div key={data.id} ref={ref} onClick={() => router.push(`developers/${data.id}`)}>
-                        <Card data={data} />
+                        <CreatorCard data={data} />
                     </div>
                 ))}
                 {isFetchingNextPage && (
