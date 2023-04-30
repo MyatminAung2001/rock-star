@@ -1,63 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import { useInfiniteQuery, useQuery } from "react-query";
-import { useInView } from "react-intersection-observer";
 import { TailSpin } from "react-loader-spinner";
 
-import { getGenresDetails, getGenresGames } from "@/services/service.genres";
 import GameCard from "@/components/GameCard";
+import useGenres from "./hook";
 
 const GenreGames = () => {
-    const { slug } = useParams();
 
-    const { ref, inView } = useInView();
+    const {
+        ref,
+        isLoading,
+        isError,
+        genresDetail,
+        showFullContent,
+        setShowFullContent,
+        displayContent,
+        description,
+        cutOff,
+        isFetchingNextPage,
+        realData
+    } = useGenres();
 
-    const { isLoading, isError, data: genresDetail } = useQuery("genres-detail", () => getGenresDetails(slug));
-
-    const [page, setPage] = useState(1);
-
-    const { data: genresGames, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-        "genres-games",
-        ({ pageParam = 1 }) => getGenresGames(slug, pageParam),
-        {
-        getNextPageParam: (lastPage) => {
-            if (lastPage.length === 0) {
-            return undefined;
-            }
-            return page + 1;
-        },
-        }
-    );
-
-    useEffect(() => {
-        if (inView && hasNextPage && !isFetchingNextPage) {
-            fetchNextPage();
-            setPage(page + 1);
-        }
-    }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage]);
-
-    const gamesData = genresGames?.pages.flatMap((page) => page);
-
-    const formatted = gamesData?.map((d) => d.results);
-
-    const realData = gamesData ? [].concat(...formatted) : [];
-
-    // content
-    // remove p tag from a string
-    const myString = genresDetail?.description;
-    const description = myString?.replace(/<p>|<\/p>/gi, "");
-
-    // control read more state
-    const [showFullContent, setShowFullContent] = useState(false);
-
-    const cutOff = 165;
-
-    const displayContent =
-        description?.length <= cutOff || showFullContent
-        ? description
-        : `${description?.substring(0, cutOff)}`;
+    if (isLoading) {
+        return (
+            <p className="text-primary-white text-center mt-[5rem]">
+                Loading...
+            </p>
+        )
+    }
 
     return (
         <div className="default-section-padding">
