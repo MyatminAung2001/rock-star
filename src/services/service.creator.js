@@ -11,5 +11,5 @@ export const getCreatorsDetails = async (slug) => {
 }
 
 export const getCreatorsGames = async (slug, pageParam) => {
-    return await axiosInstance.get(`${GET_GAMES}?key=${apiKEY}&developers=${slug}&page=${pageParam}`).then(res => res.data);
+    return await axiosInstance.get(`${GET_GAMES}?key=${apiKEY}&creators=${slug}&page=${pageParam}`).then(res => res.data);
 };

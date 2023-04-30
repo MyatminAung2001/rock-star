@@ -68,7 +68,7 @@ const Creators = () => {
             </div>
             <div className="grid grid-cols-1 gap-y-5">
                 {realData?.map((data) => (
-                    <div key={data.id} ref={ref} onClick={() => router.push(`developers/${data.id}`)}>
+                    <div key={data.id} ref={ref} onClick={() => router.push(`creators/${data.id}`)}>
                         <CreatorCard data={data} />
                     </div>
                 ))}
