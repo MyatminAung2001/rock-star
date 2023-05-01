@@ -10,35 +10,32 @@ const CreatorCard = ({ data }) => {
     return (
         <div
             key={data.id}
-            className="w-[100%] h-[250px] flex items-center justify-center relative"
+            className="w-[100%] h-[320px] flex items-center justify-center relative"
         >
             <span style={{
                 content: "",
-                backgroundImage: `url(${data.image_background})`,
+                backgroundImage: `
+                    linear-gradient(rgba(32, 32, 32, 0.5), rgb(32, 32, 32) 70%),
+                    url(${data.image_background})
+                `,
                 backgroundSize: "cover",
-                backgroundPosition: "center",
+                backgroundPosition: "50%",
                 position: "absolute",
-                top: "0px",
-                right: "0px",
-                left: "0px",
-                bottom: "0px",
-                opacity: 0.3,
+                inset: "0px",
                 borderRadius: "0.5rem",
             }}/>
-            <div className="w-[100%] px-6 py-3 relative h-full flex flex-col justify-between bg-[#00000030]">
+            <div className="w-[100%] px-6 py-3 relative h-full flex flex-col justify-between bg-[#00000030] rounded-lg">
                 <div className="flex flex-col items-center justify-center">
                     {data?.image && (
                         <Image 
                             src={data?.image}
                             alt={data?.name}
-                            width={60}
-                            height={60}
-                            style={{
-                                borderRadius: "100%"
-                            }}
+                            width={80}
+                            height={80}
+                            className="rounded-full mb-3"
                         />
                     )}
-                    <p className="mb-1 text-white text-base font-semibold tracking-wider text-center underline cursor-pointer">
+                    <p className="mb-3 text-white text-base font-semibold tracking-wider text-center underline cursor-pointer">
                         {data.name}
                     </p>
                     {data?.positions && (
