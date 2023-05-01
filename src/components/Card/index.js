@@ -4,23 +4,22 @@ const Card = ({ data }) => {
     return (
         <div
             key={data.id}
-            className="w-[100%] h-[230px] flex items-center justify-center relative"
+            className="w-[100%] h-[250px] flex items-center justify-center relative"
         >
             <span style={{
                 content: "",
-                backgroundImage: `url(${data.image_background})`,
+                backgroundImage: `
+                    linear-gradient(rgba(32, 32, 32, 0.5), rgb(32, 32, 32) 70%),
+                    url(${data.image_background})
+                `,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 position: "absolute",
-                top: "0px",
-                right: "0px",
-                left: "0px",
-                bottom: "0px",
-                opacity: 0.4,
+                inset: "0px",
                 borderRadius: "0.5rem",
             }}/>
-            <div className="w-[100%] p-6 relative h-full flex flex-col justify-between bg-[#00000030]">
-                <p className="text-white text-lg font-semibold tracking-wider text-center underline cursor-pointer">
+            <div className="w-[100%] p-6 relative h-full flex flex-col justify-between bg-[#00000030] rounded-lg">
+                <p className="text-white text-lg font-semibold tracking-wider text-center underline">
                     {data.name}
                 </p>
                 <div>
