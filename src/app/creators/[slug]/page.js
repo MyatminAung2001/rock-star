@@ -65,6 +65,8 @@ const CreatorsDetail = () => {
         )
     };
 
+    console.log(creatorsDetail);
+
     return (
         <div className="default-section-padding">
             <span style={{
@@ -78,30 +80,28 @@ const CreatorsDetail = () => {
                 backgroundColor: "transparent",
                 position: "absolute",
                 zIndex: "-10",
-                top: "0px",
-                right: "0px",
-                left: "0px",
-                bottom: "0px",
-                // opacity: 0.2,
+                inset: "0",
                 height: "500px"
             }}/>
-            <div className="mb-5 flex flex-col items-center justify-center">
-                {creatorsDetail?.image && (
-                    <Image 
-                        src={creatorsDetail.image}
-                        alt={creatorsDetail?.name}
-                        width={90}
-                        height={90}
-                        className="rounded-full mb-5"
-                    />
-                )}
-                <p className="heading">
-                    {creatorsDetail?.name}
-                </p>    
+            <div className="mb-5">
+                <div className="flex flex-col items-center">
+                    {creatorsDetail?.image && (
+                        <Image 
+                            src={creatorsDetail.image}
+                            alt={creatorsDetail?.name}
+                            width={90}
+                            height={90}
+                            className="rounded-full mb-5"
+                        />
+                    )}
+                    <p className="heading">
+                        {creatorsDetail?.name}
+                    </p>    
+                </div>
                 {creatorsDetail?.positions && (
                     <div className="flex items-center justify-center gap-x-2 mb-5">
                         {creatorsDetail?.positions.map((data, i, arr) => (
-                            <p key={data.id} className="text-white text-lg first-letter:uppercase">
+                            <p key={data.id} className="text-white text-lg first-letter:uppercase font-light">
                                 {data.name}{i != arr.length - 1 ? ", " : " "}
                             </p>
                         ))}
