@@ -65,8 +65,6 @@ const CreatorsDetail = () => {
         )
     };
 
-    console.log(creatorsDetail);
-
     return (
         <div className="default-section-padding">
             <span style={{

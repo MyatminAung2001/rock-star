@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Squash as Hamburger } from 'hamburger-react';
 
 import { GENRES, PLATFORMS, STORES, TAGS, DEVELOPERS, PUBLISHERS, CREATORS } from '@/constants/locationPathname';
@@ -11,9 +11,24 @@ const Navigation = () => {
     const router = useRouter();
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isScroll, setIsScroll] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 10) {
+                setIsScroll(true);
+            } else {
+                setIsScroll(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => window.removeEventListener("scroll", handleScroll)
+    }, []);
 
     return (
-        <nav className="container fixed py-2 z-50 top-0 left-0 right-0 w-screen">
+        <nav className={`container fixed py-2 z-50 top-0 left-0 right-0 w-screen ${isScroll ? "bg-[#202020]" : "bg-transparent"}`}>
             <div className="flex items-center justify-between">
                 <p className="title cursor-pointer" onClick={() => router.push("/")}>
                     RockStar
