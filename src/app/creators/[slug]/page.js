@@ -65,33 +65,33 @@ const CreatorsDetail = () => {
         )
     };
 
-    console.log(creatorsDetail);
-
-    console.log(creatorsGames);
-
     return (
         <div className="default-section-padding">
-            <span className="bg-black" style={{
+            <span style={{
                 content: "",
-                backgroundImage: `url(${creatorsDetail?.image_background})`,
+                backgroundImage: `
+                    linear-gradient(rgba(32, 32, 32, 0.5), rgb(32, 32, 32) 70%), 
+                    url(${creatorsDetail.image_background})
+                `,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
+                backgroundColor: "transparent",
                 position: "absolute",
                 zIndex: "-10",
                 top: "0px",
                 right: "0px",
                 left: "0px",
                 bottom: "0px",
-                opacity: 0.2,
-                height: ""
+                // opacity: 0.2,
+                height: "500px"
             }}/>
             <div className="mb-5 flex flex-col items-center justify-center">
                 {creatorsDetail?.image && (
                     <Image 
                         src={creatorsDetail.image}
                         alt={creatorsDetail?.name}
-                        width={60}
-                        height={60}
+                        width={90}
+                        height={90}
                         className="rounded-full mb-5"
                     />
                 )}
@@ -111,7 +111,7 @@ const CreatorsDetail = () => {
                     {description}
                 </p>
             </div>
-            <div className="grid grid-cols-1 gap-y-5 xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-5 xl:grid-cols-4">
                 {realData?.map((data) => (
                     <div key={data.id} ref={ref}>
                         <GameCard data={data} />
