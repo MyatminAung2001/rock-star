@@ -18,7 +18,7 @@ const Tags = () => {
 
     const [page, setPage] = useState(1);
 
-    const { data: tags, hasNextPage, fetchNextPage, isFetchingNextPage, isLoading } = useInfiniteQuery(
+    const { data: tags, hasNextPage, fetchNextPage, isFetchingNextPage, isFetching, isLoading } = useInfiniteQuery(
         "tags",
         ({ pageParam = 1 }) => getTags(pageParam),
         {
@@ -72,7 +72,7 @@ const Tags = () => {
                         <Card data={data} />
                     </div>
                 ))}
-                {isFetchingNextPage && (
+                {isFetching && !isFetchingNextPage ? (
                     <div className="w-[100%] flex items-center justify-center">
                         <RotatingLines
                             strokeColor="#B7B5B3"
@@ -82,6 +82,8 @@ const Tags = () => {
                             visible={true}
                         />
                     </div>
+                ) : (
+                    null
                 )}
             </div>
         </div>

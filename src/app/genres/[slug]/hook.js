@@ -15,7 +15,7 @@ const useGenres = () => {
 
     const [page, setPage] = useState(1);
 
-    const { data: genresGames, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+    const { data: genresGames, hasNextPage, fetchNextPage, isFetchingNextPage, isFetching } = useInfiniteQuery(
         "genres-games",
         ({ pageParam = 1 }) => getGenresGames(slug, pageParam),
         {
@@ -67,6 +67,7 @@ const useGenres = () => {
         description,
         cutOff,
         isFetchingNextPage,
+        isFetching,
         realData
     }
 }

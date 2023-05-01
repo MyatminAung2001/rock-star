@@ -15,7 +15,7 @@ const useDevelopers = () => {
 
     const [page, setPage] = useState(1);
 
-    const { data: developersGames, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+    const { data: developersGames, hasNextPage, fetchNextPage, isFetchingNextPage, isFetching } = useInfiniteQuery(
         "developers-games",
         ({ pageParam = 1 }) => getDevelopersGames(slug, pageParam),
         {
@@ -47,7 +47,8 @@ const useDevelopers = () => {
         isError,
         developersDetail,
         realData,
-        isFetchingNextPage
+        isFetchingNextPage,
+        isFetching
     }
 }
 

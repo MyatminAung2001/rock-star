@@ -20,7 +20,7 @@ const CreatorsDetail = () => {
 
     const [page, setPage] = useState(1);
 
-    const { data: creatorsGames, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+    const { data: creatorsGames, hasNextPage, fetchNextPage, isFetchingNextPage, isFetching } = useInfiniteQuery(
         "creators-games",
         ({ pageParam = 1 }) => getCreatorsGames(slug, pageParam),
         {
@@ -117,7 +117,7 @@ const CreatorsDetail = () => {
                         <GameCard data={data} />
                     </div>
                 ))}
-                {isFetchingNextPage && (
+                {isFetching && !isFetchingNextPage ? (
                     <div className="w-[100%] flex items-center justify-center">
                         <RotatingLines
                             strokeColor="#B7B5B3"
@@ -127,6 +127,8 @@ const CreatorsDetail = () => {
                             visible={true}
                         />
                     </div>
+                ) : (
+                    null
                 )}
             </div>
         </div>

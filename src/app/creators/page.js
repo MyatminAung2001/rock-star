@@ -18,7 +18,7 @@ const Creators = () => {
 
     const [page, setPage] = useState(1);
 
-    const { data: creators, hasNextPage, fetchNextPage, isFetchingNextPage, isLoading, isError } = useInfiniteQuery(
+    const { data: creators, hasNextPage, fetchNextPage, isFetchingNextPage, isFetching, isLoading, isError } = useInfiniteQuery(
         "creators",
         ({ pageParam = 1 }) => getCreators(pageParam),
         {
@@ -72,7 +72,7 @@ const Creators = () => {
                         <CreatorCard data={data} />
                     </div>
                 ))}
-                {isFetchingNextPage && (
+                {isFetching && !isFetchingNextPage ? (
                     <div className="w-[100%] flex items-center justify-center">
                         <RotatingLines
                             strokeColor="#B7B5B3"
@@ -82,6 +82,8 @@ const Creators = () => {
                             visible={true}
                         />
                     </div>
+                ) : (
+                    null
                 )}
             </div>
         </div>

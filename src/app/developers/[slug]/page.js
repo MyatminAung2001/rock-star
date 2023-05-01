@@ -13,7 +13,8 @@ const DevelopersGames = () => {
         isError,
         developersDetail,
         realData,
-        isFetchingNextPage
+        isFetchingNextPage,
+        isFetching
     } = useDevelopers();
 
     if (isLoading) {
@@ -43,7 +44,7 @@ const DevelopersGames = () => {
                         <GameCard data={data} />
                     </div>
                 ))}
-                {isFetchingNextPage && (
+                {isFetching && !isFetchingNextPage ? (
                     <div className="w-[100%] flex items-center justify-center">
                         <RotatingLines
                             strokeColor="#B7B5B3"
@@ -53,6 +54,8 @@ const DevelopersGames = () => {
                             visible={true}
                         />
                     </div>
+                ) : (
+                    null
                 )}
             </div>
         </div>

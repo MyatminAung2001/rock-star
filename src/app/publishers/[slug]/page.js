@@ -19,7 +19,7 @@ const PublishersGames = () => {
 
     const [page, setPage] = useState(1);
 
-    const { data: publishersGames, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+    const { data: publishersGames, hasNextPage, fetchNextPage, isFetchingNextPage, isFetching } = useInfiniteQuery(
         "publishers-games",
         ({ pageParam = 1 }) => getPublishersGames(slug, pageParam),
         {
@@ -72,7 +72,7 @@ const PublishersGames = () => {
                         <GameCard data={data} />
                     </div>
                 ))}
-                {isFetchingNextPage && (
+                {isFetching && !isFetchingNextPage ? (
                     <div className="w-[100%] flex items-center justify-center">
                         <RotatingLines
                             strokeColor="#B7B5B3"
@@ -82,6 +82,8 @@ const PublishersGames = () => {
                             visible={true}
                         />
                     </div>
+                ) : (
+                    null
                 )}
             </div>
         </div>

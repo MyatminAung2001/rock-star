@@ -18,6 +18,7 @@ const GenreGames = () => {
         description,
         cutOff,
         isFetchingNextPage,
+        isFetching,
         realData
     } = useGenres();
 
@@ -59,7 +60,7 @@ const GenreGames = () => {
                         <GameCard data={data} />
                     </div>
                 ))}
-                {isFetchingNextPage && (
+                {isFetching && !isFetchingNextPage ? (
                     <div className="w-[100%] flex items-center justify-center">
                         <RotatingLines
                             strokeColor="#B7B5B3"
@@ -69,6 +70,8 @@ const GenreGames = () => {
                             visible={true}
                         />
                     </div>
+                ) : (
+                    null
                 )}
             </div>
         </div>

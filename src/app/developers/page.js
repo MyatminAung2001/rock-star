@@ -18,7 +18,7 @@ const Developers = () => {
 
     const [page, setPage] = useState(1);
 
-    const { data: developers, hasNextPage, fetchNextPage, isFetchingNextPage, isLoading, isError } = useInfiniteQuery(
+    const { data: developers, hasNextPage, fetchNextPage, isFetchingNextPage, isFetching, isLoading, isError } = useInfiniteQuery(
         "developers",
         ({ pageParam = 1 }) => getDevelopers(pageParam),
         {
@@ -72,7 +72,7 @@ const Developers = () => {
                         <Card data={data} />
                     </div>
                 ))}
-                {isFetchingNextPage && (
+                {isFetching && !isFetchingNextPage ? (
                     <div className="w-[100%] flex items-center justify-center">
                         <RotatingLines
                             strokeColor="#B7B5B3"
@@ -82,6 +82,8 @@ const Developers = () => {
                             visible={true}
                         />
                     </div>
+                ) : (
+                    null
                 )}
             </div>
         </div>
