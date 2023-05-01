@@ -1,5 +1,5 @@
 import './globals.css';
-import Navigation from '@/components/Navigation/navigation.mobile';
+import Navigation from '@/components/Navigation/navigation';
 import { ReactQueryProviders } from './providers';
 
 export const metadata = {

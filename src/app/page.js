@@ -56,9 +56,11 @@ const Page = () => {
 
     return (
         <div className="default-section-padding w-[100%]">
-            <p className="heading">
-                New and trending
-            </p>
+            <div>
+                <p className="heading">
+                    New and trending
+                </p>
+            </div>
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-5">
                 {realData?.map((data) => (
                     <div key={data.id} ref={ref} onClick={() => router.push(`creators/${data.id}`)}>

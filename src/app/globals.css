@@ -21,7 +21,7 @@ body {
 
 @layer components {
     .default-section-padding {
-        @apply px-4 py-16
+        @apply px-4 py-16 lg:px-8
     }
 
     .title {
