@@ -1,6 +1,8 @@
 import './globals.css';
+
 import Navigation from '@/components/Navigation/navigation';
 import { ReactQueryProviders } from './providers';
+import WebNavigation from '@/components/Navigation/navigation.web';
 
 export const metadata = {
   title: 'Rock Star',
@@ -13,8 +15,17 @@ export default function RootLayout({ children }) {
     <html lang="en">
         <body>
           <ReactQueryProviders>
-            <Navigation />
-            {children}
+            <main>
+              {/* <Navigation /> */}
+              <section className="flex">
+                <aside className="hidden lg:block lg:fixed lg:left-0 lg:top-0 lg:h-screen lg:bg-slate-700 lg:p-4 lg:w-60">
+                  <WebNavigation />
+                </aside>
+                <div className="flex-1 ml-60">
+                  {children}
+                </div>
+              </section>
+            </main>
           </ReactQueryProviders>
         </body>
     </html>

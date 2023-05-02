@@ -28,7 +28,7 @@ const Navigation = () => {
     }, []);
 
     return (
-        <nav className={`fixed py-2 z-50 top-0 left-0 right-0 w-screen ${isScroll ? "bg-[#202020]" : "bg-[#123453]"}`}>
+        <nav className={`default-section-padding lg:hidden fixed py-2 z-50 top-0 left-0 right-0 w-screen ${isScroll ? "bg-[#202020]" : "bg-transparent"}`}>
             <div className="flex items-center justify-between">
                 <p className="title cursor-pointer" onClick={() => router.push("/")}>
                     RockStar
