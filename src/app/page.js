@@ -6,7 +6,6 @@ import { useInfiniteQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
 import { RotatingLines } from "react-loader-spinner";
 
-import { GENRES, PLATFORMS, STORES, TAGS, DEVELOPERS, PUBLISHERS, CREATORS } from '@/constants/locationPathname';
 import { getGames } from "@/services/service.games";
 import GameCard from "@/components/GameCard";
 
@@ -66,7 +65,7 @@ const Page = () => {
             <p className="text-primary-white mb-3">
                 Based on player count and rating
             </p>
-            <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {realData?.map((data) => (
                     <div key={data.id} ref={ref} onClick={() => router.push(`creators/${data.id}`)}>
                         <GameCard data={data} />

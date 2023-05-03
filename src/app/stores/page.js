@@ -26,17 +26,19 @@ const Stores = () => {
                 />
             </div>
         )
-    }
+    };
 
     return (
         <div className="default-section-padding w-[100%]">
-            <div className="flex items-center justify-center gap-x-2 mb-5">
-                <StoreIcon />
+            <div className="flex items-center justify-center lg:justify-start gap-x-2 mb-5">
+                <div className="lg:hidden">
+                    <StoreIcon />
+                </div>
                 <header className="heading">
                     Stores
                 </header>
             </div>
-            <div className="grid grid-cols-1 gap-y-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {stores?.results?.map((data) => (
                     <div key={data.id} onClick={() => router.push(`stores/${data.id}`)}>
                         <Card data={data} />

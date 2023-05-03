@@ -30,13 +30,15 @@ const Genres = () => {
 
     return (
         <div className="default-section-padding w-[100%]">
-            <div className="flex items-center justify-center gap-x-2 mb-5">
-                <ConsoleIcon />
+            <div className="flex items-center justify-center lg:justify-start gap-x-2 mb-5">
+                <div className="lg:hidden">
+                    <ConsoleIcon />
+                </div>
                 <header className="heading">
                     Platforms
                 </header>
             </div>
-            <div className="grid grid-cols-1 gap-y-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {platforms?.results?.map((data) => (
                     <div key={data.id} onClick={() => router.push(`platforms/${data.id}`)}>
                         <Card data={data} />
