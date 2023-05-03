@@ -10,6 +10,7 @@ import { getGames } from "@/services/service.games";
 import GameCard from "@/components/GameCard";
 
 const Games = () => {
+
     const router = useRouter();
 
     const { ref, inView } = useInView();
@@ -62,7 +63,7 @@ const Games = () => {
                 New and trending
             </p>
             <p className="text-primary-white mb-3">
-                Based on player count and rating
+                Based on player counts and rating
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {realData?.map((data) => (

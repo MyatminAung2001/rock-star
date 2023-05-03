@@ -6,7 +6,7 @@ import { Squash as Hamburger } from 'hamburger-react';
 
 import { GENRES, PLATFORMS, STORES, TAGS, DEVELOPERS, PUBLISHERS, CREATORS } from '@/constants/locationPathname';
 
-const Navigation = () => {
+const Header = () => {
 
     const router = useRouter();
 
@@ -33,7 +33,7 @@ const Navigation = () => {
                 <p className="title cursor-pointer" onClick={() => router.push("/")}>
                     RockStar
                 </p>
-                <div className="sticky z-[150] top-0 right-0">
+                <div className="sticky z-[150] top-0 right-0 lg:hidden">
                     <Hamburger 
                         toggled={isMenuOpen} 
                         toggle={setIsMenuOpen} 
@@ -43,7 +43,7 @@ const Navigation = () => {
                     />
                 </div>
             </div>
-            <div>
+            <div className="lg:hidden">
                 {isMenuOpen && (
                     <div className="bg-primary-bg-white min-h-screen w-[70%] fixed right-0 top-0">
                         <div className="pt-16 px-8">
@@ -102,4 +102,4 @@ const Navigation = () => {
     );
 }
 
-export default Navigation;
+export default Header;

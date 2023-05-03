@@ -1,8 +1,8 @@
 import './globals.css';
 
-import Navigation from '@/components/Navigation/navigation';
 import { ReactQueryProviders } from './providers';
 import WebNavigation from '@/components/Navigation/index.js';
+import Header from '@/components/Header';
 
 export const metadata = {
   title: 'Rock Star',
@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
           <ReactQueryProviders>
             <main>
               {/* <Navigation /> */}
-              <Navigation />
+              <Header />
               <section className="lg:flex">
                 <aside className="hidden lg:block lg:fixed lg:left-0 lg:top-0 lg:h-screen lg:p-4 lg:w-60">
                   <WebNavigation />
