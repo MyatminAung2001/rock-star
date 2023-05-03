@@ -46,7 +46,7 @@ const Publishers = () => {
 
     if (isLoading) {
         return (
-            <div className="w-screen h-screen flex items-center justify-center"> 
+            <div className="w-[100%] h-screen flex items-center justify-center"> 
                 <RotatingLines
                     strokeColor="#B7B5B3"
                     strokeWidth="2"
