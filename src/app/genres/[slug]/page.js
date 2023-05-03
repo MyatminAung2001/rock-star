@@ -24,7 +24,7 @@ const GenreGames = () => {
 
     if (isLoading) {
         return (
-            <div className="w-screen h-screen flex items-center justify-center"> 
+            <div className="w-[100%] h-screen flex items-center justify-center"> 
                 <RotatingLines
                     strokeColor="#B7B5B3"
                     strokeWidth="2"
@@ -37,7 +37,7 @@ const GenreGames = () => {
     }
 
     return (
-        <div className="default-section-padding">
+        <div className="px-4 pt-20 pb-5">
             <div className="mb-5">
                 <p className="heading mb-5">
                     {genresDetail?.name} Games
@@ -54,13 +54,13 @@ const GenreGames = () => {
                     )}
                 </p>
             </div>
-            <div className="grid grid-cols-1 gap-y-5 xl:grid-cols-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {realData?.map((data) => (
                     <div key={data.id} ref={ref}>
                         <GameCard data={data} />
                     </div>
                 ))}
-                {isFetching && !isFetchingNextPage ? (
+                {isFetching && isFetchingNextPage ? (
                     <div className="w-[100%] flex items-center justify-center">
                         <RotatingLines
                             strokeColor="#B7B5B3"

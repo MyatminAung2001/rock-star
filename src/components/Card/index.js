@@ -4,7 +4,7 @@ const Card = ({ data }) => {
     return (
         <div
             key={data.id}
-            className="w-[100%] h-[250px] flex items-center justify-center relative"
+            className="w-[100%] h-[280px] flex items-center justify-center relative"
         >
             <span style={{
                 content: "",

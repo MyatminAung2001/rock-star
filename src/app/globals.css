@@ -29,7 +29,7 @@ body {
     }
 
     .heading {
-        @apply font-semibold tracking-wider text-4xl text-primary-white text-center lg:text-start
+        @apply font-semibold tracking-wider text-4xl text-primary-white text-center lg:text-start lg:text-5xl
     }
 
     .nav {
