@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 
 import NavItem from "./NavItem";
-import { GENRES, PLATFORMS, STORES, TAGS, DEVELOPERS, PUBLISHERS, CREATORS } from '@/constants/locationPathname';
+import { GAMES, GENRES, PLATFORMS, STORES, TAGS, DEVELOPERS, PUBLISHERS, CREATORS } from '@/constants/locationPathname';
 import { GenreIcon, GenreActiveIcon } from "@/assets/icons/GenreIcon";
 import { ConsoleActiveIcon, ConsoleIcon } from "@/assets/icons/ConsoleIcon";
 import { StoreActiveIcon, StoreIcon } from "@/assets/icons/StoreIcon";
@@ -20,7 +20,7 @@ const WebNavigation = () => {
         <div className="px-4 py-16">
 
             <header 
-                onClick={() => router.push("/")} 
+                onClick={() => router.push(GAMES)} 
                 className="mb-5 text-sub-heading font-semibold tracking-wider text-primary-white cursor-pointer"
             >
                 All Games
@@ -29,7 +29,7 @@ const WebNavigation = () => {
             <header className="text-sub-heading font-semibold tracking-wider text-primary-white">
                 Browse
             </header>
-            <div className="mt-3 flex flex-col gap-y-2">
+            <div className="mt-3 flex flex-col gap-y-1">
                 <NavItem 
                     href={GENRES}
                     activeIcon={<GenreActiveIcon />}

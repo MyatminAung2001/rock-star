@@ -21,7 +21,7 @@ const NavItem = ({
                     {icon}
                 </div>
             )}
-            <p className="text-primary-white">
+            <p className="text-primary-white text-base font-light">
                 {title}
             </p>
         </Link>

@@ -1,3 +1,5 @@
+export const GAMES = "/games";
+
 export const GENRES = "/genres";
 
 export const PLATFORMS = "/platforms";
