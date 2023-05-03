@@ -1,6 +1,6 @@
 "use client"
 
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import NavItem from "./NavItem";
 import { GENRES, PLATFORMS, STORES, TAGS, DEVELOPERS, PUBLISHERS, CREATORS } from '@/constants/locationPathname';
@@ -16,10 +16,16 @@ const WebNavigation = () => {
 
     const router = useRouter();
 
-    const pathname = usePathname();
-
     return (
         <div className="px-4 py-16">
+
+            <header 
+                onClick={() => router.push("/")} 
+                className="mb-5 text-sub-heading font-semibold tracking-wider text-primary-white cursor-pointer"
+            >
+                All Games
+            </header>
+
             <header className="text-sub-heading font-semibold tracking-wider text-primary-white">
                 Browse
             </header>
