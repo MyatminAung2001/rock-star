@@ -6,7 +6,7 @@ import { RotatingLines } from "react-loader-spinner";
 
 import { getGenres } from "@/services/service.genres";
 import Card from "@/components/Card";
-import GenreIcon from "@/assets/icons/GenreIcon";
+import { GenreIcon } from "@/assets/icons/GenreIcon";
 
 const Genres = () => {
     
