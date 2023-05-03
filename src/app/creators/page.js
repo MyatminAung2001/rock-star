@@ -6,7 +6,7 @@ import { useInfiniteQuery, useQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
 import { RotatingLines } from "react-loader-spinner";
 
-import UserIcon from "@/assets/icons/UserIcon";
+import { UserIcon } from "@/assets/icons/UserIcon";
 import CreatorCard from "@/components/CreatorCard";
 import { getCreators } from "@/services/service.creator";
 

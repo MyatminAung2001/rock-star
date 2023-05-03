@@ -7,7 +7,7 @@ import { useInView } from "react-intersection-observer";
 import { RotatingLines } from "react-loader-spinner";
 
 import { getDevelopers } from "@/services/service.developers";
-import CodeIcon from "@/assets/icons/CodeIcon";
+import { CodeIcon } from "@/assets/icons/CodeIcon";
 import Card from "@/components/Card";
 
 const Developers = () => {

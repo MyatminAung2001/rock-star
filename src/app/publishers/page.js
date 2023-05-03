@@ -7,7 +7,7 @@ import { useInView } from "react-intersection-observer";
 import { RotatingLines } from "react-loader-spinner";
 
 import { getPublishers } from "@/services/service.publishers";
-import PublishIcon from "@/assets/icons/PublishIcon";
+import { PublishIcon } from "@/assets/icons/PublishIcon";
 import Card from "@/components/Card";
 
 const Publishers = () => {

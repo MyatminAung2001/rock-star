@@ -6,7 +6,7 @@ import { RotatingLines } from "react-loader-spinner";
 
 import { getStores } from "@/services/service.stores";
 import Card from "@/components/Card";
-import StoreIcon from "@/assets/icons/StoreIcon";
+import { StoreIcon } from "@/assets/icons/StoreIcon";
 
 const Stores = () => {
 

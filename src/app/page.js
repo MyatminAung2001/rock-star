@@ -60,8 +60,11 @@ const Page = () => {
 
     return (
         <div className="px-4 pt-20">
-            <p className="heading">
+            <p className="heading mb-3">
                 New and trending
+            </p>
+            <p className="text-primary-white mb-3">
+                Based on player count and rating
             </p>
             <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {realData?.map((data) => (
