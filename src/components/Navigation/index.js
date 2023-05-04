@@ -17,8 +17,7 @@ const WebNavigation = () => {
     const router = useRouter();
 
     return (
-        <div className="px-4 py-16">
-
+        <div className="ml-6">
             <header 
                 onClick={() => router.push(GAMES)} 
                 className="mb-5 text-sub-heading font-semibold tracking-wider text-primary-white cursor-pointer"

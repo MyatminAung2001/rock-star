@@ -28,7 +28,7 @@ const Header = () => {
     }, []);
 
     return (
-        <nav className={`default-section-padding fixed z-50 top-0 py-3 w-screen ${isScroll ? "bg-[#151515]" : "bg-transparent"}`}>
+        <nav className={`default-section-padding lg:hidden fixed z-50 top-0 py-3 w-screen ${isScroll ? "bg-[#151515]" : "bg-transparent"}`}>
             <div className="flex items-center justify-between">
                 <p className="title cursor-pointer" onClick={() => router.push("/")}>
                     RockStar

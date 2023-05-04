@@ -58,7 +58,7 @@ const Games = () => {
     };
 
     return (
-        <div className="px-4 pt-20 pb-5">
+        <div className="px-4 py-12 lg:py-4">
             <p className="heading mb-3">
                 New and trending
             </p>
