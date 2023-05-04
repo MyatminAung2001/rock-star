@@ -26,7 +26,7 @@ const GameCard = ({ data }) => {
             </div>
             <div className="pt-1 pb-2 px-4 mt-auto">
                 <div className="mb-2 flex items-center justify-between">
-                    <p className="text-secondary-gray">
+                    <p className="text-secondary-gray text-sm">
                         Release date
                     </p>
                     <p className="text-primary-white text-sm font-light">
@@ -39,7 +39,7 @@ const GameCard = ({ data }) => {
                 </div>
                 <div className="mb-2 bg-primary-bg-grey w-[100%] h-[0.5px]" />
                 <div className="mb-2 flex items-center justify-between">
-                    <p className="text-secondary-gray">
+                    <p className="text-secondary-gray text-sm">
                         Total rating
                     </p>
                     <div className="flex items-center gap-x-1">
@@ -51,7 +51,7 @@ const GameCard = ({ data }) => {
                 </div>
                 <div className="mb-2 bg-primary-bg-grey w-[100%] h-[0.5px]" />
                 <div className="flex items-center justify-between">
-                    <p className="text-secondary-gray">
+                    <p className="text-secondary-gray text-sm">
                         Genres
                     </p>
                     <div className="flex items-center gap-x-1">
