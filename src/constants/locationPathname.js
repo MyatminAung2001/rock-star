@@ -1,5 +1,7 @@
 export const GAMES = "/games";
 
+export const BEST_OF_THE_YEARS = "/best-of-the-year";
+
 export const GENRES = "/genres";
 
 export const PLATFORMS = "/platforms";
