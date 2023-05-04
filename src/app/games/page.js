@@ -71,7 +71,7 @@ const Games = () => {
                         <GameCard data={data} />
                     </div>
                 ))}
-                {isFetching && isFetchingNextPage ? (
+                {isFetching && !isFetchingNextPage ? (
                     <div className="w-[100%] flex items-center justify-center">
                         <RotatingLines
                             strokeColor="#B7B5B3"

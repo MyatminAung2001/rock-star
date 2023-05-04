@@ -81,6 +81,7 @@ const CreatorsDetail = () => {
                 position: "absolute",
                 zIndex: "-10",
                 inset: "0",
+                height: "500px",
                 maxHeight: "100%"
             }} />
             <div className="mb-5">
