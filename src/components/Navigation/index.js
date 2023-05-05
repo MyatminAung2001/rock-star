@@ -58,17 +58,17 @@ const WebNavigation = () => {
                     />
 
                     <NavItem 
-                        href={POPULAR_IN_2022}
-                        activeIcon={<PopularActiveIcon />}
-                        icon={<PopularIcon />}
-                        title="Popular in 2022"
-                    />
-
-                    <NavItem 
                         href={BEST_OF_THE_YEARS}
                         activeIcon={<TrophyActiveIcon />}
                         icon={<TrophyIcon />}
                         title="Best of the year"
+                    />
+
+                    <NavItem 
+                        href={POPULAR_IN_2022}
+                        activeIcon={<PopularActiveIcon />}
+                        icon={<PopularIcon />}
+                        title="Popular in 2022"
                     />
 
                     <NavItem 
