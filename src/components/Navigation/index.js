@@ -7,6 +7,7 @@ import NavItem from "./NavItem";
 
 // routes
 import { 
+    HOME,
     BEST_OF_THE_YEARS,
     GENRES, 
     PLATFORMS, 
@@ -38,6 +39,12 @@ const WebNavigation = () => {
 
     return (
         <div className="ml-6 flex flex-col gap-y-3">
+            <Link href={HOME}>
+                <header className="text-sub-heading font-semibold tracking-wider text-primary-white cursor-pointer">
+                    Home
+                </header>
+            </Link>
+            <hr />
             <div>
                 <header className="text-sub-heading font-semibold tracking-wider text-primary-white">
                     Top
@@ -72,14 +79,13 @@ const WebNavigation = () => {
                     />
                 </div>
             </div>
-
-
+            <hr />
             <Link href={All_GAMES}>
                 <header className="text-sub-heading font-semibold tracking-wider text-primary-white cursor-pointer">
                     All Games
                 </header>
             </Link>
-
+            <hr />
             <div>
                 <header className="text-sub-heading font-semibold tracking-wider text-primary-white">
                     Browse
