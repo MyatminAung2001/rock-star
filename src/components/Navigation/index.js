@@ -1,13 +1,12 @@
 "use client"
 
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 // components
 import NavItem from "./NavItem";
 
 // routes
 import { 
-    GAMES, 
     BEST_OF_THE_YEARS,
     GENRES, 
     PLATFORMS, 
@@ -16,7 +15,8 @@ import {
     DEVELOPERS, 
     PUBLISHERS, 
     CREATORS, 
-    NEW_AND_TRENDING
+    NEW_AND_TRENDING,
+    All_GAMES
 } from '@/constants/locationPathname';
 
 // icons
@@ -31,8 +31,6 @@ import { TrophyActiveIcon, TrophyIcon } from "@/assets/icons/TrophyIcon";
 import { TrendingActiveIcon, TrendingIcon } from "@/assets/icons/TrendingIcon";
 
 const WebNavigation = () => {
-
-    const router = useRouter();
 
     return (
         <div className="ml-6 flex flex-col gap-y-3">
@@ -58,12 +56,11 @@ const WebNavigation = () => {
             </div>
 
 
-            <header 
-                onClick={() => router.push(GAMES)} 
-                className="text-sub-heading font-semibold tracking-wider text-primary-white cursor-pointer"
-            >
-                All Games
-            </header>
+            <Link href={All_GAMES}>
+                <header className="text-sub-heading font-semibold tracking-wider text-primary-white cursor-pointer">
+                    All Games
+                </header>
+            </Link>
 
             <div>
                 <header className="text-sub-heading font-semibold tracking-wider text-primary-white">

@@ -6,10 +6,10 @@ import { useInfiniteQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
 import { RotatingLines } from "react-loader-spinner";
 
-import { getGames } from "@/services/service.games";
+import { getAllGames } from "@/services/service.games";
 import GameCard from "@/components/GameCard";
 
-const Games = () => {
+const Page = () => {
 
     const router = useRouter();
 
@@ -17,9 +17,9 @@ const Games = () => {
 
     const [page, setPage] = useState(1);
 
-    const { data: games, hasNextPage, fetchNextPage, isFetchingNextPage, isFetching, isLoading, isError } = useInfiniteQuery(
-        "games",
-        ({ pageParam = 1 }) => getGames(pageParam),
+    const { data: AllGames, hasNextPage, fetchNextPage, isFetchingNextPage, isFetching, isLoading, isError } = useInfiniteQuery(
+        "all-games",
+        ({ pageParam = 1 }) => getAllGames(pageParam),
         {
             getNextPageParam: (lastPage) => {
                 if (lastPage.length === 0) {
@@ -37,7 +37,7 @@ const Games = () => {
         }
     }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage]);
 
-    const gamesData = games?.pages.flatMap((page) => page);
+    const gamesData = AllGames?.pages.flatMap((page) => page);
 
     const formatted = gamesData?.map((d) => d.results);
 
@@ -60,10 +60,7 @@ const Games = () => {
     return (
         <div className="px-4 py-12 lg:py-4">
             <p className="heading mb-3">
-                New and trending
-            </p>
-            <p className="text-primary-white mb-3">
-                Based on player counts and rating
+                All Games
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {realData?.map((data) => (
@@ -89,4 +86,4 @@ const Games = () => {
     )
 }
 
-export default Games;
+export default Page;
