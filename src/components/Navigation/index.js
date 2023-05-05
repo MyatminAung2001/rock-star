@@ -17,7 +17,8 @@ import {
     CREATORS, 
     NEW_AND_TRENDING,
     All_GAMES,
-    POPULAR_IN_2022
+    POPULAR_IN_2022,
+    All_TIME_TOP_250
 } from '@/constants/locationPathname';
 
 // icons
@@ -31,6 +32,7 @@ import { UserActiveIcon, UserIcon } from "@/assets/icons/UserIcon";
 import { TrophyActiveIcon, TrophyIcon } from "@/assets/icons/TrophyIcon";
 import { TrendingActiveIcon, TrendingIcon } from "@/assets/icons/TrendingIcon";
 import { PopularActiveIcon, PopularIcon } from "@/assets/icons/PopularIcon";
+import { CrownActiveIcon, CrownIcon } from "@/assets/icons/CrownIcon";
 
 const WebNavigation = () => {
 
@@ -60,6 +62,13 @@ const WebNavigation = () => {
                         activeIcon={<TrophyActiveIcon />}
                         icon={<TrophyIcon />}
                         title="Best of the year"
+                    />
+
+                    <NavItem 
+                        href={All_TIME_TOP_250}
+                        activeIcon={<CrownActiveIcon />}
+                        icon={<CrownIcon />}
+                        title="All Time Top 250"
                     />
                 </div>
             </div>
