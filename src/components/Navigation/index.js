@@ -16,7 +16,8 @@ import {
     PUBLISHERS, 
     CREATORS, 
     NEW_AND_TRENDING,
-    All_GAMES
+    All_GAMES,
+    POPULAR_IN_2022
 } from '@/constants/locationPathname';
 
 // icons
@@ -29,6 +30,7 @@ import { PublishActiveIcon, PublishIcon } from "@/assets/icons/PublishIcon";
 import { UserActiveIcon, UserIcon } from "@/assets/icons/UserIcon";
 import { TrophyActiveIcon, TrophyIcon } from "@/assets/icons/TrophyIcon";
 import { TrendingActiveIcon, TrendingIcon } from "@/assets/icons/TrendingIcon";
+import { PopularActiveIcon, PopularIcon } from "@/assets/icons/PopularIcon";
 
 const WebNavigation = () => {
 
@@ -44,6 +46,13 @@ const WebNavigation = () => {
                         activeIcon={<TrendingActiveIcon />}
                         icon={<TrendingIcon />}
                         title="New and trending"
+                    />
+
+                    <NavItem 
+                        href={POPULAR_IN_2022}
+                        activeIcon={<PopularActiveIcon />}
+                        icon={<PopularIcon />}
+                        title="Popular in 2022"
                     />
 
                     <NavItem 

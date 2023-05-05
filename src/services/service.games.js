@@ -19,3 +19,9 @@ export const getBestOfTheYear = async (pageParam) => {
         ${GET_GAMES}/lists/greatest?key=${apiKEY}&discover=true&page=${pageParam}&page_size=10
     `).then(res => res.data);
 };
+
+export const getPopularIn2022 = async (pageParam) => {
+    return await axiosInstance.get(`
+        ${GET_GAMES}/lists/greatest?key=${apiKEY}&year=2022&discover=true&page=${pageParam}&page_size=10
+    `).then(res => res.data);
+};
