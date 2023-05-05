@@ -15,7 +15,8 @@ import {
     TAGS, 
     DEVELOPERS, 
     PUBLISHERS, 
-    CREATORS 
+    CREATORS, 
+    NEW_AND_TRENDING
 } from '@/constants/locationPathname';
 
 // icons
@@ -27,6 +28,7 @@ import { CodeActiveIcon, CodeIcon } from "@/assets/icons/CodeIcon";
 import { PublishActiveIcon, PublishIcon } from "@/assets/icons/PublishIcon";
 import { UserActiveIcon, UserIcon } from "@/assets/icons/UserIcon";
 import { TrophyActiveIcon, TrophyIcon } from "@/assets/icons/TrophyIcon";
+import { TrendingActiveIcon, TrendingIcon } from "@/assets/icons/TrendingIcon";
 
 const WebNavigation = () => {
 
@@ -39,6 +41,13 @@ const WebNavigation = () => {
                     Top
                 </header>
                 <div className="mt-3 flex flex-col gap-y-1">
+                    <NavItem 
+                        href={NEW_AND_TRENDING}
+                        activeIcon={<TrendingActiveIcon />}
+                        icon={<TrendingIcon />}
+                        title="New and trending"
+                    />
+
                     <NavItem 
                         href={BEST_OF_THE_YEARS}
                         activeIcon={<TrophyActiveIcon />}
