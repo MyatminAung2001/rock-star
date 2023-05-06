@@ -64,7 +64,7 @@ const Page = () => {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {realData?.map((data) => (
-                    <div key={data.id} ref={ref} onClick={() => router.push(`games/${data.id}`)}>
+                    <div key={data.id} ref={ref} onClick={() => router.push(`games/${data.slug}`)}>
                         <GameCard data={data} />
                     </div>
                 ))}
