@@ -13,6 +13,7 @@ import { getGameDetails, getGameSeries, getScreenShots, getTrailers } from "@/se
 import GameCard from "@/components/GameCard";
 import Description from "@/components/common/Description";
 import Tags from "@/components/Details/Tags";
+import Platforms from "@/components/Details/Platforms";
 
 const Page = () => {
 
@@ -184,7 +185,8 @@ const Page = () => {
                         ))}
                     </div>
                 </div>
-                <div className="mb-3">
+                <Platforms platforms={gameDetails?.platforms} />
+                {/* <div className="mb-3">
                     <p className="text-primary-white text-lg tracking-wide">
                         Platforms
                     </p>
@@ -195,7 +197,7 @@ const Page = () => {
                             </p>
                         ))}
                     </div>
-                </div>
+                </div> */}
                 <Tags tags={gameDetails?.tags} />
             </div>
             <div className="mb-5 xl:w-[70rem] 2xl:w-[100rem]">
