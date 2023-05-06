@@ -1,6 +1,6 @@
 export const HOME = "/";
 
-export const All_GAMES = "/all-games";
+export const GAMES = "/games";
 
 export const NEW_AND_TRENDING = "/new-and-trending";
 

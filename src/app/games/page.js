@@ -17,8 +17,8 @@ const Page = () => {
 
     const [page, setPage] = useState(1);
 
-    const { data: AllGames, hasNextPage, fetchNextPage, isFetchingNextPage, isFetching, isLoading, isError } = useInfiniteQuery(
-        "all-games",
+    const { data: Games, hasNextPage, fetchNextPage, isFetchingNextPage, isFetching, isLoading, isError } = useInfiniteQuery(
+        "games",
         ({ pageParam = 1 }) => getAllGames(pageParam),
         {
             getNextPageParam: (lastPage) => {
@@ -37,7 +37,7 @@ const Page = () => {
         }
     }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage]);
 
-    const gamesData = AllGames?.pages.flatMap((page) => page);
+    const gamesData = Games?.pages.flatMap((page) => page);
 
     const formatted = gamesData?.map((d) => d.results);
 
@@ -64,7 +64,7 @@ const Page = () => {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {realData?.map((data) => (
-                    <div key={data.id} ref={ref}>
+                    <div key={data.id} ref={ref} onClick={() => router.push(`games/${data.id}`)}>
                         <GameCard data={data} />
                     </div>
                 ))}

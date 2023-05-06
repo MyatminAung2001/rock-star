@@ -17,7 +17,7 @@ import {
     PUBLISHERS, 
     CREATORS, 
     NEW_AND_TRENDING,
-    All_GAMES,
+    GAMES,
     POPULAR_IN_2022,
     All_TIME_TOP_250
 } from '@/constants/locationPathname';
@@ -80,7 +80,7 @@ const WebNavigation = () => {
                 </div>
             </div>
             <hr />
-            <Link href={All_GAMES}>
+            <Link href={GAMES}>
                 <header className="text-sub-heading font-semibold tracking-wider text-primary-white cursor-pointer">
                     All Games
                 </header>
