@@ -207,14 +207,14 @@ const Page = () => {
                     </div>
                 </div>
             </div>
-            <div className="xl:w-[70rem] 2xl:w-[100rem]">
+            <div className="mb-5 xl:w-[70rem] 2xl:w-[100rem]">
+                <p className="text-xl text-primary-white mb-3">
+                    {gameDetails?.name} Screenshots
+                </p>
                 <Swiper 
                     className="mySwiper"
                     spaceBetween={10}
                     slidesPerView={'auto'}
-                    style={{
-                        width: "100%"
-                    }}
                 >
                     {gameScreenShots?.results.map(screenshot => (
                         <SwiperSlide key={screenshot.id} style={{ width: "auto" }}>
@@ -229,9 +229,9 @@ const Page = () => {
                     ))}
                 </Swiper>
             </div>
-            {/* {gameSeries?.results.length > 0 && (
+            {gameSeries?.results.length > 0 && (
                 <div>
-                    <p className="text-xl text-center text-primary-white mb-3">
+                    <p className="text-xl text-primary-white mb-3">
                         Other games in the series
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
@@ -242,7 +242,7 @@ const Page = () => {
                         ))}
                     </div>
                 </div>
-            )} */}
+            )}
         </div>
     );
 }
