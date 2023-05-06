@@ -13,3 +13,9 @@ export const getGameSeries = async (slug) => {
         `${GET_GAMES}/${slug}/game-series?key=${apiKEY}`
     ).then(res => res.data)
 };
+
+export const getScreenShots = async (slug) => {
+    return await axiosInstance.get(
+        `${GET_GAMES}/${slug}/screenshots?key=${apiKEY}`
+    ).then(res => res.data)
+};

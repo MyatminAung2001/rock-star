@@ -1,11 +1,14 @@
 "use client"
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useParams } from "next/navigation";
 import { useQueries } from "react-query";
 import { RotatingLines } from "react-loader-spinner";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
-import { getGameDetails, getGameSeries } from "@/services/service.details";
+import { getGameDetails, getGameSeries, getScreenShots } from "@/services/service.details";
 import GameCard from "@/components/GameCard";
 
 const Page = () => {
@@ -17,6 +20,7 @@ const Page = () => {
     const queryResults = useQueries([
         { queryKey: "details", queryFn: () => getGameDetails(slug) },
         { queryKey: "series", queryFn: () => getGameSeries(slug)},
+        { queryKey: "screenshots", queryFn: () => getScreenShots(slug)},
     ]);
 
     // loading
@@ -40,9 +44,13 @@ const Page = () => {
 
     const gameSeries = queryResults[1].data;
 
+    const gameScreenShots = queryResults[2].data;
+
     console.log(queryResults[0].data);
 
     console.log(gameSeries?.results);
+
+    console.log(gameScreenShots);
 
     return (
         <div className="default-section-padding">
@@ -197,9 +205,33 @@ const Page = () => {
                     </div>
                 </div>
             </div>
-            {gameSeries?.results.length > 0 && (
+            <div className="xl:w-[70rem] 2xl:w-[100rem]">
+                <Swiper 
+                    className="mySwiper"
+                    spaceBetween={10}
+                    slidesPerView={'auto'}
+                    style={{
+                        width: "100%"
+                    }}
+                >
+                    {gameScreenShots?.results.map(screenshot => (
+                        <SwiperSlide key={screenshot.id} style={{ width: "auto" }}>
+                            <div className="w-[350px]">
+                                <div className="relative w-[350px] h-[200px]">
+                                    <Image
+                                        src={screenshot.image}
+                                        alt="screenshots"
+                                        fill
+                                    />
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
+            {/* {gameSeries?.results.length > 0 && (
                 <div>
-                    <p className="text-lg text-primary-white mb-3">
+                    <p className="text-xl text-center text-primary-white mb-3">
                         Other games in the series
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
@@ -210,7 +242,7 @@ const Page = () => {
                         ))}
                     </div>
                 </div>
-            )}
+            )} */}
         </div>
     );
 }
