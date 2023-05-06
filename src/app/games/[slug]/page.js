@@ -12,6 +12,7 @@ import "swiper/css";
 import { getGameDetails, getGameSeries, getScreenShots, getTrailers } from "@/services/service.details";
 import GameCard from "@/components/GameCard";
 import Description from "@/components/common/Description";
+import Tags from "@/components/Details/Tags";
 
 const Page = () => {
 
@@ -51,13 +52,13 @@ const Page = () => {
 
     const gameTrailers = queryResults[3].data;
 
-    console.log(queryResults[0].data);
+    // console.log(queryResults[0].data);
 
-    console.log(gameSeries?.results);
+    // console.log(gameSeries?.results);
 
-    console.log(gameScreenShots);
+    // console.log(gameScreenShots);
 
-    console.log("trailer", gameTrailers);
+    // console.log("trailer", gameTrailers);
 
     return (
         <div className="default-section-padding">
@@ -195,18 +196,7 @@ const Page = () => {
                         ))}
                     </div>
                 </div>
-                <div className="mb-3">
-                    <p className="text-primary-white text-lg tracking-wide">
-                        Tags
-                    </p>
-                    <div className="flex flex-wrap gap-x-1 break-words">
-                        {gameDetails?.tags.map(tag => (
-                            <p key={tag.id} className="text-primary-white underline tracking-wide text-[14px] font-light">
-                                {tag.name}
-                            </p>
-                        ))}
-                    </div>
-                </div>
+                <Tags tags={gameDetails?.tags} />
             </div>
             <div className="mb-5 xl:w-[70rem] 2xl:w-[100rem]">
                 <p className="text-xl text-primary-white mb-3">
