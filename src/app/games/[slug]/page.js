@@ -1,11 +1,11 @@
 "use client"
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { getGameDetails, getGameSeries } from "@/services/service.details";
-import { useParams } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { useQueries } from "react-query";
+import { RotatingLines } from "react-loader-spinner";
 
+import { getGameDetails, getGameSeries } from "@/services/service.details";
 import GameCard from "@/components/GameCard";
 
 const Page = () => {
@@ -18,6 +18,23 @@ const Page = () => {
         { queryKey: "details", queryFn: () => getGameDetails(slug) },
         { queryKey: "series", queryFn: () => getGameSeries(slug)},
     ]);
+
+    // loading
+    const isLoading = queryResults.some(result => result.isLoading);
+
+    if (isLoading) {
+        return (
+            <div className="w-[100%] h-screen flex items-center justify-center"> 
+                <RotatingLines
+                    strokeColor="#B7B5B3"
+                    strokeWidth="2"
+                    animationDuration="0.75"
+                    width="50"
+                    visible={true}
+                />
+            </div>
+        )
+    };
 
     const gameDetails = queryResults[0].data;
 
@@ -62,7 +79,7 @@ const Page = () => {
                     </p>
                 </div>
                 <div className="mb-3 flex flex-wrap">
-                    <div className="mb-2 w-[50%]">
+                    <div className="mb-2 w-[50%] xl:w-[20%]">
                         <p className="text-primary-white text-lg tracking-wide">
                             Rating     
                         </p>
@@ -73,7 +90,7 @@ const Page = () => {
                         )}
                     </div>
                     {gameDetails?.metacritic && (
-                        <div className="mb-2 w-[50%]">
+                        <div className="mb-2 w-[50%] xl:w-[20%]">
                             <p className="text-primary-white text-lg tracking-wide">
                                 Metacritic     
                             </p>
@@ -83,7 +100,7 @@ const Page = () => {
                         </div>
                     )}
                     {gameDetails?.released && (
-                        <div className="mb-2 w-[50%]">
+                        <div className="mb-2 w-[50%] xl:w-[20%]">
                             <p className="text-primary-white text-lg tracking-wide">
                                 Released Date     
                             </p>
@@ -97,7 +114,7 @@ const Page = () => {
                         </div>
                     )}
                     {gameDetails?.updated && (
-                        <div className="mb-2 w-[50%]">
+                        <div className="mb-2 w-[50%] xl:w-[20%]">
                             <p className="text-primary-white text-lg tracking-wide">
                                 Updated Date     
                             </p>
@@ -110,7 +127,7 @@ const Page = () => {
                             </p>
                         </div>
                     )}
-                    <div className="w-[50%]">
+                    <div className="w-[50%] xl:w-[20%]">
                         <p className="text-primary-white text-lg tracking-wide">
                             Developer     
                         </p>
@@ -120,7 +137,7 @@ const Page = () => {
                             </p>
                         ))}
                     </div>
-                    <div className="w-[50%]">
+                    <div className="w-[50%] xl:w-[20%]">
                         <p className="text-primary-white text-lg tracking-wide">
                             Publisher     
                         </p>
