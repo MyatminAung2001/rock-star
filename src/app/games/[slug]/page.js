@@ -14,6 +14,7 @@ import GameCard from "@/components/GameCard";
 import Description from "@/components/common/Description";
 import Tags from "@/components/Details/Tags";
 import Platforms from "@/components/Details/Platforms";
+import Genres from "@/components/Details/Genres";
 
 const Page = () => {
 
@@ -173,31 +174,10 @@ const Page = () => {
                         </Link>
                     </div>
                 )}
-                <div className="mb-3">
-                    <p className="text-primary-white text-lg tracking-wide">
-                        Genres
-                    </p>
-                    <div className="flex flex-wrap gap-x-1 break-words">
-                        {gameDetails?.genres.map(genre => (
-                            <p key={genre.id} className="text-primary-white underline tracking-wide text-[14px] font-light">
-                                {genre.name}
-                            </p>
-                        ))}
-                    </div>
-                </div>
+                <Genres genres={gameDetails?.genres} />
+
                 <Platforms platforms={gameDetails?.platforms} />
-                {/* <div className="mb-3">
-                    <p className="text-primary-white text-lg tracking-wide">
-                        Platforms
-                    </p>
-                    <div className="flex flex-wrap gap-x-1 break-words">
-                        {gameDetails?.platforms.map(platform => (
-                            <p key={platform.platform.id} className="text-primary-white underline tracking-wide text-[14px] font-light">
-                                {platform.platform.name}
-                            </p>
-                        ))}
-                    </div>
-                </div> */}
+               
                 <Tags tags={gameDetails?.tags} />
             </div>
             <div className="mb-5 xl:w-[70rem] 2xl:w-[100rem]">
