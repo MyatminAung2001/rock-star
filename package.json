@@ -24,6 +24,7 @@
     "react-intersection-observer": "^9.4.3",
     "react-lazy-load-image-component": "^1.5.6",
     "react-loader-spinner": "^5.3.4",
+    "react-player": "^2.12.0",
     "react-query": "^3.39.3",
     "render-img": "^1.1.3",
     "swiper": "^9.2.4",

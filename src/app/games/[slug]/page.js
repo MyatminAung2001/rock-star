@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useParams } from "next/navigation";
 import { useQueries } from "react-query";
@@ -10,8 +9,9 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-import { getGameDetails, getGameSeries, getScreenShots } from "@/services/service.details";
+import { getGameDetails, getGameSeries, getScreenShots, getTrailers } from "@/services/service.details";
 import GameCard from "@/components/GameCard";
+import Description from "@/components/common/Description";
 
 const Page = () => {
 
@@ -21,8 +21,9 @@ const Page = () => {
 
     const queryResults = useQueries([
         { queryKey: "details", queryFn: () => getGameDetails(slug) },
-        { queryKey: "series", queryFn: () => getGameSeries(slug)},
-        { queryKey: "screenshots", queryFn: () => getScreenShots(slug)},
+        { queryKey: "series", queryFn: () => getGameSeries(slug) },
+        { queryKey: "screenshots", queryFn: () => getScreenShots(slug) },
+        { queryKey: "trailers", queryFn: () => getTrailers(slug) },
     ]);
 
     // loading
@@ -48,11 +49,15 @@ const Page = () => {
 
     const gameScreenShots = queryResults[2].data;
 
+    const gameTrailers = queryResults[3].data;
+
     console.log(queryResults[0].data);
 
     console.log(gameSeries?.results);
 
     console.log(gameScreenShots);
+
+    console.log("trailer", gameTrailers);
 
     return (
         <div className="default-section-padding">
@@ -80,14 +85,10 @@ const Page = () => {
                 <p className="mb-2 uppercase text-primary-white text-xs font-light tracking-wider">
                     Average Playtime: {gameDetails?.playtime} hours
                 </p>
-                <div className="mb-2">
-                    <p className="mb-2 text-primary-white text-lg tracking-wide">
-                        About
-                    </p>
-                    <p className="text-primary-white tracking-wide text-sm font-light">
-                        {gameDetails?.description_raw}
-                    </p>
-                </div>
+                <Description
+                    title="About"
+                    description={gameDetails?.description_raw}
+                />
                 <div className="mb-3 flex flex-wrap">
                     <div className="mb-2 w-[50%] xl:w-[20%]">
                         <p className="text-primary-white text-lg tracking-wide">
@@ -229,6 +230,7 @@ const Page = () => {
                     ))}
                 </Swiper>
             </div>
+            {}
             {gameSeries?.results.length > 0 && (
                 <div>
                     <p className="text-xl text-primary-white mb-3">

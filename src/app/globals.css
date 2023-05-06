@@ -19,6 +19,18 @@ body {
     width: 100%;
 }
 
+.description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 7;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.full {
+    display: block;
+}
+
 @layer components {
     .default-section-padding {
         @apply px-[10px] pt-16 pb-8 lg:px-8
