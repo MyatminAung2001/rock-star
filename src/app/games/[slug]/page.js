@@ -72,21 +72,21 @@ const Page = () => {
                             </p>
                         )}
                     </div>
-                    <div className="mb-2 w-[50%]">
-                        <p className="text-primary-white text-lg tracking-wide">
-                            Metacritic     
-                        </p>
-                        {gameDetails?.metacritic && (
+                    {gameDetails?.metacritic && (
+                        <div className="mb-2 w-[50%]">
+                            <p className="text-primary-white text-lg tracking-wide">
+                                Metacritic     
+                            </p>
                             <p className="rounded w-8 text-center text-sm text-primary-yellow border border-primary-bg-yellow">
                                 {gameDetails.metacritic}
                             </p>
-                        )}
-                    </div>
-                    <div className="mb-2 w-[50%]">
-                        <p className="text-primary-white text-lg tracking-wide">
-                            Released Date     
-                        </p>
-                        {gameDetails?.released && (
+                        </div>
+                    )}
+                    {gameDetails?.released && (
+                        <div className="mb-2 w-[50%]">
+                            <p className="text-primary-white text-lg tracking-wide">
+                                Released Date     
+                            </p>
                             <p className="text-primary-white tracking-wide text-[14px] font-light">
                                 {new Date(gameDetails.released).toLocaleDateString("en-us", {
                                     year: "numeric",
@@ -94,13 +94,13 @@ const Page = () => {
                                     day: "numeric",
                                 })}
                             </p>
-                        )}
-                    </div>
-                    <div className="mb-2 w-[50%]">
-                        <p className="text-primary-white text-lg tracking-wide">
-                            Updated Date     
-                        </p>
-                        {gameDetails?.updated && (
+                        </div>
+                    )}
+                    {gameDetails?.updated && (
+                        <div className="mb-2 w-[50%]">
+                            <p className="text-primary-white text-lg tracking-wide">
+                                Updated Date     
+                            </p>
                             <p className="text-primary-white tracking-wide text-[14px] font-light">
                                 {new Date(gameDetails.updated).toLocaleDateString("en-us", {
                                     year: "numeric",
@@ -108,8 +108,8 @@ const Page = () => {
                                     day: "numeric",
                                 })}
                             </p>
-                        )}
-                    </div>
+                        </div>
+                    )}
                     <div className="w-[50%]">
                         <p className="text-primary-white text-lg tracking-wide">
                             Developer     
@@ -131,18 +131,18 @@ const Page = () => {
                         ))}
                     </div>
                 </div>
-                <div className="mb-3">
-                    <p className="text-primary-white text-lg tracking-wide">
-                        Website
-                    </p>
-                    {gameDetails?.website && (
+                {gameDetails?.website && (
+                    <div className="mb-3">
+                        <p className="text-primary-white text-lg tracking-wide">
+                            Website
+                        </p>
                         <Link href={gameDetails.website} target="__blank">
                             <p className="text-primary-white tracking-wide text-[14px] font-light underline">
                                 {gameDetails.website}
                             </p>
                         </Link>
-                    )}
-                </div>
+                    </div>
+                )}
                 <div className="mb-3">
                     <p className="text-primary-white text-lg tracking-wide">
                         Genres
@@ -180,7 +180,7 @@ const Page = () => {
                     </div>
                 </div>
             </div>
-            {gameSeries?.results && (
+            {gameSeries?.results.length > 0 && (
                 <div>
                     <p className="text-lg text-primary-white mb-3">
                         Other games in the series
