@@ -15,10 +15,10 @@ const Platforms = ({ platforms }) => {
                 {platforms?.map((platform, i, arr) => (
                     <p 
                         key={platform.platform.id} 
-                        className="text-primary-white tracking-wide text-[14px] font-light cursor-pointer"
+                        className="text-primary-white tracking-wide text-[14px] font-light cursor-pointer hover:text-primary-gray transition duration-300"
                         onClick={() => router.push(`/platforms/${platform.platform.id}`)}
                     >
-                        {platform.platform.name}{i != arr.length - 1 ? " | " : " "}
+                        {platform.platform.name}<span className="text-primary-yellow">{i != arr.length - 1 ? " | " : " "}</span>
                     </p>
                 ))}
             </div>

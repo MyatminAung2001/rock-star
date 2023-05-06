@@ -15,10 +15,10 @@ const Genres = ({ genres }) => {
                 {genres.map((genre, i, arr) => (
                     <p 
                         key={genre.id} 
-                        className="text-primary-white tracking-wide text-[14px] font-light cursor-pointer"
+                        className="text-primary-white tracking-wide text-[14px] font-light cursor-pointer hover:text-primary-gray transition duration-300"
                         onClick={() => router.push(`/genres/${genre.slug}`)}
                     >
-                        {genre.name}{i != arr.length - 1 ? " | " : " "}
+                        {genre.name}<span className="text-primary-yellow">{i != arr.length - 1 ? " | " : " "}</span>
                     </p>
                 ))}
             </div>
