@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link";
 import { getGameDetails } from "@/services/service.details";
 import { useParams } from "next/navigation";
 import { useQueries } from "react-query";
@@ -52,6 +53,26 @@ const Page = () => {
                 <div className="mb-3 flex flex-wrap">
                     <div className="mb-2 w-[50%]">
                         <p className="text-primary-white text-lg tracking-wide">
+                            Rating     
+                        </p>
+                        {gameDetails?.rating && gameDetails?.rating_top && (
+                            <p className="text-primary-white tracking-wide text-[14px] font-light">
+                                {gameDetails.rating} / {gameDetails.rating_top}
+                            </p>
+                        )}
+                    </div>
+                    <div className="mb-2 w-[50%]">
+                        <p className="text-primary-white text-lg tracking-wide">
+                            Metacritic     
+                        </p>
+                        {gameDetails?.metacritic && (
+                            <p className="rounded w-8 text-center text-sm text-primary-yellow border border-primary-bg-yellow">
+                                {gameDetails.metacritic}
+                            </p>
+                        )}
+                    </div>
+                    <div className="mb-2 w-[50%]">
+                        <p className="text-primary-white text-lg tracking-wide">
                             Released Date     
                         </p>
                         {gameDetails?.released && (
@@ -66,11 +87,15 @@ const Page = () => {
                     </div>
                     <div className="mb-2 w-[50%]">
                         <p className="text-primary-white text-lg tracking-wide">
-                            Metacritic     
+                            Updated Date     
                         </p>
-                        {gameDetails?.metacritic && (
-                            <p className="rounded w-8 text-center text-sm text-primary-yellow border border-primary-bg-yellow">
-                                {gameDetails.metacritic}
+                        {gameDetails?.updated && (
+                            <p className="text-primary-white tracking-wide text-[14px] font-light">
+                                {new Date(gameDetails.updated).toLocaleDateString("en-us", {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                })}
                             </p>
                         )}
                     </div>
@@ -94,6 +119,18 @@ const Page = () => {
                             </p>
                         ))}
                     </div>
+                </div>
+                <div className="mb-3">
+                    <p className="text-primary-white text-lg tracking-wide">
+                        Website
+                    </p>
+                    {gameDetails?.website && (
+                        <Link href={gameDetails.website} target="__blank">
+                            <p className="text-primary-white tracking-wide text-[14px] font-light underline">
+                                {gameDetails.website}
+                            </p>
+                        </Link>
+                    )}
                 </div>
                 <div className="mb-3">
                     <p className="text-primary-white text-lg tracking-wide">
