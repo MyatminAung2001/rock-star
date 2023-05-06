@@ -1,20 +1,31 @@
 "use client"
 
 import Link from "next/link";
-import { getGameDetails } from "@/services/service.details";
+import { useRouter } from "next/navigation";
+import { getGameDetails, getGameSeries } from "@/services/service.details";
 import { useParams } from "next/navigation";
 import { useQueries } from "react-query";
+
+import GameCard from "@/components/GameCard";
 
 const Page = () => {
 
     const { slug } = useParams();
 
+    const router = useRouter();
+
     const queryResults = useQueries([
-        { queryKey: "details", queryFn: () => getGameDetails(slug) }
+        { queryKey: "details", queryFn: () => getGameDetails(slug) },
+        { queryKey: "series", queryFn: () => getGameSeries(slug)},
     ]);
 
     const gameDetails = queryResults[0].data;
+
+    const gameSeries = queryResults[1].data;
+
     console.log(queryResults[0].data);
+
+    console.log(gameSeries?.results);
 
     return (
         <div className="default-section-padding">
@@ -169,6 +180,20 @@ const Page = () => {
                     </div>
                 </div>
             </div>
+            {gameSeries?.results && (
+                <div>
+                    <p className="text-lg text-primary-white mb-3">
+                        Other games in the series
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
+                        {gameSeries?.results.map(series => (
+                            <div key={series.id} onClick={() => router.push(`games/${series.slug}`)}>
+                                <GameCard data={series} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

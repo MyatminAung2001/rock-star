@@ -7,3 +7,9 @@ export const getGameDetails = async (slug) => {
         `${GET_GAMES}/${slug}?key=${apiKEY}`
     ).then(res => res.data)
 };
+
+export const getGameSeries = async (slug) => {
+    return await axiosInstance.get(
+        `${GET_GAMES}/${slug}/game-series?key=${apiKEY}`
+    ).then(res => res.data)
+};
