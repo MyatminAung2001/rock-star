@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useRouter, useParams } from "next/navigation";
 import { useQueries } from "react-query";
 import { RotatingLines } from "react-loader-spinner";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
@@ -216,15 +218,13 @@ const Page = () => {
                 >
                     {gameScreenShots?.results.map(screenshot => (
                         <SwiperSlide key={screenshot.id} style={{ width: "auto" }}>
-                            <div className="w-[350px]">
-                                <div className="relative w-[350px] h-[200px]">
-                                    <Image
-                                        src={screenshot.image}
-                                        alt="screenshots"
-                                        fill
-                                    />
-                                </div>
-                            </div>
+                            <LazyLoadImage
+                                src={screenshot.image}
+                                alt="screenshot"
+                                effect="blur"
+                                threshold={50}
+                                className="object-cover w-[100%] h-[230px] rounded-lg"
+                            />
                         </SwiperSlide>
                     ))}
                 </Swiper>
