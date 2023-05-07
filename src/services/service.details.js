@@ -8,9 +8,9 @@ export const getGameDetails = async (slug) => {
     ).then(res => res.data)
 };
 
-export const getGameSeries = async (slug) => {
+export const getStores = async (slug) => {
     return await axiosInstance.get(
-        `${GET_GAMES}/${slug}/game-series?key=${apiKEY}`
+        `${GET_GAMES}/${slug}/stores?key=${apiKEY}`
     ).then(res => res.data)
 };
 
@@ -20,11 +20,18 @@ export const getScreenShots = async (slug) => {
     ).then(res => res.data)
 };
 
-export const getStores = async (slug) => {
+export const getDLCAndEditions = async (slug) => {
     return await axiosInstance.get(
-        `${GET_GAMES}/${slug}/stores?key=${apiKEY}`
+        `${GET_GAMES}/${slug}/additions?key=${apiKEY}`
     ).then(res => res.data)
 };
+
+export const getGameSeries = async (slug) => {
+    return await axiosInstance.get(
+        `${GET_GAMES}/${slug}/game-series?key=${apiKEY}`
+    ).then(res => res.data)
+};
+
 
 export const getTrailers = async (slug) => {
     return await axiosInstance.get(

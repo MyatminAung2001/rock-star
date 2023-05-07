@@ -9,7 +9,7 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-import { getGameDetails, getGameSeries, getScreenShots, getStores, getTrailers } from "@/services/service.details";
+import { getDLCAndEditions, getGameDetails, getGameSeries, getScreenShots, getStores, getTrailers } from "@/services/service.details";
 import GameCard from "@/components/GameCard";
 import Description from "@/components/common/Description";
 import Tags from "@/components/Details/Tags";
@@ -29,6 +29,7 @@ const Page = () => {
         { queryKey: "screenshots", queryFn: () => getScreenShots(slug) },
         { queryKey: "trailers", queryFn: () => getTrailers(slug) },
         { queryKey: "stores", queryFn: () => getStores(slug) },
+        { queryKey: "dlc-editions", queryFn: () => getDLCAndEditions(slug) },
     ]);
 
     // loading
@@ -58,15 +59,15 @@ const Page = () => {
 
     const gameStores = queryResults[4].data;
 
+    const gameDLCAndEditions = queryResults[5].data;
+
     // console.log(queryResults[0].data);
 
     // console.log(gameSeries?.results);
 
     // console.log(gameScreenShots);
 
-    // console.log("trailer", gameTrailers);
-
-    console.log(gameStores);
+    console.log("editions", gameDLCAndEditions);
 
     return (
         <div className="default-section-padding">
@@ -210,7 +211,20 @@ const Page = () => {
                     ))}
                 </Swiper>
             </div>
-            {}
+            {gameDLCAndEditions?.count > 0 && (
+                <div className="mb-5">
+                    <p className="text-xl text-primary-white mb-3">
+                        {"DLC's and editions"}
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
+                        {gameDLCAndEditions?.results.map(edition => (
+                            <div key={edition.id} onClick={() => router.push(`games/${edition.slug}`)}>
+                                <GameCard data={edition} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
             {gameSeries?.results.length > 0 && (
                 <div>
                     <p className="text-xl text-primary-white mb-3">
