@@ -9,12 +9,13 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-import { getGameDetails, getGameSeries, getScreenShots, getTrailers } from "@/services/service.details";
+import { getGameDetails, getGameSeries, getScreenShots, getStores, getTrailers } from "@/services/service.details";
 import GameCard from "@/components/GameCard";
 import Description from "@/components/common/Description";
 import Tags from "@/components/Details/Tags";
 import Platforms from "@/components/Details/Platforms";
 import Genres from "@/components/Details/Genres";
+import Stores from "@/components/Details/Stores";
 
 const Page = () => {
 
@@ -27,6 +28,7 @@ const Page = () => {
         { queryKey: "series", queryFn: () => getGameSeries(slug) },
         { queryKey: "screenshots", queryFn: () => getScreenShots(slug) },
         { queryKey: "trailers", queryFn: () => getTrailers(slug) },
+        { queryKey: "stores", queryFn: () => getStores(slug) },
     ]);
 
     // loading
@@ -54,6 +56,8 @@ const Page = () => {
 
     const gameTrailers = queryResults[3].data;
 
+    const gameStores = queryResults[4].data;
+
     // console.log(queryResults[0].data);
 
     // console.log(gameSeries?.results);
@@ -61,6 +65,8 @@ const Page = () => {
     // console.log(gameScreenShots);
 
     // console.log("trailer", gameTrailers);
+
+    console.log(gameStores);
 
     return (
         <div className="default-section-padding">
@@ -179,6 +185,8 @@ const Page = () => {
                 <Platforms platforms={gameDetails?.platforms} />
                
                 <Tags tags={gameDetails?.tags} />
+
+                <Stores stores={gameStores} />
             </div>
             <div className="mb-5 xl:w-[70rem] 2xl:w-[100rem]">
                 <p className="text-xl text-primary-white mb-3">

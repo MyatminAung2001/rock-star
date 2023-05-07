@@ -42,6 +42,7 @@ module.exports = {
         "primary-bg-white": "#FFFFFF",
         "primary-bg-grey": "#797979",
         "primary-bg-yellow": "#ffb703",
+        "secondary-bg-black": "#2d2c2c",
       }
     },
   },
