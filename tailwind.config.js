@@ -36,6 +36,7 @@ module.exports = {
         "primary-yellow": "#ffb703",
         "secondary-gray": "#797979",
         "secondary-white": "#EEEEEE",
+        "secondary-black": "#2d2c2c",
       },
       colors: {
         "primary-bg-black": "#000814",

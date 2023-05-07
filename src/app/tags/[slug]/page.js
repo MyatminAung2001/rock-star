@@ -25,7 +25,7 @@ const TagsGames = () => {
         {
         getNextPageParam: (lastPage) => {
             if (lastPage.length === 0) {
-            return undefined;
+                return undefined;
             }
             return page + 1;
         },

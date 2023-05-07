@@ -1,27 +1,42 @@
 "use client"
 
 import Link from "next/link";
+import { useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { useQueries } from "react-query";
+import { useQueries, useInfiniteQuery } from "react-query";
 import { RotatingLines } from "react-loader-spinner";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-import { getDLCAndEditions, getGameDetails, getGameSeries, getScreenShots, getStores, getTrailers } from "@/services/service.details";
+// services
+import { 
+    getAchievements, 
+    getDLCAndEditions, 
+    getGameDetails, 
+    getGameSeries, 
+    getScreenShots, 
+    getStores, 
+    getTrailers 
+} from "@/services/service.details";
+
+// components
 import GameCard from "@/components/GameCard";
 import Description from "@/components/common/Description";
 import Tags from "@/components/Details/Tags";
 import Platforms from "@/components/Details/Platforms";
 import Genres from "@/components/Details/Genres";
 import Stores from "@/components/Details/Stores";
+import Achievements from "@/components/Details/Achievements";
 
 const Page = () => {
 
     const { slug } = useParams();
 
     const router = useRouter();
+
+    const [page, setPage] = useState(1);
 
     const queryResults = useQueries([
         { queryKey: "details", queryFn: () => getGameDetails(slug) },
@@ -66,8 +81,6 @@ const Page = () => {
     // console.log(gameSeries?.results);
 
     // console.log(gameScreenShots);
-
-    console.log("editions", gameDLCAndEditions);
 
     return (
         <div className="default-section-padding">
@@ -189,6 +202,7 @@ const Page = () => {
 
                 <Stores stores={gameStores} />
             </div>
+
             <div className="mb-5 xl:w-[70rem] 2xl:w-[100rem]">
                 <p className="text-xl text-primary-white mb-3">
                     {gameDetails?.name} Screenshots
@@ -211,6 +225,7 @@ const Page = () => {
                     ))}
                 </Swiper>
             </div>
+
             {gameDLCAndEditions?.count > 0 && (
                 <div className="mb-5">
                     <p className="text-xl text-primary-white mb-3">
@@ -225,6 +240,9 @@ const Page = () => {
                     </div>
                 </div>
             )}
+
+            <Achievements slug={slug} gameDetails={gameDetails} />
+
             {gameSeries?.results.length > 0 && (
                 <div>
                     <p className="text-xl text-primary-white mb-3">

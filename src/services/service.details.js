@@ -20,6 +20,12 @@ export const getScreenShots = async (slug) => {
     ).then(res => res.data)
 };
 
+export const getAchievements = async (slug, pageParam) => {
+    return await axiosInstance.get(
+        `${GET_GAMES}/${slug}/achievements?key=${apiKEY}&page=${pageParam}&page_size=6`
+    ).then(res => res.data)
+};
+
 export const getDLCAndEditions = async (slug) => {
     return await axiosInstance.get(
         `${GET_GAMES}/${slug}/additions?key=${apiKEY}`
