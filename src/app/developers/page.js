@@ -8,7 +8,7 @@ import { RotatingLines } from "react-loader-spinner";
 
 import { getDevelopers } from "@/services/service.developers";
 import { CodeIcon } from "@/components/common/icons/CodeIcon";
-import Card from "@/components/Card";
+import Card from "@/components/common/Card";
 
 const Developers = () => {
   const router = useRouter();

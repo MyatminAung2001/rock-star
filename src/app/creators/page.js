@@ -7,7 +7,7 @@ import { useInView } from "react-intersection-observer";
 import { RotatingLines } from "react-loader-spinner";
 
 import { UserIcon } from "@/components/common/icons/UserIcon";
-import CreatorCard from "@/components/CreatorCard";
+import CreatorCard from "@/components/common/CreatorCard";
 import { getCreators } from "@/services/service.creator";
 
 const Creators = () => {
