@@ -1,7 +1,7 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
-import StarIcon from "@/components/common/icons/StarIcon";
+import StarIcon from "@/components/Common/icons/StarIcon";
 import { NUMBER_OF_GENRES } from "@/constants/restrict";
 
 const GameCard = ({ data }) => {

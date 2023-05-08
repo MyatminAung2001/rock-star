@@ -20,8 +20,8 @@ import {
 } from "@/services/service.details";
 
 // components
-import GameCard from "@/components/common/GameCard";
-import Description from "@/components/common/Description";
+import GameCard from "@/components/Common/GameCard";
+import Description from "@/components/Common/Description";
 import Tags from "@/components/Details/Tags";
 import Platforms from "@/components/Details/Platforms";
 import Genres from "@/components/Details/Genres";
