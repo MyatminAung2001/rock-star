@@ -8,7 +8,7 @@ import { RotatingLines } from "react-loader-spinner";
 
 import { getPublishers } from "@/services/service.publishers";
 import { PublishIcon } from "@/components/common/icons/PublishIcon";
-import Card from "@/components/common/Card";
+import Card from "@/components/Common/Card";
 
 const Publishers = () => {
   const router = useRouter();

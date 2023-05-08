@@ -8,7 +8,7 @@ import { RotatingLines } from "react-loader-spinner";
 
 import { getTags } from "@/services/service.tags";
 import { TagIcon } from "@/components/common/icons/TagIcon";
-import Card from "@/components/common/Card";
+import Card from "@/components/Common/Card";
 
 const Tags = () => {
   const router = useRouter();

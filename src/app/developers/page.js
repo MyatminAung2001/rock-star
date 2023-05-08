@@ -7,13 +7,13 @@ import { useInView } from "react-intersection-observer";
 import { RotatingLines } from "react-loader-spinner";
 
 import { getDevelopers } from "@/services/service.developers";
-import { CodeIcon } from "@/components/common/icons/CodeIcon";
-import Card from "@/components/common/Card";
+import { CodeIcon } from "@/components/Common/icons/CodeIcon";
+import Card from "@/components/Common/Card";
 
 const Developers = () => {
   const router = useRouter();
 
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView(); 
 
   const [page, setPage] = useState(1);
 

@@ -6,8 +6,8 @@ import { useInfiniteQuery, useQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
 import { RotatingLines } from "react-loader-spinner";
 
-import { UserIcon } from "@/components/common/icons/UserIcon";
-import CreatorCard from "@/components/common/CreatorCard";
+import { UserIcon } from "@/components/Common/icons/UserIcon";
+import CreatorCard from "@/components/Common/CreatorCard";
 import { getCreators } from "@/services/service.creator";
 
 const Creators = () => {

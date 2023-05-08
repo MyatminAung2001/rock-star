@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 import { RotatingLines } from "react-loader-spinner";
 
 import { getStores } from "@/services/service.stores";
-import Card from "@/components/common/Card";
+import Card from "@/components/Common/Card";
 import { StoreIcon } from "@/components/common/icons/StoreIcon";
 
 const Stores = () => {

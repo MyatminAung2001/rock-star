@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 import { RotatingLines } from "react-loader-spinner";
 
 import { getPlatforms } from "@/services/service.platform";
-import Card from "@/components/common/Card";
+import Card from "@/components/Common/Card";
 import { ConsoleIcon } from "@/components/common/icons/ConsoleIcon";
 
 const Genres = () => {

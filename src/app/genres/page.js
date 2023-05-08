@@ -5,8 +5,8 @@ import { useQuery } from "react-query";
 import { RotatingLines } from "react-loader-spinner";
 
 import { getGenres } from "@/services/service.genres";
-import Card from "@/components/common/Card";
-import { GenreIcon } from "@/components/common/icons/GenreIcon";
+import Card from "@/components/Common/Card";
+import { GenreIcon } from "@/components/Common/icons/GenreIcon";
 
 const Genres = () => {
   const router = useRouter();
