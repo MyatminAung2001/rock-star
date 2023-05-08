@@ -10,7 +10,7 @@ import {
   getPlatformsDetails,
   getPlatformsGames,
 } from "@/services/service.platform";
-import GameCard from "@/components/common/GameCard";
+import GameCard from "@/components/Common/GameCard";
 
 const PlatformsGames = () => {
   const { id } = useParams();

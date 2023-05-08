@@ -7,7 +7,7 @@ import { useInView } from "react-intersection-observer";
 import { RotatingLines } from "react-loader-spinner";
 
 import { getBestOfTheYear } from "@/services/service.games";
-import GameCard from "@/components/common/GameCard";
+import GameCard from "@/components/Common/GameCard";
 
 const Page = () => {
   const router = useRouter();

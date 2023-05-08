@@ -11,7 +11,7 @@ import {
   getCreatorsDetails,
   getCreatorsGames,
 } from "@/services/service.creator";
-import GameCard from "@/components/common/GameCard";
+import GameCard from "@/components/Common/GameCard";
 
 const CreatorsDetail = () => {
   const { slug } = useParams();

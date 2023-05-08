@@ -10,7 +10,7 @@ import {
   getPublishersDetails,
   getPublishersGames,
 } from "@/services/service.publishers";
-import GameCard from "@/components/common/GameCard";
+import GameCard from "@/components/Common/GameCard";
 
 const PublishersGames = () => {
   const { slug } = useParams();

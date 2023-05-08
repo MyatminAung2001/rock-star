@@ -2,7 +2,7 @@
 
 import { RotatingLines } from "react-loader-spinner";
 
-import GameCard from "@/components/common/GameCard";
+import GameCard from "@/components/Common/GameCard";
 import useGenres from "./hook";
 
 const GenreGames = () => {

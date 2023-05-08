@@ -7,7 +7,7 @@ import { useInView } from "react-intersection-observer";
 import { RotatingLines } from "react-loader-spinner";
 
 import { getTagsGames, getTagsDetails } from "@/services/service.tags";
-import GameCard from "@/components/common/GameCard";
+import GameCard from "@/components/Common/GameCard";
 
 const TagsGames = () => {
   const { slug } = useParams();

@@ -7,7 +7,7 @@ import { useInView } from "react-intersection-observer";
 import { RotatingLines } from "react-loader-spinner";
 
 import { getStoresDetails, getStoresGames } from "@/services/service.stores";
-import GameCard from "@/components/common/GameCard";
+import GameCard from "@/components/Common/GameCard";
 
 const StoresGames = () => {
   const { id } = useParams();
