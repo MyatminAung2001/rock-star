@@ -7,7 +7,7 @@ import { useInView } from "react-intersection-observer";
 import { RotatingLines } from "react-loader-spinner";
 
 import { getTags } from "@/services/service.tags";
-import { TagIcon } from "@/components/common/icons/TagIcon";
+import { TagIcon } from "@/components/Common/icons/TagIcon";
 import Card from "@/components/Common/Card";
 
 const Tags = () => {

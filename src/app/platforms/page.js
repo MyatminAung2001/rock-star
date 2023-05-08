@@ -6,7 +6,7 @@ import { RotatingLines } from "react-loader-spinner";
 
 import { getPlatforms } from "@/services/service.platform";
 import Card from "@/components/Common/Card";
-import { ConsoleIcon } from "@/components/common/icons/ConsoleIcon";
+import { ConsoleIcon } from "@/components/Common/icons/ConsoleIcon";
 
 const Genres = () => {
   const router = useRouter();

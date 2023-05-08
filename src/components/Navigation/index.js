@@ -23,41 +23,17 @@ import {
 } from "@/constants/locationPathname";
 
 // icons
-import {
-  GenreIcon,
-  GenreActiveIcon,
-} from "@/components/common/icons/GenreIcon";
-import {
-  ConsoleActiveIcon,
-  ConsoleIcon,
-} from "@/components/common/icons/ConsoleIcon";
-import {
-  StoreActiveIcon,
-  StoreIcon,
-} from "@/components/common/icons/StoreIcon";
-import { TagActiveIcon, TagIcon } from "@/components/common/icons/TagIcon";
-import { CodeActiveIcon, CodeIcon } from "@/components/common/icons/CodeIcon";
-import {
-  PublishActiveIcon,
-  PublishIcon,
-} from "@/components/common/icons/PublishIcon";
-import { UserActiveIcon, UserIcon } from "@/components/common/icons/UserIcon";
-import {
-  TrophyActiveIcon,
-  TrophyIcon,
-} from "@/components/common/icons/TrophyIcon";
-import {
-  TrendingActiveIcon,
-  TrendingIcon,
-} from "@/components/common/icons/TrendingIcon";
-import {
-  PopularActiveIcon,
-  PopularIcon,
-} from "@/components/common/icons/PopularIcon";
-import {
-  CrownActiveIcon,
-  CrownIcon,
-} from "@/components/common/icons/CrownIcon";
+import { GenreIcon, GenreActiveIcon } from "../Common/icons/GenreIcon";
+import { ConsoleIcon, ConsoleActiveIcon } from "../Common/icons/ConsoleIcon";
+import { StoreIcon, StoreActiveIcon } from "../Common/icons/StoreIcon";
+import { TagIcon, TagActiveIcon } from "../Common/icons/TagIcon";
+import { CodeIcon, CodeActiveIcon } from "../Common/icons/CodeIcon";
+import { PublishIcon, PublishActiveIcon } from "../Common/icons/PublishIcon";
+import { UserIcon, UserActiveIcon } from "../Common/icons/UserIcon";
+import { TrophyIcon, TrophyActiveIcon } from "../Common/icons/TrophyIcon";
+import { TrendingIcon, TrendingActiveIcon } from "../Common/icons/TrendingIcon";
+import { PopularIcon, PopularActiveIcon } from "../Common/icons/PopularIcon";
+import { CrownIcon, CrownActiveIcon } from "../Common/icons/CrownIcon";
 
 const WebNavigation = () => {
   return (
