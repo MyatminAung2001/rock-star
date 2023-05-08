@@ -1,9 +1,8 @@
 "use client"
 
 import Link from "next/link";
-import { useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { useQueries, useInfiniteQuery } from "react-query";
+import { useQueries } from "react-query";
 import { RotatingLines } from "react-loader-spinner";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
@@ -12,7 +11,6 @@ import "swiper/css";
 
 // services
 import { 
-    getAchievements, 
     getDLCAndEditions, 
     getGameDetails, 
     getGameSeries, 
@@ -35,8 +33,6 @@ const Page = () => {
     const { slug } = useParams();
 
     const router = useRouter();
-
-    const [page, setPage] = useState(1);
 
     const queryResults = useQueries([
         { queryKey: "details", queryFn: () => getGameDetails(slug) },
@@ -76,12 +72,6 @@ const Page = () => {
 
     const gameDLCAndEditions = queryResults[5].data;
 
-    // console.log(queryResults[0].data);
-
-    // console.log(gameSeries?.results);
-
-    // console.log(gameScreenShots);
-
     return (
         <div className="default-section-padding">
             <span style={{
@@ -101,6 +91,7 @@ const Page = () => {
                 height: "500px",
                 maxHeight: "100%"
             }} />
+
             <div>
                 <p className="mb-2 text-2xl text-primary-white font-semibold">
                     {gameDetails?.name}

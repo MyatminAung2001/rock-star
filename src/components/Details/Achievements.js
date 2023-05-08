@@ -12,12 +12,12 @@ const Achievements = ({ slug, gameDetails }) => {
         "achievements",
         ({ pageParam = 1 }) => getAchievements(slug, pageParam),
         {
-        getNextPageParam: (lastPage) => {
-            if (lastPage.length === 0) {
-            return undefined;
-            }
-            return page + 1;
-        },
+            getNextPageParam: (lastPage) => {
+                if (lastPage.length === 0) {
+                    return undefined;
+                }
+                return page + 1;
+            },
         }
     );
 
@@ -28,11 +28,11 @@ const Achievements = ({ slug, gameDetails }) => {
         }
     };
 
-    const gamesData = achievements?.pages.flatMap((page) => page);
+    const rawData = achievements?.pages.flatMap((page) => page);
 
-    const formatted = gamesData?.map((d) => d.results);
+    const formatted = rawData?.map((d) => d.results);
 
-    const achievementsData = gamesData ? [].concat(...formatted) : [];
+    const achievementsData = rawData ? [].concat(...formatted) : [];
 
     return (
         <>
