@@ -1,4 +1,4 @@
-import Home from "./home";
+import AllTimeTop250 from "./index";
 
 export const metadata = {
     title: 'All time top 250',
@@ -7,7 +7,7 @@ export const metadata = {
 
 const Page = () => {
     return (
-        <Home />
+        <AllTimeTop250 />
     );
 };
 

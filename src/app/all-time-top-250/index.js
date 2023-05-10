@@ -4,7 +4,7 @@ import GameCard from "@/components/Common/GameCard";
 import { FetchingNextPage, Loading } from "@/components/Common/Loading";
 import useContainer from "./useContainer";
 
-const Home = () => {
+const AllTimeTop250 = () => {
 
     const {
         router,
@@ -36,4 +36,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export default AllTimeTop250;
