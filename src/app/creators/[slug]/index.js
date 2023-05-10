@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 
+import BackgroundImage from "@/components/Common/BackgroundImage";
 import GameCard from "@/components/Common/GameCard";
 import { FetchingNextPage, Loading } from "@/components/Common/Loading";
 import useContainer from "./useContainer";
@@ -22,25 +23,8 @@ const Details = () => {
 
     return (
         <div className="default-section-padding">
-            <span
-                style={{
-                content: "",
-                backgroundImage: `
-                    linear-gradient(rgba(21, 21, 21, 0), rgb(21, 21, 21)),
-                    linear-gradient(rgba(21, 21, 21, 0.8), rgba(21, 21, 21, 0.5)),
-                    url(${creatorsDetail.image_background})
-                `,
-                backgroundSize: "cover",
-                backgroundPosition: "top",
-                backgroundColor: "transparent",
-                backgroundRepeat: "no-repeat",
-                position: "absolute",
-                zIndex: "-10",
-                inset: "0",
-                height: "500px",
-                maxHeight: "100%",
-                }}
-            />
+            <BackgroundImage image_background={creatorsDetail.image_background} />
+
             <div className="mb-5">
                 <div className="flex flex-col items-center lg:items-start">
                     {creatorsDetail?.image && (
@@ -70,6 +54,7 @@ const Details = () => {
                     {description}
                 </p>
             </div>
+            
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {formattedData?.map((data) => (
                     <div key={data.id} ref={ref}>
