@@ -2,10 +2,10 @@
 
 import { UserIcon } from "@/components/Common/icons/UserIcon";
 import { FetchingNextPage, Loading } from "@/components/Common/Loading";
-import CreatorCard from "@/components/Common/CreatorCard";
+import Card from "@/components/Common/Card";
 import useContainer from "./useContainer";
 
-const Creators = () => {
+const Developers = () => {
     const {
         router,
         ref,
@@ -23,7 +23,7 @@ const Creators = () => {
                 <div className="lg:hidden">
                     <UserIcon />
                 </div>
-                <header className="heading">Creators</header>
+                <header className="heading">Developers</header>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {formattedData?.map((data) => (
@@ -32,7 +32,7 @@ const Creators = () => {
                         ref={ref}
                         onClick={() => router.push(`creators/${data.id}`)}
                     >
-                        <CreatorCard data={data} />
+                        <Card data={data} />
                     </div>
                 ))}
             </div>
@@ -41,4 +41,4 @@ const Creators = () => {
     );
 };
 
-export default Creators;
+export default Developers;
