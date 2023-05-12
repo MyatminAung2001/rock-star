@@ -6,9 +6,9 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 export const ReactQueryProviders = ({ children }) => {
     const queryClient = new QueryClient({
         defaultOptions: {
-            // queries: {
-            //     refetchOnWindowFocus: false
-            // }
+            queries: {
+                refetchOnWindowFocus: false
+            }
         }
     });
 
