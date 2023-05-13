@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import GameCard from "@/components/Common/GameCard";
 import { FetchingNextPage, Loading } from "@/components/Common/Loading";
 import useContainer from "./useContainer";
@@ -40,9 +42,9 @@ const Detail = () => {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {formattedData?.map((data) => (
-                    <div key={data.id} ref={ref}>
+                    <Link key={data.id} ref={ref} href={`/games/${data.slug}`}>
                         <GameCard data={data} />
-                    </div>
+                    </Link>
                 ))}
             </div>
             {isFetchingNextPage && <FetchingNextPage />}

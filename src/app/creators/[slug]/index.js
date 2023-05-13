@@ -1,6 +1,7 @@
-"use client"
+"use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 import BackgroundImage from "@/components/Common/BackgroundImage";
 import GameCard from "@/components/Common/GameCard";
@@ -8,7 +9,6 @@ import { FetchingNextPage, Loading } from "@/components/Common/Loading";
 import useContainer from "./useContainer";
 
 const Details = () => {
-
     const {
         ref,
         isLoading,
@@ -16,14 +16,16 @@ const Details = () => {
         isFetchingNextPage,
         creatorsDetail,
         formattedData,
-        description
+        description,
     } = useContainer();
 
-    if (isLoading) return <Loading />
+    if (isLoading) return <Loading />;
 
     return (
         <div className="default-section-padding">
-            <BackgroundImage image_background={creatorsDetail.image_background} />
+            <BackgroundImage
+                image_background={creatorsDetail.image_background}
+            />
 
             <div className="mb-5">
                 <div className="flex flex-col items-center lg:items-start">
@@ -44,7 +46,8 @@ const Details = () => {
                                     key={data.id}
                                     className="text-white text-lg first-letter:uppercase font-light"
                                 >
-                                    {data.name} {i != arr.length - 1 ? ", " : " "}
+                                    {data.name}{" "}
+                                    {i != arr.length - 1 ? ", " : " "}
                                 </p>
                             ))}
                         </div>
@@ -54,17 +57,17 @@ const Details = () => {
                     {description}
                 </p>
             </div>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {formattedData?.map((data) => (
-                    <div key={data.id} ref={ref}>
+                    <Link key={data.id} ref={ref} href={`/games/${data.slug}`}>
                         <GameCard data={data} />
-                    </div>
+                    </Link>
                 ))}
             </div>
             {isFetchingNextPage && <FetchingNextPage />}
         </div>
     );
-}
+};
 
 export default Details;
