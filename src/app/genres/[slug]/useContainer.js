@@ -5,17 +5,26 @@ import { useInView } from "react-intersection-observer";
 
 import { getGenresDetails, getGenresGames } from "@/services/service.genres";
 
-const useGenres = () => {
-
+const useContainer = () => {
     const { slug } = useParams();
 
     const { ref, inView } = useInView();
 
-    const { isLoading, isError, data: genresDetail } = useQuery("genres-detail", () => getGenresDetails(slug));
+    const {
+        isLoading,
+        isError,
+        data: genresDetail,
+    } = useQuery("genres-detail", () => getGenresDetails(slug));
 
     const [page, setPage] = useState(1);
 
-    const { data: genresGames, hasNextPage, fetchNextPage, isFetchingNextPage, isFetching } = useInfiniteQuery(
+    const {
+        data: genresGames,
+        hasNextPage,
+        fetchNextPage,
+        isFetchingNextPage,
+        isFetching,
+    } = useInfiniteQuery(
         "genres-games",
         ({ pageParam = 1 }) => getGenresGames(slug, pageParam),
         {
@@ -35,11 +44,10 @@ const useGenres = () => {
         }
     }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage]);
 
-    const gamesData = genresGames?.pages.flatMap((page) => page);
-
-    const formatted = gamesData?.map((d) => d.results);
-
-    const realData = gamesData ? [].concat(...formatted) : [];
+    const gamesData = (genresGames?.pages || []).flatMap(
+        (page) => page.results || []
+    );
+    const formattedData = gamesData || [];
 
     // content
     // remove p tag from a string
@@ -49,12 +57,12 @@ const useGenres = () => {
     // control read more state
     const [showFullContent, setShowFullContent] = useState(false);
 
-    const cutOff = 165;
+    const cutOff = 200;
 
     const displayContent =
         description?.length <= cutOff || showFullContent
-        ? description
-        : `${description?.substring(0, cutOff)}`;
+            ? description
+            : `${description?.substring(0, cutOff)}`;
 
     return {
         ref,
@@ -68,8 +76,8 @@ const useGenres = () => {
         cutOff,
         isFetchingNextPage,
         isFetching,
-        realData
-    }
-}
+        formattedData,
+    };
+};
 
-export default useGenres;
+export default useContainer;
