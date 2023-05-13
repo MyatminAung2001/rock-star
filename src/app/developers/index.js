@@ -30,7 +30,7 @@ const Developers = () => {
                     <div
                         key={data.id}
                         ref={ref}
-                        onClick={() => router.push(`creators/${data.id}`)}
+                        onClick={() => router.push(`developers/${data.id}`)}
                     >
                         <Card data={data} />
                     </div>
