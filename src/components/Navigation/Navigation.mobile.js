@@ -21,17 +21,17 @@ import {
 } from "@/constants/locationPathname";
 
 // icons
-import { GenreIcon, GenreActiveIcon } from "../Common/icons/GenreIcon";
-import { ConsoleIcon, ConsoleActiveIcon } from "../Common/icons/ConsoleIcon";
-import { StoreIcon, StoreActiveIcon } from "../Common/icons/StoreIcon";
-import { TagIcon, TagActiveIcon } from "../Common/icons/TagIcon";
-import { CodeIcon, CodeActiveIcon } from "../Common/icons/CodeIcon";
-import { PublishIcon, PublishActiveIcon } from "../Common/icons/PublishIcon";
-import { UserIcon, UserActiveIcon } from "../Common/icons/UserIcon";
-import { TrophyIcon, TrophyActiveIcon } from "../Common/icons/TrophyIcon";
-import { TrendingIcon, TrendingActiveIcon } from "../Common/icons/TrendingIcon";
-import { PopularIcon, PopularActiveIcon } from "../Common/icons/PopularIcon";
-import { CrownIcon, CrownActiveIcon } from "../Common/icons/CrownIcon";
+import { GenreIcon } from "../Common/icons/GenreIcon";
+import { ConsoleIcon } from "../Common/icons/ConsoleIcon";
+import { StoreIcon } from "../Common/icons/StoreIcon";
+import { TagIcon } from "../Common/icons/TagIcon";
+import { CodeIcon } from "../Common/icons/CodeIcon";
+import { PublishIcon } from "../Common/icons/PublishIcon";
+import { UserIcon } from "../Common/icons/UserIcon";
+import { TrophyIcon } from "../Common/icons/TrophyIcon";
+import { TrendingIcon } from "../Common/icons/TrendingIcon";
+import { PopularIcon } from "../Common/icons/PopularIcon";
+import { CrownIcon } from "../Common/icons/CrownIcon";
 
 const TopNavigation = [
     {

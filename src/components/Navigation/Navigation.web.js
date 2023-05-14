@@ -35,12 +35,95 @@ import { TrendingIcon, TrendingActiveIcon } from "../Common/icons/TrendingIcon";
 import { PopularIcon, PopularActiveIcon } from "../Common/icons/PopularIcon";
 import { CrownIcon, CrownActiveIcon } from "../Common/icons/CrownIcon";
 
+const TopNavigation = [
+    {
+        id: 1,
+        link: NEW_AND_TRENDING,
+        icon: <TrendingIcon />,
+        activeIcon: <TrendingActiveIcon />,
+        label: "New and trending",
+    },
+    {
+        id: 2,
+        link: BEST_OF_THE_YEARS,
+        icon: <TrophyIcon />,
+        activeIcon: <TrophyActiveIcon />,
+        label: "Best of the year",
+    },
+    {
+        id: 3,
+        link: POPULAR_IN_2022,
+        icon: <PopularIcon />,
+        activeIcon: <PopularActiveIcon />,
+        label: "Popular in 2022",
+    },
+    {
+        id: 4,
+        link: All_TIME_TOP_250,
+        icon: <CrownIcon />,
+        activeIcon: <CrownActiveIcon />,
+        label: "All time top 250",
+    },
+];
+
+const BrowseNavigation = [
+    {
+        id: 1,
+        link: GENRES,
+        icon: <GenreIcon />,
+        activeIcon: <GenreActiveIcon />,
+        label: "Genres",
+    },
+    {
+        id: 2,
+        link: PLATFORMS,
+        icon: <ConsoleIcon />,
+        activeIcon: <ConsoleActiveIcon />,
+        label: "Platforms",
+    },
+    {
+        id: 3,
+        link: STORES,
+        icon: <StoreIcon />,
+        activeIcon: <StoreActiveIcon />,
+        label: "Stores",
+    },
+    {
+        id: 4,
+        link: TAGS,
+        icon: <TagIcon />,
+        activeIcon: <TagActiveIcon />,
+        label: "Tags",
+    },
+    {
+        id: 5,
+        link: DEVELOPERS,
+        icon: <CodeIcon />,
+        activeIcon: <CodeActiveIcon />,
+        label: "Developers",
+    },
+    {
+        id: 6,
+        link: PUBLISHERS,
+        icon: <PublishIcon />,
+        activeIcon: <PublishActiveIcon />,
+        label: "Publishers",
+    },
+    {
+        id: 7,
+        link: CREATORS,
+        icon: <UserIcon />,
+        activeIcon: <UserActiveIcon />,
+        label: "Creators",
+    },
+];
+
 const NavigationWeb = () => {
     return (
         <div className="ml-6 flex flex-col gap-y-3">
             <Link href={HOME}>
                 <header className="text-sub-heading font-semibold tracking-wider text-primary-white cursor-pointer">
-                    Home
+                    BitBazaar
                 </header>
             </Link>
             <hr />
@@ -49,33 +132,15 @@ const NavigationWeb = () => {
                     Top
                 </header>
                 <div className="mt-3 flex flex-col gap-y-1">
-                    <NavItem
-                        href={NEW_AND_TRENDING}
-                        activeIcon={<TrendingActiveIcon />}
-                        icon={<TrendingIcon />}
-                        title="New and trending"
-                    />
-
-                    <NavItem
-                        href={BEST_OF_THE_YEARS}
-                        activeIcon={<TrophyActiveIcon />}
-                        icon={<TrophyIcon />}
-                        title="Best of the year"
-                    />
-
-                    <NavItem
-                        href={POPULAR_IN_2022}
-                        activeIcon={<PopularActiveIcon />}
-                        icon={<PopularIcon />}
-                        title="Popular in 2022"
-                    />
-
-                    <NavItem
-                        href={All_TIME_TOP_250}
-                        activeIcon={<CrownActiveIcon />}
-                        icon={<CrownIcon />}
-                        title="All Time Top 250"
-                    />
+                    {TopNavigation.map((data) => (
+                        <NavItem
+                            key={data.id}
+                            href={data.link}
+                            activeIcon={data.activeIcon}
+                            icon={data.icon}
+                            title={data.label}
+                        />
+                    ))}
                 </div>
             </div>
             <hr />
@@ -90,54 +155,15 @@ const NavigationWeb = () => {
                     Browse
                 </header>
                 <div className="mt-3 flex flex-col gap-y-1">
-                    <NavItem
-                        href={GENRES}
-                        activeIcon={<GenreActiveIcon />}
-                        icon={<GenreIcon />}
-                        title="Genres"
-                    />
-
-                    <NavItem
-                        href={PLATFORMS}
-                        activeIcon={<ConsoleActiveIcon />}
-                        icon={<ConsoleIcon />}
-                        title="Platforms"
-                    />
-
-                    <NavItem
-                        href={STORES}
-                        activeIcon={<StoreActiveIcon />}
-                        icon={<StoreIcon />}
-                        title="Stores"
-                    />
-
-                    <NavItem
-                        href={TAGS}
-                        activeIcon={<TagActiveIcon />}
-                        icon={<TagIcon />}
-                        title="Tags"
-                    />
-
-                    <NavItem
-                        href={DEVELOPERS}
-                        activeIcon={<CodeActiveIcon />}
-                        icon={<CodeIcon />}
-                        title="Developers"
-                    />
-
-                    <NavItem
-                        href={PUBLISHERS}
-                        activeIcon={<PublishActiveIcon />}
-                        icon={<PublishIcon />}
-                        title="Publishers"
-                    />
-
-                    <NavItem
-                        href={CREATORS}
-                        activeIcon={<UserActiveIcon />}
-                        icon={<UserIcon />}
-                        title="Creators"
-                    />
+                    {BrowseNavigation.map((data) => (
+                        <NavItem
+                            key={data.id}
+                            href={data.link}
+                            activeIcon={data.activeIcon}
+                            icon={data.icon}
+                            title={data.label}
+                        />
+                    ))}
                 </div>
             </div>
         </div>
