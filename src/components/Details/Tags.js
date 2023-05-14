@@ -1,29 +1,22 @@
-"use client"
-
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const Tags = ({ tags }) => {
-
-    const router = useRouter();
-
     return (
         <div className="mb-2">
-            <p className="mb-2 text-primary-white text-lg tracking-wide">
-                Tags
-            </p>
+            <p className="detail-heading mb-3">Tags</p>
             <div className="flex flex-wrap gap-2 break-words">
-                {tags.map(tag => (
-                    <p 
-                        onClick={() => router.push(`tags/${tag.slug}`)}
-                        key={tag.id} 
-                        className="text-[14px] border rounded px-2 text-primary-white border-primary-bg-yellow cursor-pointer"
+                {tags.map((tag) => (
+                    <Link
+                        href={`/tags/${tag.slug}`}
+                        key={tag.id}
+                        className="text-[14px] border rounded px-2 text-primary-white hover:text-secondary-gray transition duration-300 border-primary-bg-grey cursor-pointer"
                     >
                         {tag.name}
-                    </p>
+                    </Link>
                 ))}
             </div>
         </div>
     );
-}
+};
 
 export default Tags;

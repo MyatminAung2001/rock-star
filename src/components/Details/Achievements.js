@@ -5,10 +5,15 @@ import { useInfiniteQuery } from "react-query";
 import { getAchievements } from "@/services/service.details";
 
 const Achievements = ({ slug, gameDetails }) => {
-
     const [page, setPage] = useState(1);
 
-    const { data: achievements, hasNextPage, fetchNextPage, isFetchingNextPage, isFetching } = useInfiniteQuery(
+    const {
+        data: achievements,
+        hasNextPage,
+        fetchNextPage,
+        isFetchingNextPage,
+        isFetching,
+    } = useInfiniteQuery(
         "achievements",
         ({ pageParam = 1 }) => getAchievements(slug, pageParam),
         {
@@ -24,7 +29,7 @@ const Achievements = ({ slug, gameDetails }) => {
     const handleViewMore = () => {
         if (!isFetchingNextPage) {
             fetchNextPage();
-            setPage(prevPage => prevPage + 1)
+            setPage((prevPage) => prevPage + 1);
         }
     };
 
@@ -38,16 +43,16 @@ const Achievements = ({ slug, gameDetails }) => {
         <>
             {achievementsData.length > 0 && (
                 <div className="mb-5">
-                    <p className="text-xl text-primary-white mb-3">
+                    <p className="detail-heading mb-3">
                         {gameDetails.name} achievements
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
-                        {achievementsData?.map(achievement => (
-                            <div 
+                        {achievementsData?.map((achievement) => (
+                            <div
                                 key={achievement.id}
                                 className="flex items-start gap-x-4"
                             >
-                                <Image 
+                                <Image
                                     src={achievement.image}
                                     alt={achievement.name}
                                     width={50}
@@ -70,14 +75,15 @@ const Achievements = ({ slug, gameDetails }) => {
                     {hasNextPage && (
                         <div className="w-[100%] flex items-center justify-center mt-5">
                             <div>
-                                <button 
-                                    disabled={isFetchingNextPage} 
+                                <button
+                                    disabled={isFetchingNextPage}
                                     onClick={handleViewMore}
                                     className="px-4 py-2 bg-secondary-bg-black text-primary-white font-light text-sm rounded-md"
                                 >
-                                    {isFetchingNextPage ? "Loading..." : "View More"}
+                                    {isFetchingNextPage
+                                        ? "Loading..."
+                                        : "View More"}
                                 </button>
-                              
                             </div>
                         </div>
                     )}
@@ -85,6 +91,6 @@ const Achievements = ({ slug, gameDetails }) => {
             )}
         </>
     );
-}
+};
 
 export default Achievements;

@@ -51,4 +51,8 @@ body {
     .active-nav {
         @apply bg-[#FFFFFF] rounded p-2
     }
+
+    .detail-heading {
+        @apply text-primary-white tracking-wide underline decoration-[#797979] underline-offset-2
+    }
 }
