@@ -20,6 +20,23 @@ import {
     GAMES,
 } from "@/constants/locationPathname";
 
+const TopNavigation = [
+    { id: 1, link: NEW_AND_TRENDING, label: "New and trending" },
+    { id: 2, link: BEST_OF_THE_YEARS, label: "Best of the year" },
+    { id: 3, link: POPULAR_IN_2022, label: "Popular in 2022" },
+    { id: 4, link: All_TIME_TOP_250, label: "All time top 250" },
+];
+
+const BrowseNavigation = [
+    { id: 1, link: GENRES, label: "Genres" },
+    { id: 2, link: PLATFORMS, label: "Platforms" },
+    { id: 3, link: STORES, label: "Stores" },
+    { id: 4, link: TAGS, label: "Tags" },
+    { id: 5, link: DEVELOPERS, label: "Developers" },
+    { id: 6, link: PUBLISHERS, label: "Publishers" },
+    { id: 7, link: CREATORS, label: "Creators" },
+];
+
 const NavigationMobile = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScroll, setIsScroll] = useState(false);
@@ -66,42 +83,18 @@ const NavigationMobile = () => {
                                 Top
                             </header>
                             <div className="mt-3 flex flex-col gap-y-3">
-                                <Link
-                                    href={NEW_AND_TRENDING}
-                                    onClick={() => {
-                                        setIsMenuOpen(false);
-                                    }}
-                                    className="cursor-pointer"
-                                >
-                                    New and trending
-                                </Link>
-                                <Link
-                                    href={BEST_OF_THE_YEARS}
-                                    onClick={() => {
-                                        setIsMenuOpen(false);
-                                    }}
-                                    className="cursor-pointer"
-                                >
-                                    Best of the year
-                                </Link>
-                                <Link
-                                    href={POPULAR_IN_2022}
-                                    onClick={() => {
-                                        setIsMenuOpen(false);
-                                    }}
-                                    className="cursor-pointer"
-                                >
-                                    Popular in 2022
-                                </Link>
-                                <Link
-                                    href={All_TIME_TOP_250}
-                                    onClick={() => {
-                                        setIsMenuOpen(false);
-                                    }}
-                                    className="cursor-pointer"
-                                >
-                                    All time top 250
-                                </Link>
+                                {TopNavigation.map((data) => (
+                                    <Link
+                                        key={data.id}
+                                        href={data.link}
+                                        onClick={() => {
+                                            setIsMenuOpen(false);
+                                        }}
+                                        className="cursor-pointer"
+                                    >
+                                        {data.label}
+                                    </Link>
+                                ))}
                             </div>
                         </div>
                         <hr className="my-3" />
@@ -116,69 +109,18 @@ const NavigationMobile = () => {
                                 Browse
                             </header>
                             <div className="mt-3 flex flex-col gap-y-3">
-                                <Link
-                                    href={GENRES}
-                                    onClick={() => {
-                                        setIsMenuOpen(false);
-                                    }}
-                                    className="cursor-pointer"
-                                >
-                                    Genres
-                                </Link>
-                                <p
-                                    onClick={() => {
-                                        router.push(PLATFORMS);
-                                        setIsMenuOpen(false);
-                                    }}
-                                    className="cursor-pointer"
-                                >
-                                    Platforms
-                                </p>
-                                <p
-                                    onClick={() => {
-                                        router.push(STORES);
-                                        setIsMenuOpen(false);
-                                    }}
-                                    className="cursor-pointer"
-                                >
-                                    Stores
-                                </p>
-                                <p
-                                    onClick={() => {
-                                        router.push(TAGS);
-                                        setIsMenuOpen(false);
-                                    }}
-                                    className="cursor-pointer"
-                                >
-                                    Tags
-                                </p>
-                                <p
-                                    onClick={() => {
-                                        router.push(DEVELOPERS);
-                                        setIsMenuOpen(false);
-                                    }}
-                                    className="cursor-pointer"
-                                >
-                                    Developers
-                                </p>
-                                <p
-                                    onClick={() => {
-                                        router.push(PUBLISHERS);
-                                        setIsMenuOpen(false);
-                                    }}
-                                    className="cursor-pointer"
-                                >
-                                    Publishers
-                                </p>
-                                <p
-                                    onClick={() => {
-                                        router.push(CREATORS);
-                                        setIsMenuOpen(false);
-                                    }}
-                                    className="cursor-pointer"
-                                >
-                                    Creators
-                                </p>
+                                {BrowseNavigation.map((data) => (
+                                    <Link
+                                        key={data.id}
+                                        href={data.link}
+                                        onClick={() => {
+                                            setIsMenuOpen(false);
+                                        }}
+                                        className="cursor-pointer"
+                                    >
+                                        {data.label}
+                                    </Link>
+                                ))}
                             </div>
                         </div>
                     </div>
