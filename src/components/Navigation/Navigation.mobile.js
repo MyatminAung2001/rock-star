@@ -20,21 +20,54 @@ import {
     GAMES,
 } from "@/constants/locationPathname";
 
+// icons
+import { GenreIcon, GenreActiveIcon } from "../Common/icons/GenreIcon";
+import { ConsoleIcon, ConsoleActiveIcon } from "../Common/icons/ConsoleIcon";
+import { StoreIcon, StoreActiveIcon } from "../Common/icons/StoreIcon";
+import { TagIcon, TagActiveIcon } from "../Common/icons/TagIcon";
+import { CodeIcon, CodeActiveIcon } from "../Common/icons/CodeIcon";
+import { PublishIcon, PublishActiveIcon } from "../Common/icons/PublishIcon";
+import { UserIcon, UserActiveIcon } from "../Common/icons/UserIcon";
+import { TrophyIcon, TrophyActiveIcon } from "../Common/icons/TrophyIcon";
+import { TrendingIcon, TrendingActiveIcon } from "../Common/icons/TrendingIcon";
+import { PopularIcon, PopularActiveIcon } from "../Common/icons/PopularIcon";
+import { CrownIcon, CrownActiveIcon } from "../Common/icons/CrownIcon";
+
 const TopNavigation = [
-    { id: 1, link: NEW_AND_TRENDING, label: "New and trending" },
-    { id: 2, link: BEST_OF_THE_YEARS, label: "Best of the year" },
-    { id: 3, link: POPULAR_IN_2022, label: "Popular in 2022" },
-    { id: 4, link: All_TIME_TOP_250, label: "All time top 250" },
+    {
+        id: 1,
+        link: NEW_AND_TRENDING,
+        icon: <TrendingIcon />,
+        label: "New and trending",
+    },
+    {
+        id: 2,
+        link: BEST_OF_THE_YEARS,
+        icon: <TrophyIcon />,
+        label: "Best of the year",
+    },
+    {
+        id: 3,
+        link: POPULAR_IN_2022,
+        icon: <PopularIcon />,
+        label: "Popular in 2022",
+    },
+    {
+        id: 4,
+        link: All_TIME_TOP_250,
+        icon: <CrownIcon />,
+        label: "All time top 250",
+    },
 ];
 
 const BrowseNavigation = [
-    { id: 1, link: GENRES, label: "Genres" },
-    { id: 2, link: PLATFORMS, label: "Platforms" },
-    { id: 3, link: STORES, label: "Stores" },
-    { id: 4, link: TAGS, label: "Tags" },
-    { id: 5, link: DEVELOPERS, label: "Developers" },
-    { id: 6, link: PUBLISHERS, label: "Publishers" },
-    { id: 7, link: CREATORS, label: "Creators" },
+    { id: 1, link: GENRES, icon: <GenreIcon />, label: "Genres" },
+    { id: 2, link: PLATFORMS, icon: <ConsoleIcon />, label: "Platforms" },
+    { id: 3, link: STORES, icon: <StoreIcon />, label: "Stores" },
+    { id: 4, link: TAGS, icon: <TagIcon />, label: "Tags" },
+    { id: 5, link: DEVELOPERS, icon: <CodeIcon />, label: "Developers" },
+    { id: 6, link: PUBLISHERS, icon: <PublishIcon />, label: "Publishers" },
+    { id: 7, link: CREATORS, icon: <UserIcon />, label: "Creators" },
 ];
 
 const NavigationMobile = () => {
@@ -63,7 +96,7 @@ const NavigationMobile = () => {
         >
             <div className="flex items-center justify-between">
                 <Link className="title cursor-pointer" href={HOME}>
-                    RockStar
+                    BitBazaar
                 </Link>
                 <div className="sticky z-[150] top-0 right-0 lg:hidden">
                     <Hamburger
@@ -77,49 +110,63 @@ const NavigationMobile = () => {
             </div>
             <div className="lg:hidden">
                 {isMenuOpen && (
-                    <div className="bg-primary-bg-white min-h-screen w-[70%] p-8 fixed right-0 top-0">
-                        <div>
-                            <header className="text-sub-heading font-semibold tracking-wider">
-                                Top
-                            </header>
-                            <div className="mt-3 flex flex-col gap-y-3">
-                                {TopNavigation.map((data) => (
-                                    <Link
-                                        key={data.id}
-                                        href={data.link}
-                                        onClick={() => {
-                                            setIsMenuOpen(false);
-                                        }}
-                                        className="cursor-pointer"
-                                    >
-                                        {data.label}
-                                    </Link>
-                                ))}
-                            </div>
-                        </div>
-                        <hr className="my-3" />
-                        <Link href={GAMES}>
+                    <div className="bg-primary-bg-white min-h-screen w-[70%] px-8 pt-6 fixed right-0 top-0">
+                        <Link href={GAMES} onClick={() => setIsMenuOpen(false)}>
                             <header className="text-sub-heading font-semibold tracking-wider">
                                 All Games
                             </header>
                         </Link>
-                        <hr className="my-3" />
+                        <hr className="my-1" />
+                        <div className="">
+                            <header className="text-sub-heading font-semibold tracking-wider">
+                                Top
+                            </header>
+                            <div className="mt-1 flex flex-col gap-y-3">
+                                {TopNavigation.map((data) => (
+                                    <div
+                                        key={data.id}
+                                        className="flex items-center gap-x-3"
+                                    >
+                                        <div className="bg-[#202020] rounded p-2">
+                                            {data.icon}
+                                        </div>
+                                        <Link
+                                            href={data.link}
+                                            onClick={() => {
+                                                setIsMenuOpen(false);
+                                            }}
+                                            className="cursor-pointer"
+                                        >
+                                            {data.label}
+                                        </Link>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <hr className="mt-2" />
                         <div>
                             <header className="text-sub-heading font-semibold tracking-wider">
                                 Browse
                             </header>
-                            <div className="mt-3 flex flex-col gap-y-3">
+                            <div className="mt-1 flex flex-col gap-y-3">
                                 {BrowseNavigation.map((data) => (
-                                    <Link
+                                    <div
                                         key={data.id}
-                                        href={data.link}
-                                        onClick={() => {
-                                            setIsMenuOpen(false);
-                                        }}
-                                        className="cursor-pointer"
+                                        className="flex items-center gap-x-3"
                                     >
-                                        {data.label}
-                                    </Link>
+                                        <div className="bg-[#202020] rounded p-2">
+                                            {data.icon}
+                                        </div>
+                                        <Link
+                                            href={data.link}
+                                            onClick={() => {
+                                                setIsMenuOpen(false);
+                                            }}
+                                            className="cursor-pointer"
+                                        >
+                                            {data.label}
+                                        </Link>
+                                    </div>
                                 ))}
                             </div>
                         </div>
