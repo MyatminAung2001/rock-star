@@ -1,8 +1,8 @@
 import "./globals.css";
 
 import { ReactQueryProviders } from "./providers";
-import WebNavigation from "@/components/Navigation/index.js";
-import Header from "@/components/Header";
+import NavigationWeb from "@/components/Navigation/Navigation.web.js";
+import NavigationMobile from "@/components/Navigation/Navigation.mobile";
 
 export const metadata = {
     title: "BitBazaar | One-stop Destination For All Games!",
@@ -19,10 +19,10 @@ export default function RootLayout({ children }) {
             <body>
                 <ReactQueryProviders>
                     <main>
-                        <Header />
+                        <NavigationMobile />
                         <section className="lg:flex">
                             <aside className="hidden lg:block lg:fixed lg:left-0 lg:top-0 lg:h-screen lg:p-4 lg:w-60">
-                                <WebNavigation />
+                                <NavigationWeb />
                             </aside>
                             <div className="lg:flex-1 lg:ml-60">{children}</div>
                         </section>

@@ -6,7 +6,6 @@ import { useInView } from "react-intersection-observer";
 import { getAllTimeTop250 } from "@/services/service.games";
 
 const useContainer = () => {
-    
     const router = useRouter();
 
     const { ref, inView } = useInView();
@@ -44,8 +43,11 @@ const useContainer = () => {
     /**
      * flatten the nest array eg.[[1, 2], [3, 4], [5, 6]] to
      * single array [1, 2, 3, 4, 5, 6]
+     * and map the results
      */
-    const gamesData = (AllTimeTop250?.pages || []).flatMap(page => page.results || []);
+    const gamesData = (AllTimeTop250?.pages || []).flatMap(
+        (page) => page.results || []
+    );
     const formattedData = gamesData || [];
 
     return {
@@ -54,8 +56,8 @@ const useContainer = () => {
         isLoading,
         isError,
         isFetchingNextPage,
-        formattedData
-    }
+        formattedData,
+    };
 };
 
 export default useContainer;
