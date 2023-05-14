@@ -17,9 +17,9 @@ const NewAndTrending = () => {
     if (isLoading) return <Loading />;
 
     return (
-        <div className="px-4 py-12 lg:py-4">
+        <div className="default-section-padding">
             <p className="heading mb-3">New and trending</p>
-            <p className="text-primary-white mb-3">
+            <p className="text-primary-white text-center md:text-start mb-3">
                 Based on player counts and rating
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">

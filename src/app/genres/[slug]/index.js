@@ -25,7 +25,7 @@ const Detail = () => {
     if (isLoading) return <Loading />;
 
     return (
-        <div className="px-4 pt-20 pb-5">
+        <div className="default-section-padding">
             <div className="mb-5">
                 <p className="heading mb-5">{genresDetail?.name} Games</p>
                 <p className="text-primary-white text-[16px] font-light">

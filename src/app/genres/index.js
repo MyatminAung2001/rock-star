@@ -11,7 +11,7 @@ const Genres = () => {
     if (isLoading) return <Loading />;
 
     return (
-        <div className="px-4 pt-20 pb-5 w-[100%]">
+        <div className="default-section-padding">
             <div className="flex items-center justify-center lg:justify-start gap-x-2 mb-5">
                 <div className="lg:hidden">
                     <GenreIcon />

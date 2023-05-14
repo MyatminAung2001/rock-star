@@ -33,7 +33,7 @@ body {
 
 @layer components {
     .default-section-padding {
-        @apply px-[10px] pt-16 pb-8 lg:px-8
+        @apply px-4 pt-[5rem] pb-[3rem] lg:py-4
     }
 
     .title {
@@ -41,7 +41,7 @@ body {
     }
 
     .heading {
-        @apply font-semibold tracking-wider text-4xl text-primary-white text-center lg:text-start lg:text-5xl
+        @apply font-semibold tracking-wider text-3xl text-primary-white text-center lg:text-start lg:text-5xl
     }
 
     .nav {
