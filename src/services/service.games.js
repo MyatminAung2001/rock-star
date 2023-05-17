@@ -10,10 +10,10 @@ export const getAllGames = async (pageParam) => {
         .then((res) => res.data);
 };
 
-export const getSearchGames = async (searchTem) => {
+export const getSearchGames = async (debounceSearchTerm) => {
     return await axiosInstance
         .get(
-            `${GET_GAMES}?key=${apiKEY}&search=${searchTem}&ordering=-relevance`
+            `${GET_GAMES}?key=${apiKEY}&search=${debounceSearchTerm}&ordering=-relevance&page=1&page_size=12`
         )
         .then((res) => res.data);
 };

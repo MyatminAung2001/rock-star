@@ -10,7 +10,7 @@ export const metadata = {
     description: `BitBazaar offers an extensive and diverse collection of games and also have a wide range of games available, 
         so you can find the perfect fit for your gaming setup. Whether you're a fan of action-packed shooters, 
         immersive role-playing adventures, mind-bending puzzle games, or thrilling sports simulations, 
-        we have something for every gaming taste. Our curated library features both popular AAA titles and hidden indie gems, 
+        we have something for every gaming taste. Our curated website features both popular AAA titles and hidden indie gems, 
         ensuring that you never run out of exciting games to play.`,
 };
 

@@ -3,6 +3,8 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "react-query";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 import SearchIcon from "./icons/SearchIcon";
 import { getSearchGames } from "@/services/service.games";
@@ -17,11 +19,11 @@ const SearchBox = () => {
 
     const {
         data: searchGames,
-        isFetching,
+        isLoading,
         isError,
     } = useQuery(
         ["search-games", searchTerm],
-        () => getSearchGames(debounceSearchTerm),
+        () => getSearchGames(searchTerm),
         {
             enabled: !!searchTerm,
         }
@@ -34,6 +36,8 @@ const SearchBox = () => {
         };
     }, [searchTerm, queryClient]);
 
+    if (isError) return null;
+
     console.log("search", searchGames?.results);
 
     return (
@@ -43,28 +47,49 @@ const SearchBox = () => {
                     <SearchIcon />
                 </div>
                 <input
-                    type="search"
+                    type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Search for"
                     className="w-[100%] ml-3 bg-transparent placeholder:text-sm focus:outline-none text-white"
                 />
             </div>
-            <div className="flex flex-col gapy-1">
-                {searchGames?.length > 0 &&
-                    searchGames?.results.map((data) => (
-                        <div key={data.id}>
-                            <Image
+            {isLoading ? (
+                <p className="text-white text-center">Loading...</p>
+            ) : (
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-y-2 mt-3">
+                    {searchGames?.results.map((data) => (
+                        <div
+                            key={data.id}
+                            className="flex items-start gap-x-2 relative"
+                        >
+                            <LazyLoadImage
                                 src={data.background_image}
                                 alt={data.name}
-                                width={60}
-                                height={60}
-                                className="rounded-md"
+                                effect="blur"
+                                threshold={50}
+                                className="object-cover w-[90px] h-[90px] rounded-xl"
                             />
-                            <p className="text-primary-white">{data.name}</p>
+
+                            <div className=" absolute left-[6rem]">
+                                <p className="text-white text-sm">
+                                    {new Date(data.released).toLocaleDateString(
+                                        "en-us",
+                                        {
+                                            year: "numeric",
+                                            month: "short",
+                                            day: "numeric",
+                                        }
+                                    )}
+                                </p>
+                                <p className="text-primary-white">
+                                    {data.name}
+                                </p>
+                            </div>
                         </div>
                     ))}
-            </div>
+                </div>
+            )}
         </div>
     );
 };
