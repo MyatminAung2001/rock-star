@@ -1,24 +1,40 @@
 "use client";
 
-import React, { useState } from "react";
-import { useQuery } from "react-query";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import { useQuery, useQueryClient } from "react-query";
 
 import SearchIcon from "./icons/SearchIcon";
 import { getSearchGames } from "@/services/service.games";
 import useDebounce from "@/hooks/useDebounce";
 
 const SearchBox = () => {
-    const [searchInput, setSearchInput] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
 
-    const debounceSearch = useDebounce(searchInput, 500);
+    const debounceSearchTerm = useDebounce(searchTerm, 500);
+
+    const queryClient = useQueryClient();
 
     const {
         data: searchGames,
-        isLoading,
+        isFetching,
         isError,
-    } = useQuery(["search-games", searchInput], getSearchGames(debounceSearch));
+    } = useQuery(
+        ["search-games", searchTerm],
+        () => getSearchGames(debounceSearchTerm),
+        {
+            enabled: !!searchTerm,
+        }
+    );
 
-    console.log("search", searchGames);
+    useEffect(() => {
+        return () => {
+            // Clear the query cache when the component is unmounted or the search text changes
+            queryClient.removeQueries("search-games");
+        };
+    }, [searchTerm, queryClient]);
+
+    console.log("search", searchGames?.results);
 
     return (
         <div className="mt-[4rem] px-4 lg:mt-3 relative">
@@ -27,14 +43,28 @@ const SearchBox = () => {
                     <SearchIcon />
                 </div>
                 <input
-                    type="text"
-                    value={searchInput}
-                    onChange={(e) => setSearchInput(e.target.value)}
+                    type="search"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Search for"
                     className="w-[100%] ml-3 bg-transparent placeholder:text-sm focus:outline-none text-white"
                 />
             </div>
-            {searchInput && <div className="absolute"></div>}
+            <div className="flex flex-col gapy-1">
+                {searchGames?.length > 0 &&
+                    searchGames?.results.map((data) => (
+                        <div key={data.id}>
+                            <Image
+                                src={data.background_image}
+                                alt={data.name}
+                                width={60}
+                                height={60}
+                                className="rounded-md"
+                            />
+                            <p className="text-primary-white">{data.name}</p>
+                        </div>
+                    ))}
+            </div>
         </div>
     );
 };
