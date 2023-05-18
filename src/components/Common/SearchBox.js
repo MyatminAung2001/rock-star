@@ -22,13 +22,11 @@ const SearchBox = () => {
         data: searchGames,
         isLoading,
         isError,
-    } = useQuery(
-        ["search-games", searchTerm],
-        () => getSearchGames(searchTerm),
-        {
-            enabled: !!searchTerm,
-        }
-    );
+    } = useQuery({
+        queryKey: ["search-games", searchTerm],
+        queryFn: () => getSearchGames(searchTerm),
+        enabled: !!searchTerm,
+    });
 
     useEffect(() => {
         return () => {
@@ -38,8 +36,6 @@ const SearchBox = () => {
     }, [searchTerm, queryClient]);
 
     if (isError) return null;
-
-    console.log("search", searchGames?.results);
 
     return (
         <div className="mt-[4rem] mx-4 lg:mt-3 relative">

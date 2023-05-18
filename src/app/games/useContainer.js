@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useInfiniteQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
 
-import { getAllGames } from "@/services/service.games";
+import { GetAllGames } from "@/services/service.games";
 
 const useContainer = () => {
     const router = useRouter();
@@ -22,7 +22,7 @@ const useContainer = () => {
         isError,
     } = useInfiniteQuery(
         "games",
-        ({ pageParam = 1 }) => getAllGames(pageParam),
+        ({ pageParam = 1 }) => GetAllGames(pageParam),
         {
             getNextPageParam: (lastPage) => {
                 if (lastPage.length === 0) {
@@ -52,6 +52,7 @@ const useContainer = () => {
         isError,
         isFetchingNextPage,
         formattedData,
+        Games,
     };
 };
 

@@ -12,7 +12,10 @@ const Games = () => {
         isError,
         isFetchingNextPage,
         formattedData,
+        Games,
     } = useContainer();
+
+    console.log("data", Games);
 
     if (isLoading) return <Loading />;
 
