@@ -1,43 +1,36 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import { useInfiniteQuery } from "react-query";
 
 import { getAchievements } from "@/services/service.details";
+import { Loading } from "../Common/Loading";
 
 const Achievements = ({ slug, gameDetails }) => {
-    const [page, setPage] = useState(1);
-
     const {
         data: achievements,
+        isError,
+        isLoading,
         hasNextPage,
         fetchNextPage,
         isFetchingNextPage,
-        isFetching,
-    } = useInfiniteQuery(
-        "achievements",
-        ({ pageParam = 1 }) => getAchievements(slug, pageParam),
-        {
-            getNextPageParam: (lastPage) => {
-                if (lastPage.length === 0) {
-                    return undefined;
-                }
-                return page + 1;
-            },
-        }
+    } = useInfiniteQuery({
+        queryKey: ["achievements"],
+        queryFn: ({ pageParam = 1 }) => getAchievements(slug, pageParam),
+        getNextPageParam: (lastPage, allPages) => {
+            if (lastPage.length < 6) return undefined;
+
+            if (allPages.length) return allPages.length + 1;
+
+            return undefined;
+        },
+        keepPreviousData: true,
+    });
+
+    const achievementsData = (achievements?.pages || []).flatMap(
+        (page) => page.results || []
     );
+    const formattedData = achievementsData || [];
 
-    const handleViewMore = () => {
-        if (!isFetchingNextPage) {
-            fetchNextPage();
-            setPage((prevPage) => prevPage + 1);
-        }
-    };
-
-    const rawData = achievements?.pages.flatMap((page) => page);
-
-    const formatted = rawData?.map((d) => d.results);
-
-    const achievementsData = rawData ? [].concat(...formatted) : [];
+    if (isLoading) return <Loading />;
 
     return (
         <>
@@ -47,7 +40,7 @@ const Achievements = ({ slug, gameDetails }) => {
                         {gameDetails.name} achievements
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
-                        {achievementsData?.map((achievement) => (
+                        {formattedData?.map((achievement) => (
                             <div
                                 key={achievement.id}
                                 className="flex items-start gap-x-4"
@@ -72,21 +65,22 @@ const Achievements = ({ slug, gameDetails }) => {
                             </div>
                         ))}
                     </div>
-                    {hasNextPage && (
-                        <div className="w-[100%] flex items-center justify-center mt-5">
-                            <div>
-                                <button
-                                    disabled={isFetchingNextPage}
-                                    onClick={handleViewMore}
-                                    className="px-4 py-2 bg-secondary-bg-black text-primary-white font-light text-sm rounded-md"
-                                >
-                                    {isFetchingNextPage
-                                        ? "Loading..."
-                                        : "View More"}
-                                </button>
-                            </div>
+                    <div className="w-[100%] flex items-center justify-center mt-5">
+                        <div>
+                            <button
+                                type="button"
+                                disabled={!hasNextPage || isFetchingNextPage}
+                                onClick={() => hasNextPage && fetchNextPage()}
+                                className="px-4 py-2 bg-secondary-bg-black text-primary-white font-light text-sm rounded-md"
+                            >
+                                {isFetchingNextPage
+                                    ? "Loading more..."
+                                    : hasNextPage
+                                    ? "Load More"
+                                    : "Nothing more to load"}
+                            </button>
                         </div>
-                    )}
+                    </div>
                 </div>
             )}
         </>
