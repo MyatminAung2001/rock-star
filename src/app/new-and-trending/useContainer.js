@@ -10,35 +10,45 @@ const useContainer = () => {
 
     const { ref, inView } = useInView();
 
-    const [page, setPage] = useState(1);
+    const [option, setOption] = useState("relevance");
+    const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+
+    const options = [
+        "relevance",
+        "name",
+        "released",
+        "added",
+        "created",
+        "updated",
+        "rating",
+        "metacritic",
+    ];
 
     const {
         data: NewAndTrending,
         hasNextPage,
         fetchNextPage,
         isFetchingNextPage,
-        isFetching,
         isLoading,
         isError,
-    } = useInfiniteQuery(
-        "new-and-trending",
-        ({ pageParam = 1 }) => getNewAndTrending(pageParam),
-        {
-            getNextPageParam: (lastPage) => {
-                if (lastPage.length === 0) {
-                    return undefined;
-                }
-                return page + 1;
-            },
-        }
-    );
+    } = useInfiniteQuery({
+        queryKey: ["new-and-trending", option],
+        queryFn: ({ pageParam = 1 }) =>
+            getNewAndTrending({ pageParam, option }),
+        getNextPageParam: (lastPage, allPages) => {
+            if (lastPage.length === 0) {
+                return undefined;
+            }
+            return allPages.length + 1;
+        },
+        keepPreviousData: true,
+    });
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {
             fetchNextPage();
-            setPage(page + 1);
         }
-    }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage]);
+    }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
     const gamesData = (NewAndTrending?.pages || []).flatMap(
         (page) => page.results || []
@@ -52,6 +62,11 @@ const useContainer = () => {
         isError,
         isFetchingNextPage,
         formattedData,
+        options,
+        isDropDownOpen,
+        setIsDropDownOpen,
+        option,
+        setOption,
     };
 };
 

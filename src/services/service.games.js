@@ -18,10 +18,10 @@ export const getSearchGames = async (debounceSearchTerm) => {
         .then((res) => res.data);
 };
 
-export const getNewAndTrending = async (pageParam) => {
+export const getNewAndTrending = async ({ pageParam, option }) => {
     return await axiosInstance
         .get(
-            `${GET_GAMES}/lists/main?key=${apiKEY}&discover=true&ordering=-relevance&page=${pageParam}&page_size=12`
+            `${GET_GAMES}/lists/main?key=${apiKEY}&discover=true&ordering=-${option}&page=${pageParam}&page_size=12`
         )
         .then((res) => res.data);
 };
