@@ -23,7 +23,7 @@ const NewAndTrending = () => {
 
     return (
         <div className="default-section-padding">
-            <div className="flex flex-col lg:flex-row items-center lg:justify-between">
+            <div className="mb-3 flex flex-col lg:flex-row items-center lg:items-start lg:justify-between">
                 <div>
                     <p className="heading mb-3">New and trending</p>
                     <p className="text-primary-white text-center md:text-start mb-3">
@@ -66,6 +66,9 @@ const NewAndTrending = () => {
                                             type="button"
                                             onClick={() => {
                                                 setOption(opt);
+                                                setIsDropDownOpen(
+                                                    (prevState) => !prevState
+                                                );
                                             }}
                                             className="w-full p-4 capitalize hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                         >
