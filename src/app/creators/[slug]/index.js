@@ -14,6 +14,7 @@ const Details = () => {
         isLoading,
         isError,
         isFetchingNextPage,
+        hasNextPage,
         creatorsDetail,
         formattedData,
         description,
@@ -66,6 +67,7 @@ const Details = () => {
                 ))}
             </div>
             {isFetchingNextPage && <FetchingNextPage />}
+            {!hasNextPage && !isFetchingNextPage && <p>No More results</p>}
         </div>
     );
 };

@@ -6,24 +6,21 @@ import { useInView } from "react-intersection-observer";
 import {
     getCreatorsDetails,
     getCreatorsGames,
-  } from "@/services/service.creator";
+} from "@/services/service.creator";
 
 const useContainer = () => {
-
     const { slug } = useParams();
 
     const { ref, inView } = useInView();
 
-    const {
-        isLoading,
-        isError,
-        data: creatorsDetail,
-    } = useQuery("creators-detail", () => getCreatorsDetails(slug));
-
-    const [page, setPage] = useState(1);
+    const { data: creatorsDetail } = useQuery("creators-detail", () =>
+        getCreatorsDetails(slug)
+    );
 
     const {
         data: creatorsGames,
+        isLoading,
+        isError,
         hasNextPage,
         fetchNextPage,
         isFetchingNextPage,
@@ -31,11 +28,11 @@ const useContainer = () => {
         "creators-games",
         ({ pageParam = 1 }) => getCreatorsGames(slug, pageParam),
         {
-            getNextPageParam: (lastPage) => {
+            getNextPageParam: (lastPage, allPages) => {
                 if (lastPage.length === 0) {
                     return undefined;
                 }
-                return page + 1;
+                return allPages.length + 1;
             },
         }
     );
@@ -43,11 +40,12 @@ const useContainer = () => {
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {
             fetchNextPage();
-            setPage(page + 1);
         }
-    }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage]);
+    }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-    const gamesData = (creatorsGames?.pages || []).flatMap(page => page.results || []);
+    const gamesData = (creatorsGames?.pages || []).flatMap(
+        (page) => page.results || []
+    );
     const formattedData = gamesData || [];
 
     // content
@@ -60,10 +58,11 @@ const useContainer = () => {
         isLoading,
         isError,
         isFetchingNextPage,
+        hasNextPage,
         creatorsDetail,
         formattedData,
-        description
-    }
+        description,
+    };
 };
 
 export default useContainer;
