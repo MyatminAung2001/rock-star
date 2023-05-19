@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { useInfiniteQuery } from "react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
 import { getNewAndTrending } from "@/services/service.games";
@@ -26,19 +26,17 @@ const useContainer = () => {
 
     const {
         data: NewAndTrending,
+        isError,
+        isLoading,
         hasNextPage,
         fetchNextPage,
         isFetchingNextPage,
-        isLoading,
-        isError,
     } = useInfiniteQuery({
         queryKey: ["new-and-trending", option],
         queryFn: ({ pageParam = 1 }) =>
             getNewAndTrending({ pageParam, option }),
         getNextPageParam: (lastPage, allPages) => {
-            if (lastPage.length === 0) {
-                return undefined;
-            }
+            if (lastPage.length === 0) return undefined;
             return allPages.length + 1;
         },
         keepPreviousData: true,

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "next/navigation";
-import { useInfiniteQuery, useQuery } from "react-query";
+import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
 import { getGenresDetails, getGenresGames } from "@/services/service.genres";
@@ -10,39 +10,33 @@ const useContainer = () => {
 
     const { ref, inView } = useInView();
 
-    const {
-        isLoading,
-        isError,
-        data: genresDetail,
-    } = useQuery("genres-detail", () => getGenresDetails(slug));
-
-    const [page, setPage] = useState(1);
+    const { data: genresDetail } = useQuery({
+        queryKey: ["genres-detail"],
+        queryFn: () => getGenresDetails(slug),
+    });
 
     const {
         data: genresGames,
+        isError,
+        isLoading,
         hasNextPage,
         fetchNextPage,
         isFetchingNextPage,
-        isFetching,
-    } = useInfiniteQuery(
-        "genres-games",
-        ({ pageParam = 1 }) => getGenresGames(slug, pageParam),
-        {
-            getNextPageParam: (lastPage) => {
-                if (lastPage.length === 0) {
-                    return undefined;
-                }
-                return page + 1;
-            },
-        }
-    );
+    } = useInfiniteQuery({
+        queryKey: ["genres-games"],
+        queryFn: ({ pageParam }) => getGenresGames({ slug, pageParam }),
+        getNextPageParam: (lastPage, allPages) => {
+            if (lastPage.length === 0) return undefined;
+            return allPages.length + 1;
+        },
+        keepPreviousData: true,
+    });
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {
             fetchNextPage();
-            setPage(page + 1);
         }
-    }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage]);
+    }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
     const gamesData = (genresGames?.pages || []).flatMap(
         (page) => page.results || []
@@ -75,7 +69,6 @@ const useContainer = () => {
         description,
         cutOff,
         isFetchingNextPage,
-        isFetching,
         formattedData,
     };
 };

@@ -18,7 +18,6 @@ const Details = () => {
         description,
         cutOff,
         isFetchingNextPage,
-        isFetching,
         formattedData,
     } = useContainer();
 

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useInfiniteQuery } from "react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { getAchievements } from "@/services/service.details";
 import { Loading } from "../Common/Loading";
@@ -14,13 +14,10 @@ const Achievements = ({ slug, gameDetails }) => {
         isFetchingNextPage,
     } = useInfiniteQuery({
         queryKey: ["achievements"],
-        queryFn: ({ pageParam = 1 }) => getAchievements(slug, pageParam),
+        queryFn: ({ pageParam = 1 }) => getAchievements({ slug, pageParam }),
         getNextPageParam: (lastPage, allPages) => {
-            if (lastPage.length < 6) return undefined;
-
-            if (allPages.length) return allPages.length + 1;
-
-            return undefined;
+            if (lastPage.length === 0) return undefined;
+            return allPages.length + 1;
         },
         keepPreviousData: true,
     });

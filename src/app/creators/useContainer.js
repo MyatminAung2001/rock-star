@@ -1,46 +1,41 @@
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
-import { useInfiniteQuery } from "react-query";
+import { useEffect } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
 import { getCreators } from "@/services/service.creator";
 
 const useContainer = () => {
-
     const router = useRouter();
 
     const { ref, inView } = useInView();
 
-    const [page, setPage] = useState(1);
-
     const {
         data: creators,
+        isError,
+        isLoading,
         hasNextPage,
         fetchNextPage,
         isFetchingNextPage,
-        isLoading,
-        isError,
-    } = useInfiniteQuery(
-        "creators",
-        ({ pageParam = 1 }) => getCreators(pageParam),
-        {
-            getNextPageParam: (lastPage) => {
-                if (lastPage.length === 0) {
-                    return undefined;
-                }
-                return page + 1;
-            },
-        }
-    );
+    } = useInfiniteQuery({
+        queryKey: ["creators"],
+        queryFn: ({ pageParam }) => getCreators(pageParam),
+        getNextPageParam: (lastPage, allPages) => {
+            if (lastPage.length === 0) return undefined;
+            return allPages.length + 1;
+        },
+        keepPreviousData: true,
+    });
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {
-        fetchNextPage();
-        setPage(page + 1);
+            fetchNextPage();
         }
-    }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage]);
+    }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-    const gamesData = (creators?.pages || []).flatMap(page => page.results || []);
+    const gamesData = (creators?.pages || []).flatMap(
+        (page) => page.results || []
+    );
     const formattedData = gamesData || [];
 
     return {
@@ -49,8 +44,8 @@ const useContainer = () => {
         isLoading,
         isError,
         isFetchingNextPage,
-        formattedData
-    }
+        formattedData,
+    };
 };
 
 export default useContainer;

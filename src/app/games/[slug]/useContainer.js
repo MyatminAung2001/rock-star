@@ -1,5 +1,5 @@
 import { useRouter, useParams } from "next/navigation";
-import { useQueries } from "react-query";
+import { useQueries } from "@tanstack/react-query";
 
 // services
 import {
@@ -16,14 +16,19 @@ const useContainer = () => {
 
     const router = useRouter();
 
-    const queryResults = useQueries([
-        { queryKey: "details", queryFn: () => getGameDetails(slug) },
-        { queryKey: "series", queryFn: () => getGameSeries(slug) },
-        { queryKey: "screenshots", queryFn: () => getScreenShots(slug) },
-        { queryKey: "trailers", queryFn: () => getTrailers(slug) },
-        { queryKey: "stores", queryFn: () => getStores(slug) },
-        { queryKey: "dlc-editions", queryFn: () => getDLCAndEditions(slug) },
-    ]);
+    const queryResults = useQueries({
+        queries: [
+            { queryKey: "details", queryFn: () => getGameDetails(slug) },
+            { queryKey: "series", queryFn: () => getGameSeries(slug) },
+            { queryKey: "screenshots", queryFn: () => getScreenShots(slug) },
+            { queryKey: "trailers", queryFn: () => getTrailers(slug) },
+            { queryKey: "stores", queryFn: () => getStores(slug) },
+            {
+                queryKey: "dlc-editions",
+                queryFn: () => getDLCAndEditions(slug),
+            },
+        ],
+    });
 
     // loading
     const isLoading = queryResults.some((result) => result.isLoading);

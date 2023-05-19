@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
-import { useInfiniteQuery, useQuery } from "react-query";
+import { useEffect } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
 import { getPublishers } from "@/services/service.publishers";
@@ -10,35 +10,28 @@ const useContainer = () => {
 
     const { ref, inView } = useInView();
 
-    const [page, setPage] = useState(1);
-
     const {
         data: publishers,
+        isError,
+        isLoading,
         hasNextPage,
         fetchNextPage,
         isFetchingNextPage,
-        isFetching,
-        isLoading,
-        isError,
-    } = useInfiniteQuery(
-        "publishers",
-        ({ pageParam = 1 }) => getPublishers(pageParam),
-        {
-            getNextPageParam: (lastPage) => {
-                if (lastPage.length === 0) {
-                    return undefined;
-                }
-                return page + 1;
-            },
-        }
-    );
+    } = useInfiniteQuery({
+        queryKey: ["publishers"],
+        queryFn: ({ pageParam = 1 }) => getPublishers(pageParam),
+        getNextPageParam: (lastPage, allPages) => {
+            if (lastPage.length === 0) return undefined;
+            return allPages.length + 1;
+        },
+        keepPreviousData: true,
+    });
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {
             fetchNextPage();
-            setPage(page + 1);
         }
-    }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage]);
+    }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
     const gamesData = (publishers?.pages || []).flatMap(
         (page) => page.results || []

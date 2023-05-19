@@ -1,12 +1,19 @@
 import { useRouter } from "next/navigation";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import { getGenres } from "@/services/service.genres";
 
 const useContainer = () => {
     const router = useRouter();
 
-    const { isLoading, isError, data: genres } = useQuery("genres", getGenres);
+    const {
+        data: genres,
+        isError,
+        isLoading,
+    } = useQuery({
+        queryKey: ["genres"],
+        queryFn: () => getGenres(),
+    });
 
     return {
         router,

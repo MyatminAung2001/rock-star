@@ -15,8 +15,6 @@ const Games = () => {
         Games,
     } = useContainer();
 
-    console.log("data", Games);
-
     if (isLoading) return <Loading />;
 
     return (

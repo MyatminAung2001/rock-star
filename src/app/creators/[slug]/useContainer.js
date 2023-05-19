@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { useInfiniteQuery, useQuery } from "react-query";
+import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
 import {
@@ -13,29 +13,27 @@ const useContainer = () => {
 
     const { ref, inView } = useInView();
 
-    const { data: creatorsDetail } = useQuery("creators-detail", () =>
-        getCreatorsDetails(slug)
-    );
+    const { data: creatorsDetail } = useQuery({
+        queryKey: ["creators-detail"],
+        queryFn: () => getCreatorsDetails(slug),
+    });
 
     const {
         data: creatorsGames,
-        isLoading,
         isError,
+        isLoading,
         hasNextPage,
         fetchNextPage,
         isFetchingNextPage,
-    } = useInfiniteQuery(
-        "creators-games",
-        ({ pageParam = 1 }) => getCreatorsGames(slug, pageParam),
-        {
-            getNextPageParam: (lastPage, allPages) => {
-                if (lastPage.length === 0) {
-                    return undefined;
-                }
-                return allPages.length + 1;
-            },
-        }
-    );
+    } = useInfiniteQuery({
+        queryKey: ["creator-games"],
+        queryFn: ({ pageParam = 1 }) => getCreatorsGames({ slug, pageParam }),
+        getNextPageParam: (lastPage, allPages) => {
+            if (lastPage.length === 0) return undefined;
+            return allPages.length + 1;
+        },
+        keepPreviousData: true,
+    });
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {

@@ -1,12 +1,19 @@
 import { useRouter } from "next/navigation";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import { getStores } from "@/services/service.stores";
 
 const useContainer = () => {
     const router = useRouter();
 
-    const { isLoading, isError, data: stores } = useQuery("stores", getStores);
+    const {
+        data: stores,
+        isError,
+        isLoading,
+    } = useQuery({
+        queryKey: ["stores"],
+        queryFn: () => getStores(),
+    });
 
     return {
         router,

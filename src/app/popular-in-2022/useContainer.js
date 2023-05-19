@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
-import { useInfiniteQuery } from "react-query";
+import { useEffect } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
 import { getPopularIn2022 } from "@/services/service.games";
@@ -10,36 +10,28 @@ const useContainer = () => {
 
     const { ref, inView } = useInView();
 
-    const [page, setPage] = useState(1);
-
     const {
         data: PopularIn2022,
+        isError,
+        isLoading,
         hasNextPage,
         fetchNextPage,
         isFetchingNextPage,
-        isFetching,
-        isLoading,
-        isError,
-    } = useInfiniteQuery(
-        "popular-in-2022",
-        ({ pageParam = 1 }) => getPopularIn2022(pageParam),
-        {
-            getNextPageParam: (lastPage) => {
-                if (lastPage.length === 0) {
-                    return undefined;
-                }
-                return page + 1;
-            },
-            keepPreviousData: true,
-        }
-    );
+    } = useInfiniteQuery({
+        queryKey: ["popular-in-2022"],
+        queryFn: ({ pageParam = 1 }) => getPopularIn2022(pageParam),
+        getNextPageParam: (lastPage, allPages) => {
+            if (lastPage.length === 0) return undefined;
+            return allPages.length + 1;
+        },
+        keepPreviousData: true,
+    });
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {
             fetchNextPage();
-            setPage(page + 1);
         }
-    }, [inView, hasNextPage, isFetchingNextPage, page, fetchNextPage]);
+    }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
     const gamesData = (PopularIn2022?.pages || []).flatMap(
         (page) => page.results || []
