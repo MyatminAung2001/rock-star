@@ -19,7 +19,7 @@ const useContainer = () => {
         isFetchingNextPage,
     } = useInfiniteQuery({
         queryKey: ["creators"],
-        queryFn: ({ pageParam }) => getCreators(pageParam),
+        queryFn: ({ pageParam = 1 }) => getCreators(pageParam),
         getNextPageParam: (lastPage, allPages) => {
             if (lastPage.length === 0) return undefined;
             return allPages.length + 1;
