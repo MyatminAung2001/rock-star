@@ -45,7 +45,7 @@ body {
     }
 
     .heading {
-        @apply font-semibold tracking-wider text-3xl text-primary-white text-center lg:text-start lg:text-5xl;
+        @apply font-semibold tracking-wider text-3xl text-primary-white text-center lg:text-start lg:text-4xl;
     }
 
     .nav {
