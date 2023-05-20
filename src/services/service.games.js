@@ -76,3 +76,11 @@ export const getThisWeek = async () => {
         )
         .then((res) => res.data);
 };
+
+export const getNextWeek = async () => {
+    return await axiosInstance
+        .get(
+            `${GET_GAMES}/lists/recent-games-future?key=${apiKEY}&ordering=-added&page=1&page_size=12`
+        )
+        .then((res) => res.data);
+};

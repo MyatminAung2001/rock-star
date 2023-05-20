@@ -5,8 +5,13 @@ import { Loading } from "@/components/Common/Loading";
 import SwiperCard from "@/components/Home/SwiperCard";
 
 const Page = () => {
-    const { isLoading, UpcomingGames, Last30DaysGames, ThisWeekGames } =
-        useContainer();
+    const {
+        isLoading,
+        UpcomingGames,
+        Last30DaysGames,
+        ThisWeekGames,
+        NextWeekGames,
+    } = useContainer();
 
     if (isLoading) return <Loading />;
 
@@ -25,6 +30,11 @@ const Page = () => {
             <div className="default-section-padding">
                 <p className="heading mb-3">This Week</p>
                 <SwiperCard gamesData={ThisWeekGames?.results} />
+            </div>
+
+            <div className="default-section-padding">
+                <p className="heading mb-3">Next Week</p>
+                <SwiperCard gamesData={NextWeekGames?.results} />
             </div>
         </div>
     );
