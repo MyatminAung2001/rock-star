@@ -15,7 +15,7 @@ const SwiperCard = ({ gamesData }) => {
         >
             {gamesData.map((data) => (
                 <SwiperSlide key={data.id} style={{ width: "auto" }}>
-                    <div className="bg-[#212529] rounded-xl flex flex-col h-full w-[300px] lg:w-[370px]">
+                    <div className="bg-[#212529] rounded-xl flex flex-col h-full w-[300px] lg:w-[350px]">
                         <LazyLoadImage
                             src={data.background_image}
                             alt="screenshot"
