@@ -203,7 +203,9 @@ const Details = () => {
 
             {gameSeries?.results.length > 0 && (
                 <div>
-                    <p className="detail-heading">Other games in the series</p>
+                    <p className="detail-heading mb-5">
+                        Other games in the series
+                    </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                         {gameSeries?.results.map((series) => (
                             <div

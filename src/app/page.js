@@ -8,16 +8,17 @@ import "swiper/css";
 
 import useContainer from "./useContainer";
 import { NUMBER_OF_GENRES } from "@/constants/restrict";
+import { Loading } from "@/components/Common/Loading";
 
 const Page = () => {
     const { UpcomingGames, isError, isLoading } = useContainer();
 
-    console.log("UpcomingGames", UpcomingGames?.results);
+    if (isLoading) return <Loading />;
 
     return (
-        <div className="mb-5 xl:w-[70rem] 2xl:w-[100rem] default-section-padding">
-            <div>
-                <p className="heading mb-3">Upcoming Games</p>
+        <div className="mb-5 xl:w-[75rem] 2xl:w-[105rem]">
+            <div className="default-section-padding">
+                <p className="heading mb-3">Upcoming Release</p>
                 <Swiper
                     className="mySwiper games-card"
                     spaceBetween={10}
