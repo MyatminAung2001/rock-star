@@ -60,3 +60,19 @@ export const getUpcomingGames = async () => {
         )
         .then((res) => res.data);
 };
+
+export const getLast30Days = async () => {
+    return await axiosInstance
+        .get(
+            `${GET_GAMES}/lists/recent-games-past?key=${apiKEY}&ordering=-added&page=1&page_size=12`
+        )
+        .then((res) => res.data);
+};
+
+export const getThisWeek = async () => {
+    return await axiosInstance
+        .get(
+            `${GET_GAMES}/lists/recent-games?key=${apiKEY}&ordering=-added&page=1&page_size=12`
+        )
+        .then((res) => res.data);
+};
