@@ -55,12 +55,17 @@ const SwiperCard = ({ gamesData }) => {
                                 <div className="flex items-center gap-x-1">
                                     {data?.genres
                                         ?.slice(0, NUMBER_OF_GENRES)
-                                        .map((data) => (
+                                        .map((data, i, arr) => (
                                             <p
                                                 key={data.id}
-                                                className="text-primary-white text-sm font-light underline"
+                                                className="text-primary-white text-sm font-light"
                                             >
                                                 {data.name}
+                                                <span className="text-primary-yellow">
+                                                    {i !== arr.length - 1
+                                                        ? " | "
+                                                        : " "}
+                                                </span>
                                             </p>
                                         ))}
                                 </div>

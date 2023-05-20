@@ -26,9 +26,7 @@ const GameCard = ({ data }) => {
             </div>
             <div className="pt-1 pb-2 px-4 mt-auto">
                 <div className="mb-2 flex items-center justify-between">
-                    <p className="text-secondary-gray text-sm">
-                        Release date
-                    </p>
+                    <p className="text-secondary-gray text-sm">Release date</p>
                     <p className="text-primary-white text-sm font-light">
                         {new Date(data.released).toLocaleDateString("en-us", {
                             year: "numeric",
@@ -41,9 +39,7 @@ const GameCard = ({ data }) => {
                 <div className="mb-2 bg-primary-bg-grey w-[100%] h-[0.5px]" />
 
                 <div className="mb-2 flex items-center justify-between">
-                    <p className="text-secondary-gray text-sm">
-                        Total rating
-                    </p>
+                    <p className="text-secondary-gray text-sm">Total rating</p>
                     <div className="flex items-center gap-x-1">
                         <StarIcon />
                         <p className="text-primary-white text-sm font-light">
@@ -57,14 +53,19 @@ const GameCard = ({ data }) => {
                 <div className="flex items-center justify-between">
                     <p className="text-secondary-gray text-sm">Genres</p>
                     <div className="flex items-center gap-x-1">
-                        {data?.genres?.slice(0, NUMBER_OF_GENRES).map((data) => (
-                            <p
-                                key={data.id}
-                                className="text-primary-white text-sm font-light underline"
-                            >
-                                {data.name}
-                            </p>
-                        ))}
+                        {data?.genres
+                            ?.slice(0, NUMBER_OF_GENRES)
+                            .map((data, i, arr) => (
+                                <p
+                                    key={data.id}
+                                    className="text-primary-white text-sm font-light"
+                                >
+                                    {data.name}
+                                    <span className="text-primary-yellow">
+                                        {i !== arr.length - 1 ? " | " : " "}
+                                    </span>
+                                </p>
+                            ))}
                     </div>
                 </div>
             </div>
