@@ -172,7 +172,7 @@ const Details = () => {
                                 alt="screenshot"
                                 effect="blur"
                                 threshold={50}
-                                className="object-cover w-[100%] h-[230px] rounded-lg"
+                                className="object-cover w-[300px] lg:w-[400px] h-[150px] lg:h-[230px] rounded-lg"
                             />
                         </SwiperSlide>
                     ))}
