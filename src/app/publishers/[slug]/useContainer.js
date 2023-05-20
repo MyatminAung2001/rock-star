@@ -25,7 +25,6 @@ const useContainer = () => {
         hasNextPage,
         fetchNextPage,
         isFetchingNextPage,
-        isFetching,
     } = useInfiniteQuery({
         queryKey: ["publishers-games"],
         queryFn: ({ pageParam = 1 }) => getPublishersGames({ slug, pageParam }),
@@ -54,7 +53,6 @@ const useContainer = () => {
         publishersDetail,
         formattedData,
         isFetchingNextPage,
-        isFetching,
     };
 };
 

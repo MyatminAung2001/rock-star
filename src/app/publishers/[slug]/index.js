@@ -14,7 +14,6 @@ const Details = () => {
         publishersDetail,
         formattedData,
         isFetchingNextPage,
-        isFetching,
     } = useContainer();
 
     if (isLoading) return <Loading />;
@@ -28,12 +27,11 @@ const Details = () => {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {formattedData?.map((data) => (
-                    <Link key={data.id} ref={ref} href={`/games/${data.slug}`}>
-                        <GameCard data={data} />
-                    </Link>
+                    <GameCard key={data.id} data={data} />
                 ))}
             </div>
-            {isFetchingNextPage && <FetchingNextPage />}
+
+            <div ref={ref}>{isFetchingNextPage && <FetchingNextPage />}</div>
         </div>
     );
 };

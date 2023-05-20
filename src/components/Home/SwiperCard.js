@@ -15,17 +15,17 @@ const SwiperCard = ({ gamesData }) => {
         >
             {gamesData.map((data) => (
                 <SwiperSlide key={data.id} style={{ width: "auto" }}>
-                    <div className="bg-[#212529] rounded-xl flex flex-col h-full">
+                    <div className="bg-[#212529] rounded-xl flex flex-col h-full w-[300px] lg:w-[370px]">
                         <LazyLoadImage
                             src={data.background_image}
                             alt="screenshot"
                             effect="blur"
                             threshold={50}
-                            className="object-cover w-[300px] lg:w-[370px] h-[180px] lg:h-[230px] rounded-t-lg"
+                            className="object-cover w-full h-[180px] lg:h-[230px] rounded-t-lg"
                         />
                         <Link
                             href={`/games/${data.slug}`}
-                            className="py-1 px-4 w-[300px] lg:w-[370px] text-primary-white text-xl font-semibold line-clamp-2 transition hover:text-primary-yellow duration-300 cursor-pointer"
+                            className="py-1 px-4 w-auto text-primary-white text-xl font-semibold line-clamp-2 transition hover:text-primary-yellow duration-300 cursor-pointer"
                         >
                             {data.name}
                         </Link>

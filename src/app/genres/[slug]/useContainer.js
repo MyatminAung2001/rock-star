@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
@@ -24,7 +24,7 @@ const useContainer = () => {
         isFetchingNextPage,
     } = useInfiniteQuery({
         queryKey: ["genres-games"],
-        queryFn: ({ pageParam }) => getGenresGames({ slug, pageParam }),
+        queryFn: ({ pageParam = 1 }) => getGenresGames({ slug, pageParam }),
         getNextPageParam: (lastPage, allPages) => {
             if (lastPage.length === 0) return undefined;
             return allPages.length + 1;

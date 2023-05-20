@@ -42,9 +42,12 @@ const Details = () => {
 
             <div>
                 <div className="flex items-start gap-x-2">
-                    <p className="mb-2 text-2xl text-primary-white font-semibold">
-                        {gameDetails?.name}{" "}
-                    </p>
+                    {gameDetails?.name && (
+                        <p className="mb-2 text-2xl text-primary-white font-semibold">
+                            {gameDetails?.name}{" "}
+                        </p>
+                    )}
+
                     {gameDetails?.website && (
                         <Link
                             href={gameDetails.website}
@@ -55,25 +58,32 @@ const Details = () => {
                         </Link>
                     )}
                 </div>
-                <p className="mb-2 uppercase text-primary-white text-xs font-light tracking-wider">
-                    Average Playtime: {gameDetails?.playtime} hours
-                </p>
-                <Description
-                    title="About"
-                    description={gameDetails?.description_raw}
-                />
+
+                {gameDetails?.playtime && (
+                    <p className="mb-2 uppercase text-primary-white text-xs font-light tracking-wider">
+                        Average Playtime: {gameDetails?.playtime} hours
+                    </p>
+                )}
+
+                {gameDetails?.description_raw && (
+                    <Description
+                        title="About"
+                        description={gameDetails?.description_raw}
+                    />
+                )}
+
                 <div className="mb-2 grid grid-cols-2 gap-y-2 lg:grid-cols-4">
-                    <div className="">
-                        <p className="detail-heading">Rating</p>
-                        {gameDetails?.rating && gameDetails?.rating_top && (
+                    {gameDetails?.rating && gameDetails?.rating_top && (
+                        <div>
+                            <p className="detail-heading">Rating</p>
                             <p className="text-primary-white tracking-wide text-[14px] font-light">
                                 {gameDetails.rating} / {gameDetails.rating_top}
                             </p>
-                        )}
-                    </div>
+                        </div>
+                    )}
 
                     {gameDetails?.metacritic && (
-                        <div className="">
+                        <div>
                             <p className="detail-heading">Metacritic</p>
                             <p className="rounded w-8 text-center text-sm text-primary-yellow border border-primary-bg-yellow">
                                 {gameDetails.metacritic}
@@ -82,7 +92,7 @@ const Details = () => {
                     )}
 
                     {gameDetails?.released && (
-                        <div className="">
+                        <div>
                             <p className="detail-heading">Released Date</p>
                             <p className="text-primary-white tracking-wide text-[14px] font-light">
                                 {new Date(
@@ -97,7 +107,7 @@ const Details = () => {
                     )}
 
                     {gameDetails?.updated && (
-                        <div className="">
+                        <div>
                             <p className="detail-heading">Updated Date</p>
                             <p className="text-primary-white tracking-wide text-[14px] font-light">
                                 {new Date(
@@ -111,44 +121,56 @@ const Details = () => {
                         </div>
                     )}
 
-                    <div className="">
-                        <p className="detail-heading">Developer</p>
-                        {gameDetails?.developers.map((developer, i, arr) => (
-                            <Link
-                                key={developer.id}
-                                href={`/developers/${developer.slug}`}
-                                className="text-primary-white tracking-wide text-[14px] font-light hover:text-primary-gray transition duration-300"
-                            >
-                                {developer.name}
-                                <span className="text-primary-yellow">
-                                    {i != arr.length - 1 ? " | " : " "}
-                                </span>
-                            </Link>
-                        ))}
-                    </div>
+                    {gameDetails?.developers && (
+                        <div>
+                            <p className="detail-heading">Developer</p>
+                            {gameDetails?.developers.map(
+                                (developer, i, arr) => (
+                                    <Link
+                                        key={developer.id}
+                                        href={`/developers/${developer.slug}`}
+                                        className="text-primary-white tracking-wide text-[14px] font-light hover:text-primary-gray transition duration-300"
+                                    >
+                                        {developer.name}
+                                        <span className="text-primary-yellow">
+                                            {i != arr.length - 1 ? " | " : " "}
+                                        </span>
+                                    </Link>
+                                )
+                            )}
+                        </div>
+                    )}
 
-                    <div className="">
-                        <p className="detail-heading">Publisher</p>
-                        {gameDetails?.publishers.map((publisher, i, arr) => (
-                            <Link
-                                key={publisher.id}
-                                href={`/publishers/${publisher.slug}`}
-                                className="text-primary-white tracking-wide text-[14px] font-light hover:text-primary-gray transition duration-300"
-                            >
-                                {publisher.name}
-                                <span className="text-primary-yellow">
-                                    {i != arr.length - 1 ? " | " : " "}
-                                </span>
-                            </Link>
-                        ))}
-                    </div>
+                    {gameDetails?.publishers && (
+                        <div>
+                            <p className="detail-heading">Publisher</p>
+                            {gameDetails?.publishers.map(
+                                (publisher, i, arr) => (
+                                    <Link
+                                        key={publisher.id}
+                                        href={`/publishers/${publisher.slug}`}
+                                        className="text-primary-white tracking-wide text-[14px] font-light hover:text-primary-gray transition duration-300"
+                                    >
+                                        {publisher.name}
+                                        <span className="text-primary-yellow">
+                                            {i != arr.length - 1 ? " | " : " "}
+                                        </span>
+                                    </Link>
+                                )
+                            )}
+                        </div>
+                    )}
 
-                    <Genres genres={gameDetails?.genres} />
+                    {gameDetails?.genres && (
+                        <Genres genres={gameDetails?.genres} />
+                    )}
 
-                    <Platforms platforms={gameDetails?.platforms} />
+                    {gameDetails?.platforms && (
+                        <Platforms platforms={gameDetails?.platforms} />
+                    )}
                 </div>
 
-                <Tags tags={gameDetails?.tags} />
+                {gameDetails?.tags && <Tags tags={gameDetails?.tags} />}
 
                 <Stores stores={gameStores} />
             </div>
