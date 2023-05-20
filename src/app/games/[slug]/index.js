@@ -38,13 +38,17 @@ const Details = () => {
 
     return (
         <div className="default-section-padding">
-            <BackgroundImage image_background={gameDetails?.background_image} />
+            {gameDetails?.background_image && (
+                <BackgroundImage
+                    image_background={gameDetails?.background_image}
+                />
+            )}
 
             <div>
                 <div className="flex items-start gap-x-2">
                     {gameDetails?.name && (
                         <p className="mb-2 text-2xl text-primary-white font-semibold">
-                            {gameDetails?.name}{" "}
+                            {gameDetails.name}{" "}
                         </p>
                     )}
 
@@ -175,31 +179,33 @@ const Details = () => {
                 <Stores stores={gameStores} />
             </div>
 
-            <div className="mb-5 xl:w-[70rem] 2xl:w-[100rem]">
-                <p className="detail-heading mb-3">
-                    {gameDetails?.name} Screenshots
-                </p>
-                <Swiper
-                    className="mySwiper"
-                    spaceBetween={10}
-                    slidesPerView={"auto"}
-                >
-                    {gameScreenShots?.results.map((screenshot) => (
-                        <SwiperSlide
-                            key={screenshot.id}
-                            style={{ width: "auto" }}
-                        >
-                            <LazyLoadImage
-                                src={screenshot.image}
-                                alt="screenshot"
-                                effect="blur"
-                                threshold={50}
-                                className="object-cover w-[300px] lg:w-[400px] h-[150px] lg:h-[230px] rounded-lg"
-                            />
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-            </div>
+            {gameScreenShots?.results.length > 0 && (
+                <div className="mb-5 xl:w-[70rem] 2xl:w-[100rem]">
+                    <p className="detail-heading mb-3">
+                        {gameDetails?.name} Screenshots
+                    </p>
+                    <Swiper
+                        className="mySwiper"
+                        spaceBetween={10}
+                        slidesPerView={"auto"}
+                    >
+                        {gameScreenShots?.results.map((screenshot) => (
+                            <SwiperSlide
+                                key={screenshot.id}
+                                style={{ width: "auto" }}
+                            >
+                                <LazyLoadImage
+                                    src={screenshot.image}
+                                    alt="screenshot"
+                                    effect="blur"
+                                    threshold={50}
+                                    className="object-cover w-[300px] lg:w-[400px] h-[150px] lg:h-[230px] rounded-lg"
+                                />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
+            )}
 
             {gameDLCAndEditions?.count > 0 && (
                 <div className="mb-5">
