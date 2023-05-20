@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    filter: "relevance",
+    filterText: "relevance",
     isDropDownOpen: false,
 };
 
@@ -9,8 +9,8 @@ const filterSlice = createSlice({
     name: "filter",
     initialState,
     reducers: {
-        setFilter: (state, action) => {
-            state.filter = action.payload;
+        handleFilter: (state, action) => {
+            state.filterText = action.payload;
         },
         handleDropDown: (state, action) => {
             state.isDropDownOpen = action.payload;
@@ -18,6 +18,6 @@ const filterSlice = createSlice({
     },
 });
 
-export const { setFilter, handleDropDown } = filterSlice.actions;
+export const { handleFilter, handleDropDown } = filterSlice.actions;
 
 export default filterSlice.reducer;

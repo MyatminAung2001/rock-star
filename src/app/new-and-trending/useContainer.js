@@ -4,20 +4,20 @@ import { useInView } from "react-intersection-observer";
 import { useSelector, useDispatch } from "react-redux";
 
 import { getNewAndTrending } from "@/services/service.games";
-import { setFilter, handleDropDown } from "@/store/filter.slice";
+import { handleFilter, handleDropDown } from "@/store/filter.slice";
 
 const useContainer = () => {
     const { ref, inView } = useInView();
 
     const dispatch = useDispatch();
 
-    const filterText = useSelector((state) => state.filterSlice.filter);
+    const filterText = useSelector((state) => state.filterSlice.filterText);
     const isDropDownOpen = useSelector(
         (state) => state.filterSlice.isDropDownOpen
     );
 
     const handleFilterChange = (e) => {
-        dispatch(setFilter(e.target.value));
+        dispatch(handleFilter(e.target.value));
         dispatch(handleDropDown(!isDropDownOpen));
     };
 
@@ -60,7 +60,6 @@ const useContainer = () => {
         isError,
         isFetchingNextPage,
         formattedData,
-        dispatch,
         filterText,
         handleFilterChange,
         isDropDownOpen,
