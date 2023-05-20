@@ -19,13 +19,13 @@ const Page = () => {
             <div>
                 <p className="heading mb-3">Upcoming Games</p>
                 <Swiper
-                    className="mySwiper"
+                    className="mySwiper games-card"
                     spaceBetween={10}
                     slidesPerView={"auto"}
                 >
                     {UpcomingGames?.results.map((data) => (
                         <SwiperSlide key={data.id} style={{ width: "auto" }}>
-                            <div className="bg-[#212529] rounded-xl">
+                            <div className="bg-[#212529] rounded-xl flex flex-col h-full">
                                 <LazyLoadImage
                                     src={data.background_image}
                                     alt="screenshot"
@@ -35,11 +35,11 @@ const Page = () => {
                                 />
                                 <Link
                                     href={`/games/${data.slug}`}
-                                    className="px-4 w-[300px] lg:w-[370px] text-primary-white text-xl font-semibold line-clamp-1 transition hover:text-primary-yellow duration-300 cursor-pointer"
+                                    className="pt-2 px-4 w-[300px] lg:w-[370px] text-primary-white text-xl font-semibold line-clamp-2 transition hover:text-primary-yellow duration-300 cursor-pointer"
                                 >
                                     {data.name}
                                 </Link>
-                                <div className="pt-1 pb-2 px-4 mt-auto">
+                                <div className="px-4 pb-2 mt-auto flex flex-col">
                                     <div className="mb-2 flex items-center justify-between">
                                         <p className="text-secondary-gray text-sm">
                                             Release date
@@ -53,20 +53,6 @@ const Page = () => {
                                                 day: "numeric",
                                             })}
                                         </p>
-                                    </div>
-
-                                    <div className="mb-2 bg-primary-bg-grey w-[100%] h-[0.5px]" />
-
-                                    <div className="mb-2 flex items-center justify-between">
-                                        <p className="text-secondary-gray text-sm">
-                                            Total rating
-                                        </p>
-                                        <div className="flex items-center gap-x-1">
-                                            {/* <StarIcon /> */}
-                                            <p className="text-primary-white text-sm font-light">
-                                                {data.ratings_count}
-                                            </p>
-                                        </div>
                                     </div>
 
                                     <div className="mb-2 bg-primary-bg-grey w-[100%] h-[0.5px]" />

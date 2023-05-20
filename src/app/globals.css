@@ -31,6 +31,10 @@ body {
     display: block;
 }
 
+.games-card .swiper-slide {
+    height: auto !important;
+}
+
 @layer components {
     .default-section-padding {
         @apply px-4 pt-4 pb-[3rem] lg:py-4;
