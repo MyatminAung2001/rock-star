@@ -52,3 +52,11 @@ export const getAllTimeTop250 = async (pageParam) => {
         )
         .then((res) => res.data);
 };
+
+export const getUpcomingGames = async () => {
+    return await axiosInstance
+        .get(
+            `${GET_GAMES}/lists/main?key=${apiKEY}&ordering=-released&page=1&page_size=12`
+        )
+        .then((res) => res.data);
+};
