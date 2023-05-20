@@ -1,28 +1,29 @@
-import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
+import { useSelector, useDispatch } from "react-redux";
 
 import { getNewAndTrending } from "@/services/service.games";
+import { setFilter, handleDropDown } from "@/store/filter.slice";
 
 const useContainer = () => {
-    const router = useRouter();
-
     const { ref, inView } = useInView();
 
-    const [option, setOption] = useState("relevance");
-    const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+    const dispatch = useDispatch();
 
-    const options = [
-        "relevance",
-        "name",
-        "released",
-        "added",
-        "created",
-        "updated",
-        "rating",
-        "metacritic",
-    ];
+    const filterText = useSelector((state) => state.filterSlice.filter);
+    const isDropDownOpen = useSelector(
+        (state) => state.filterSlice.isDropDownOpen
+    );
+
+    const handleFilterChange = (e) => {
+        dispatch(setFilter(e.target.value));
+        dispatch(handleDropDown(!isDropDownOpen));
+    };
+
+    const handleDropDownFilter = () => {
+        dispatch(handleDropDown(!isDropDownOpen));
+    };
 
     const {
         data: NewAndTrending,
@@ -32,9 +33,9 @@ const useContainer = () => {
         fetchNextPage,
         isFetchingNextPage,
     } = useInfiniteQuery({
-        queryKey: ["new-and-trending", option],
+        queryKey: ["new-and-trending", filterText],
         queryFn: ({ pageParam = 1 }) =>
-            getNewAndTrending({ pageParam, option }),
+            getNewAndTrending({ pageParam, filterText }),
         getNextPageParam: (lastPage, allPages) => {
             if (lastPage.length === 0) return undefined;
             return allPages.length + 1;
@@ -54,17 +55,16 @@ const useContainer = () => {
     const formattedData = gamesData || [];
 
     return {
-        router,
         ref,
         isLoading,
         isError,
         isFetchingNextPage,
         formattedData,
-        options,
+        dispatch,
+        filterText,
+        handleFilterChange,
         isDropDownOpen,
-        setIsDropDownOpen,
-        option,
-        setOption,
+        handleDropDownFilter,
     };
 };
 

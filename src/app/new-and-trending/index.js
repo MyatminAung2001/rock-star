@@ -2,21 +2,20 @@
 
 import GameCard from "@/components/Common/GameCard";
 import { Loading, FetchingNextPage } from "@/components/Common/Loading";
+import options from "@/data/options";
 import useContainer from "./useContainer";
 
 const NewAndTrending = () => {
     const {
-        router,
         ref,
         isLoading,
         isError,
         isFetchingNextPage,
         formattedData,
-        options,
+        filterText,
+        handleFilterChange,
         isDropDownOpen,
-        setIsDropDownOpen,
-        option,
-        setOption,
+        handleDropDownFilter,
     } = useContainer();
 
     if (isLoading) return <Loading />;
@@ -33,12 +32,10 @@ const NewAndTrending = () => {
                 <div className="relative">
                     <button
                         type="button"
-                        onClick={() =>
-                            setIsDropDownOpen((prevState) => !prevState)
-                        }
+                        onClick={handleDropDownFilter}
                         className="text-primary-white flex items-center gap-x-4 bg-[#212529] px-4 py-2 rounded-md"
                     >
-                        Order by {option}{" "}
+                        Order by {filterText}{" "}
                         <svg
                             className={`ml-2 h-4 w-4 transition-all duration-300 ${
                                 isDropDownOpen && "rotate-180"
@@ -64,12 +61,8 @@ const NewAndTrending = () => {
                                     <li key={opt} className="w-full">
                                         <button
                                             type="button"
-                                            onClick={() => {
-                                                setOption(opt);
-                                                setIsDropDownOpen(
-                                                    (prevState) => !prevState
-                                                );
-                                            }}
+                                            value={opt}
+                                            onClick={handleFilterChange}
                                             className="w-full p-4 capitalize hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                         >
                                             {opt}
