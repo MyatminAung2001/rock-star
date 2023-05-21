@@ -33,7 +33,7 @@ const NewAndTrending = () => {
                     <button
                         type="button"
                         onClick={handleDropDownFilter}
-                        className="text-primary-white flex items-center gap-x-4 bg-[#212529] px-4 py-2 rounded-md"
+                        className="text-primary-white w-[210px] flex items-center justify-between bg-[#212529] px-4 py-2 rounded-md"
                     >
                         Order by {filterText}{" "}
                         <svg
