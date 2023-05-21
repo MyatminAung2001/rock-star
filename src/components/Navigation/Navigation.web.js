@@ -122,15 +122,11 @@ const NavigationWeb = () => {
     return (
         <div className="ml-6 flex flex-col gap-y-3">
             <Link href={HOME}>
-                <header className="text-sub-heading font-semibold tracking-wider text-primary-white cursor-pointer">
-                    BitBazaar
-                </header>
+                <header className="web-nav-link-heading">BitBazaar</header>
             </Link>
             <hr />
             <div>
-                <header className="text-sub-heading font-semibold tracking-wider text-primary-white">
-                    Top
-                </header>
+                <header className="web-nav-heading">Top</header>
                 <div className="mt-3 flex flex-col gap-y-1">
                     {TopNavigation.map((data) => (
                         <NavItem
@@ -145,15 +141,11 @@ const NavigationWeb = () => {
             </div>
             <hr />
             <Link href={GAMES}>
-                <header className="text-sub-heading font-semibold tracking-wider text-primary-white cursor-pointer">
-                    All Games
-                </header>
+                <header className="web-nav-link-heading">All Games</header>
             </Link>
             <hr />
             <div>
-                <header className="text-sub-heading font-semibold tracking-wider text-primary-white">
-                    Browse
-                </header>
+                <header className="nav-heading">Browse</header>
                 <div className="mt-3 flex flex-col gap-y-1">
                     {BrowseNavigation.map((data) => (
                         <NavItem

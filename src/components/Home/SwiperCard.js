@@ -15,7 +15,7 @@ const SwiperCard = ({ gamesData }) => {
         >
             {gamesData.map((data) => (
                 <SwiperSlide key={data.id} style={{ width: "auto" }}>
-                    <div className="bg-[#212529] rounded-xl flex flex-col h-full w-[300px] lg:w-[350px]">
+                    <div className="bg-card-bg-color rounded-xl flex flex-col h-full w-[300px] lg:w-[350px]">
                         <LazyLoadImage
                             src={data.background_image}
                             alt="screenshot"
@@ -25,15 +25,13 @@ const SwiperCard = ({ gamesData }) => {
                         />
                         <Link
                             href={`/games/${data.slug}`}
-                            className="py-1 px-4 w-auto text-primary-white text-xl font-semibold line-clamp-2 transition hover:text-primary-yellow duration-300 cursor-pointer"
+                            className="px-4 pt-2 w-auto game-title"
                         >
                             {data.name}
                         </Link>
-                        <div className="px-4 pb-2 mt-auto flex flex-col">
+                        <div className="px-4 pt-1 pb-2 mt-auto flex flex-col">
                             <div className="mb-2 flex items-center justify-between">
-                                <p className="text-secondary-gray text-sm">
-                                    Release date
-                                </p>
+                                <p className="game-heading">Release date</p>
                                 <p className="text-primary-white text-sm font-light">
                                     {new Date(data.released).toLocaleDateString(
                                         "en-us",
@@ -46,12 +44,10 @@ const SwiperCard = ({ gamesData }) => {
                                 </p>
                             </div>
 
-                            <div className="mb-2 bg-primary-bg-grey w-[100%] h-[0.5px]" />
+                            <div className="divider" />
 
                             <div className="flex items-center justify-between">
-                                <p className="text-secondary-gray text-sm">
-                                    Genres
-                                </p>
+                                <p className="game-heading">Genres</p>
                                 <div className="flex items-center gap-x-1">
                                     {data?.genres
                                         ?.slice(0, NUMBER_OF_GENRES)

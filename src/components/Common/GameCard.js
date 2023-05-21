@@ -7,7 +7,7 @@ import { NUMBER_OF_GENRES } from "@/constants/restrict";
 
 const GameCard = ({ data }) => {
     return (
-        <div className="bg-[#212529] h-full rounded-xl flex flex-col w-[100%]">
+        <div className="bg-card-bg-color h-full rounded-xl flex flex-col w-[100%]">
             <LazyLoadImage
                 src={data.background_image}
                 alt={data.name}
@@ -16,10 +16,7 @@ const GameCard = ({ data }) => {
                 className="object-cover w-full h-[230px] rounded-t-xl"
             />
             <div className="pt-2 px-4 w-full flex items-start justify-between gap-x-2">
-                <Link
-                    href={`/games/${data.slug}`}
-                    className="text-primary-white text-xl font-semibold line-clamp-2 transition hover:text-primary-yellow duration-300 cursor-pointe"
-                >
+                <Link href={`/games/${data.slug}`} className="game-title">
                     {data.name}
                 </Link>
                 {data.metacritic && (
@@ -30,7 +27,7 @@ const GameCard = ({ data }) => {
             </div>
             <div className="pt-1 pb-2 px-4 mt-auto">
                 <div className="mb-2 flex items-center justify-between">
-                    <p className="text-secondary-gray text-sm">Release date</p>
+                    <p className="game-heading">Release date</p>
                     <p className="text-primary-white text-sm font-light">
                         {new Date(data.released).toLocaleDateString("en-us", {
                             year: "numeric",
@@ -40,10 +37,10 @@ const GameCard = ({ data }) => {
                     </p>
                 </div>
 
-                <div className="mb-2 bg-primary-bg-grey w-[100%] h-[0.5px]" />
+                <div className="divider" />
 
                 <div className="mb-2 flex items-center justify-between">
-                    <p className="text-secondary-gray text-sm">Total rating</p>
+                    <p className="game-heading">Total rating</p>
                     <div className="flex items-center gap-x-1">
                         <StarIcon />
                         <p className="text-primary-white text-sm font-light">
@@ -52,10 +49,10 @@ const GameCard = ({ data }) => {
                     </div>
                 </div>
 
-                <div className="mb-2 bg-primary-bg-grey w-[100%] h-[0.5px]" />
+                <div className="divider" />
 
                 <div className="flex items-center justify-between">
-                    <p className="text-secondary-gray text-sm">Genres</p>
+                    <p className="game-heading">Genres</p>
                     <div className="flex items-center gap-x-1">
                         {data?.genres
                             ?.slice(0, NUMBER_OF_GENRES)

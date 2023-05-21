@@ -41,9 +41,11 @@ module.exports = {
             colors: {
                 "primary-bg-black": "#000814",
                 "primary-bg-white": "#FFFFFF",
-                "primary-bg-grey": "#797979",
+                "primary-bg-gray": "#797979",
                 "primary-bg-yellow": "#ffb703",
-                "secondary-bg-black": "#2d2c2c",
+                "secondary-bg-black": "#202020",
+                "secondary-bg-gray": "#2d2c2c",
+                "card-bg-color": "#212529",
             },
         },
     },

@@ -31,6 +31,7 @@ body {
     display: block;
 }
 
+/* ----- swiper ----- */
 .games-card .swiper-slide {
     height: auto !important;
 }
@@ -40,6 +41,7 @@ body {
         @apply px-4 pt-4 pb-[3rem] lg:py-4;
     }
 
+    /* ----- heading ----- */
     .title {
         @apply font-semibold text-md tracking-wider text-primary-white;
     }
@@ -48,15 +50,37 @@ body {
         @apply font-semibold tracking-wider text-3xl text-primary-white text-center lg:text-start lg:text-4xl;
     }
 
-    .nav {
-        @apply bg-[#202020] rounded p-2;
-    }
-
-    .active-nav {
-        @apply bg-[#FFFFFF] rounded p-2;
-    }
-
     .detail-heading {
         @apply text-primary-white tracking-wide underline decoration-[#797979] underline-offset-2;
+    }
+
+    /* ----- navigation ----- */
+    .web-nav-heading {
+        @apply text-sub-heading font-semibold tracking-wider text-primary-white;
+    }
+
+    .web-nav-link-heading {
+        @apply text-sub-heading font-semibold tracking-wider text-primary-white cursor-pointer;
+    }
+
+    .mobile-nav-heading {
+        @apply text-sub-heading font-semibold tracking-wider;
+    }
+
+    .mobile-nav-link-heading {
+        @apply font-semibold text-md tracking-wider text-primary-white cursor-pointer;
+    }
+
+    /* ----- card ----- */
+    .game-title {
+        @apply text-primary-white text-xl font-semibold line-clamp-2 transition hover:text-primary-yellow duration-300 cursor-pointer;
+    }
+
+    .game-heading {
+        @apply text-secondary-gray text-sm;
+    }
+
+    .divider {
+        @apply mb-2 bg-primary-bg-gray w-[100%] h-[0.5px];
     }
 }

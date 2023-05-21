@@ -95,7 +95,7 @@ const NavigationMobile = () => {
             }`}
         >
             <div className="flex items-center justify-between">
-                <Link className="title cursor-pointer" href={HOME}>
+                <Link className="mobile-nav-link-heading" href={HOME}>
                     BitBazaar
                 </Link>
                 <div className="sticky z-[150] top-0 right-0 lg:hidden">
@@ -112,15 +112,15 @@ const NavigationMobile = () => {
                 {isMenuOpen && (
                     <div className="bg-primary-bg-white min-h-screen w-[70%] px-8 pt-6 fixed right-0 top-0">
                         <Link href={GAMES} onClick={() => setIsMenuOpen(false)}>
-                            <header className="text-sub-heading font-semibold tracking-wider">
+                            <header className="mobile-nav-heading">
                                 All Games
                             </header>
                         </Link>
+
                         <hr className="my-1" />
-                        <div className="">
-                            <header className="text-sub-heading font-semibold tracking-wider">
-                                Top
-                            </header>
+
+                        <div>
+                            <header className="mobile-nav-heading">Top</header>
                             <div className="mt-1 flex flex-col gap-y-3">
                                 {TopNavigation.map((data) => (
                                     <div
@@ -143,9 +143,11 @@ const NavigationMobile = () => {
                                 ))}
                             </div>
                         </div>
+
                         <hr className="mt-2" />
+
                         <div>
-                            <header className="text-sub-heading font-semibold tracking-wider">
+                            <header className="mobile-nav-heading">
                                 Browse
                             </header>
                             <div className="mt-1 flex flex-col gap-y-3">
