@@ -16,13 +16,19 @@ const useContainer = () => {
 
     const queryResults = useQueries({
         queries: [
-            { queryKey: "details", queryFn: () => getGameDetails(slug) },
-            { queryKey: "series", queryFn: () => getGameSeries(slug) },
-            { queryKey: "screenshots", queryFn: () => getScreenShots(slug) },
-            { queryKey: "trailers", queryFn: () => getTrailers(slug) },
-            { queryKey: "stores", queryFn: () => getStores(slug) },
             {
-                queryKey: "dlc-editions",
+                queryKey: ["details", slug],
+                queryFn: () => getGameDetails(slug),
+            },
+            { queryKey: ["series", slug], queryFn: () => getGameSeries(slug) },
+            {
+                queryKey: ["screenshots", slug],
+                queryFn: () => getScreenShots(slug),
+            },
+            { queryKey: ["trailers", slug], queryFn: () => getTrailers(slug) },
+            { queryKey: ["stores", slug], queryFn: () => getStores(slug) },
+            {
+                queryKey: ["dlc-editions", slug],
                 queryFn: () => getDLCAndEditions(slug),
             },
         ],
