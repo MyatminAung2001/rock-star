@@ -1,4 +1,4 @@
-import { useRouter, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useQueries } from "@tanstack/react-query";
 
 // services
@@ -13,8 +13,6 @@ import {
 
 const useContainer = () => {
     const { slug } = useParams();
-
-    const router = useRouter();
 
     const queryResults = useQueries({
         queries: [
@@ -47,7 +45,6 @@ const useContainer = () => {
 
     return {
         slug,
-        router,
         isLoading,
         gameDetails,
         gameSeries,

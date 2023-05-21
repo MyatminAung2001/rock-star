@@ -24,7 +24,6 @@ import WebLinkIcon from "@/components/Common/icons/WebLinkIcon";
 const Details = () => {
     const {
         slug,
-        router,
         isLoading,
         gameDetails,
         gameSeries,
@@ -214,14 +213,7 @@ const Details = () => {
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                         {gameDLCAndEditions?.results.map((edition) => (
-                            <div
-                                key={edition.id}
-                                onClick={() =>
-                                    router.push(`games/${edition.slug}`)
-                                }
-                            >
-                                <GameCard data={edition} />
-                            </div>
+                            <GameCard key={edition.id} data={edition} />
                         ))}
                     </div>
                 </div>
@@ -236,14 +228,7 @@ const Details = () => {
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                         {gameSeries?.results.map((series) => (
-                            <div
-                                key={series.id}
-                                onClick={() =>
-                                    router.push(`games/${series.slug}`)
-                                }
-                            >
-                                <GameCard data={series} />
-                            </div>
+                            <GameCard key={series.id} data={series} />
                         ))}
                     </div>
                 </div>
