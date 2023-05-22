@@ -22,6 +22,7 @@ const SearchBox = () => {
         data: searchGames,
         isLoading,
         isError,
+        isInitialLoading,
     } = useQuery({
         queryKey: ["search-games", searchTerm],
         queryFn: () => getSearchGames(searchTerm),
@@ -51,11 +52,11 @@ const SearchBox = () => {
                     className="w-[100%] ml-3 bg-transparent placeholder:text-sm focus:outline-none text-white"
                 />
             </div>
-            {/* {isLoading && (
+            {isInitialLoading && (
                 <div className="absolute z-40 w-[100%] mt-3 ml-3 right-0 flex items-center justify-center h-[100px] bg-[#212529] px-4 py-3 rounded-md">
                     <Loading />
                 </div>
-            )} */}
+            )}
             {searchGames?.results.length > 0 && (
                 <div className="absolute z-40 w-[100%] right-0 bg-[#212529] px-4 py-3 rounded-md grid grid-cols-1 lg:grid-cols-3 gap-y-2 mt-3">
                     {searchGames?.results.map((data) => (

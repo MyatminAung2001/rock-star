@@ -12,9 +12,11 @@ export const metadata = {
 
 const Page = async () => {
     const queryClient = getQueryClient();
-    await queryClient.prefetchQuery(["new-and-trending"], ({ pageParam = 1 }) =>
-        getNewAndTrending(pageParam)
-    );
+    await queryClient.prefetchInfiniteQuery({
+        queryKey: ["new-and-trending"],
+        queryFn: ({ pageParam = 1 }) => getNewAndTrending(pageParam),
+    });
+
     const dehydrateState = dehydrate(queryClient);
 
     return (

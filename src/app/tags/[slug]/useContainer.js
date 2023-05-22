@@ -11,7 +11,7 @@ const useContainer = () => {
     const { ref, inView } = useInView();
 
     const { data: tagsDetail } = useQuery({
-        queryKey: ["tags-detail"],
+        queryKey: ["tags-detail", slug],
         queryFn: () => getTagsDetails(slug),
     });
 
@@ -23,7 +23,7 @@ const useContainer = () => {
         fetchNextPage,
         isFetchingNextPage,
     } = useInfiniteQuery({
-        queryKey: ["tags-games"],
+        queryKey: ["tags-games", slug],
         queryFn: ({ pageParam = 1 }) => getTagsGames({ slug, pageParam }),
         getNextPageParam: (lastPage, allPages) => {
             if (lastPage.length === 0) return undefined;

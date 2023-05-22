@@ -14,7 +14,7 @@ const useContainer = () => {
     const { ref, inView } = useInView();
 
     const { data: publishersDetail } = useQuery({
-        queryKey: ["publishers-detail"],
+        queryKey: ["publishers-detail", slug],
         queryFn: () => getPublishersDetails(slug),
     });
 
@@ -26,7 +26,7 @@ const useContainer = () => {
         fetchNextPage,
         isFetchingNextPage,
     } = useInfiniteQuery({
-        queryKey: ["publishers-games"],
+        queryKey: ["publishers-games", slug],
         queryFn: ({ pageParam = 1 }) => getPublishersGames({ slug, pageParam }),
         getNextPageParam: (lastPage, allPages) => {
             if (lastPage.length === 0) return undefined;

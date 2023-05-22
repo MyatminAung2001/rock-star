@@ -145,7 +145,7 @@ const NavigationWeb = () => {
             </Link>
             <hr />
             <div>
-                <header className="nav-heading">Browse</header>
+                <header className="web-nav-heading">Browse</header>
                 <div className="mt-3 flex flex-col gap-y-1">
                     {BrowseNavigation.map((data) => (
                         <NavItem
