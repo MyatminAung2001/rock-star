@@ -21,7 +21,7 @@ const useContainer = () => {
         queryKey: ["popular-in-2022"],
         queryFn: ({ pageParam = 1 }) => getPopularIn2022(pageParam),
         getNextPageParam: (lastPage, allPages) => {
-            if (lastPage.length === 0) return undefined;
+            if (lastPage.next === null) return undefined;
             return allPages.length + 1;
         },
         keepPreviousData: true,

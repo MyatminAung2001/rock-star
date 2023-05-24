@@ -21,7 +21,7 @@ const useContainer = () => {
         queryKey: ["all-time-top-200"],
         queryFn: ({ pageParam = 1 }) => getAllTimeTop250(pageParam),
         getNextPageParam: (lastPage, allPages) => {
-            if (lastPage.length === 0) return undefined;
+            if (lastPage.next === null) return undefined;
             return allPages.length + 1;
         },
         keepPreviousData: true,

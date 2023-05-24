@@ -21,7 +21,7 @@ const useContainer = () => {
         queryKey: ["best-of-the-year"],
         queryFn: ({ pageParam = 1 }) => getBestOfTheYear(pageParam),
         getNextPageParam: (lastPage, allPages) => {
-            if (lastPage.length === 0) return undefined;
+            if (lastPage.next === null) return undefined;
             return allPages.length + 1;
         },
         keepPreviousData: true,

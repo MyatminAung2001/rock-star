@@ -26,7 +26,7 @@ const useContainer = () => {
         queryKey: ["genres-games", slug],
         queryFn: ({ pageParam = 1 }) => getGenresGames({ slug, pageParam }),
         getNextPageParam: (lastPage, allPages) => {
-            if (lastPage.length === 0) return undefined;
+            if (lastPage.next === null) return undefined;
             return allPages.length + 1;
         },
         keepPreviousData: true,
