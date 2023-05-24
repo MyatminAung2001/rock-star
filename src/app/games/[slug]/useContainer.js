@@ -1,5 +1,5 @@
 import { useParams } from "next/navigation";
-import { useQueries } from "@tanstack/react-query";
+import { useQueries, useInfiniteQuery } from "@tanstack/react-query";
 
 // services
 import {
@@ -9,6 +9,7 @@ import {
     getScreenShots,
     getStores,
     getTrailers,
+    getAchievements,
 } from "@/services/service.details";
 
 const useContainer = () => {
@@ -34,9 +35,32 @@ const useContainer = () => {
         ],
     });
 
-    // loading
-    const isLoading = queryResults.some((result) => result.isLoading);
+    // for achievements
+    const infiniteQuery = useInfiniteQuery({
+        queryKey: ["achievements", slug],
+        queryFn: ({ pageParam = 1 }) => getAchievements({ slug, pageParam }),
+        getNextPageParam: (lastPage, allPages) => {
+            if (lastPage.length === 0) return undefined;
+            return allPages.length + 1;
+        },
+        keepPreviousData: true,
+    });
 
+    // loading
+    const isLoading =
+        queryResults.some((result) => result.isLoading) ||
+        infiniteQuery.isLoading;
+
+    const isError =
+        queryResults.some((result) => result.isError) || infiniteQuery.isError;
+
+    const fetchNextPage = infiniteQuery.fetchNextPage;
+
+    const hasNextPage = infiniteQuery.hasNextPage;
+
+    const isFetchingNextPage = infiniteQuery.isFetchingNextPage;
+
+    // access data
     const gameDetails = queryResults[0].data;
 
     const gameSeries = queryResults[1].data;
@@ -49,15 +73,27 @@ const useContainer = () => {
 
     const gameDLCAndEditions = queryResults[5].data;
 
+    const achievements = infiniteQuery.data;
+
+    // achievements
+    const achievementsData = (achievements?.pages || []).flatMap(
+        (page) => page.results || []
+    );
+    const formattedData = achievementsData || [];
+
     return {
-        slug,
         isLoading,
+        isError,
+        fetchNextPage,
+        hasNextPage,
+        isFetchingNextPage,
         gameDetails,
         gameSeries,
         gameScreenShots,
         gameTrailers,
         gameStores,
         gameDLCAndEditions,
+        formattedData,
     };
 };
 

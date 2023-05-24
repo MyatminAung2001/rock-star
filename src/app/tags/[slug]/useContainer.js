@@ -37,8 +37,8 @@ const useContainer = () => {
     const isFetchingNextPage = infiniteQuery.isFetchingNextPage;
 
     // access data
-    const tagsDetails = query?.data;
-    const tagsRelatedGames = infiniteQuery?.data;
+    const tagsDetails = query.data;
+    const tagsRelatedGames = infiniteQuery.data;
 
     useEffect(() => {
         if (inView && hasNextPage && isFetchingNextPage) {

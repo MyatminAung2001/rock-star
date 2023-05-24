@@ -23,17 +23,23 @@ import WebLinkIcon from "@/components/Common/icons/WebLinkIcon";
 
 const Details = () => {
     const {
-        slug,
         isLoading,
+        isError,
+        fetchNextPage,
+        hasNextPage,
+        isFetchingNextPage,
         gameDetails,
         gameSeries,
         gameScreenShots,
         gameTrailers,
         gameStores,
         gameDLCAndEditions,
+        formattedData,
     } = useContainer();
 
     if (isLoading) return <Loading />;
+
+    if (isError) return <p>Error...</p>;
 
     return (
         <div className="default-section-padding">
@@ -219,7 +225,55 @@ const Details = () => {
                 </div>
             )}
 
-            <Achievements slug={slug} gameDetails={gameDetails} />
+            {formattedData?.length > 0 && (
+                <div className="mb-5">
+                    <p className="detail-heading mb-3">
+                        {gameDetails.name} achievements
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
+                        {formattedData?.map((achievement) => (
+                            <div
+                                key={achievement.id}
+                                className="flex items-start gap-x-2"
+                            >
+                                <LazyLoadImage
+                                    src={achievement?.image}
+                                    alt={achievement?.name}
+                                    threshold={50}
+                                    className="object-cover w-[50px] h-[50px] rounded-md"
+                                />
+                                <div>
+                                    <p className="text-xs text-primary-white font-light">
+                                        {achievement.percent} %
+                                    </p>
+                                    <p className="text-sm text-primary-white">
+                                        {achievement.name}
+                                    </p>
+                                    <p className="text-xs text-[#FFFFFF66] font-light">
+                                        {achievement.description}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="w-[100%] flex items-center justify-center mt-5">
+                        <div>
+                            <button
+                                type="button"
+                                disabled={!hasNextPage || isFetchingNextPage}
+                                onClick={() => hasNextPage && fetchNextPage()}
+                                className="px-4 py-2 bg-secondary-bg-black text-primary-white font-light text-sm rounded-md"
+                            >
+                                {isFetchingNextPage
+                                    ? "Loading more..."
+                                    : hasNextPage
+                                    ? "Load More"
+                                    : "Nothing more to load"}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {gameSeries?.results.length > 0 && (
                 <div>
