@@ -29,11 +29,13 @@ const useContainer = () => {
         queryKey: ["creator-games", slug],
         queryFn: ({ pageParam = 1 }) => getCreatorsGames({ slug, pageParam }),
         getNextPageParam: (lastPage, allPages) => {
-            if (lastPage.length === 0) return undefined;
+            if (lastPage.next === null) return undefined;
             return allPages.length + 1;
         },
         keepPreviousData: true,
     });
+
+    console.log("creators", creatorsGames);
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {

@@ -268,7 +268,7 @@ const Details = () => {
                                     ? "Loading more..."
                                     : hasNextPage
                                     ? "Load More"
-                                    : "Nothing more to load"}
+                                    : "No More Results"}
                             </button>
                         </div>
                     </div>

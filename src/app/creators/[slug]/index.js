@@ -65,7 +65,16 @@ const Details = () => {
                 ))}
             </div>
 
-            <div ref={ref}>{isFetchingNextPage && <FetchingNextPage />}</div>
+            <div ref={ref}>
+                {/* {isFetchingNextPage && <FetchingNextPage />} */}
+                {hasNextPage ? (
+                    isFetchingNextPage && <FetchingNextPage />
+                ) : (
+                    <p className="text-white text-center mt-3">
+                        No More Results
+                    </p>
+                )}
+            </div>
         </div>
     );
 };
