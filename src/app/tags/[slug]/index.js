@@ -11,17 +11,23 @@ const Details = () => {
         ref,
         isLoading,
         isError,
-        tagsDetail,
-        isFetchingNextPage,
+        tagsDetails,
         formattedData,
+        isFetchingNextPage,
     } = useContainer();
 
-    if (isLoading) return <Loading />;
+    if (isLoading) {
+        return <Loading />;
+    }
+
+    if (isError) {
+        return <p>Error...</p>;
+    }
 
     return (
         <div className="default-section-padding">
             <div className="mb-5">
-                <p className="heading mb-5">{tagsDetail?.name} Games</p>
+                <p className="heading mb-5">{tagsDetails?.name} Games</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {formattedData?.map((data) => (
