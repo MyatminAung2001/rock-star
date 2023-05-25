@@ -66,7 +66,6 @@ const Details = () => {
             </div>
 
             <div ref={ref}>
-                {/* {isFetchingNextPage && <FetchingNextPage />} */}
                 {hasNextPage ? (
                     isFetchingNextPage && <FetchingNextPage />
                 ) : (

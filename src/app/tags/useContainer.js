@@ -11,7 +11,7 @@ const useContainer = () => {
     const { ref, inView } = useInView();
 
     const {
-        data: tags,
+        data,
         isError,
         isLoading,
         hasNextPage,
@@ -33,7 +33,7 @@ const useContainer = () => {
         }
     }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-    const gamesData = (tags?.pages || []).flatMap((page) => page.results || []);
+    const gamesData = (data?.pages || []).flatMap((page) => page.results || []);
     const formattedData = gamesData || [];
 
     return {
@@ -42,6 +42,7 @@ const useContainer = () => {
         isLoading,
         isError,
         isFetchingNextPage,
+        hasNextPage,
         formattedData,
     };
 };

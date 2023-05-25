@@ -53,11 +53,12 @@ const useContainer = () => {
 
     return {
         ref,
-        isLoading,
         isError,
+        isLoading,
+        isFetchingNextPage,
+        hasNextPage,
         tagsDetails,
         formattedData,
-        isFetchingNextPage,
     };
 };
 

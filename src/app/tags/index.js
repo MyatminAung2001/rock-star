@@ -12,10 +12,13 @@ const Tags = () => {
         isLoading,
         isError,
         isFetchingNextPage,
+        hasNextPage,
         formattedData,
     } = useContainer();
 
     if (isLoading) return <Loading />;
+
+    if (isError) return <p>Error...</p>;
 
     return (
         <div className="default-section-padding">
@@ -29,14 +32,22 @@ const Tags = () => {
                 {formattedData?.map((data) => (
                     <div
                         key={data.id}
-                        ref={ref}
                         onClick={() => router.push(`tags/${data.id}`)}
                     >
                         <Card data={data} />
                     </div>
                 ))}
             </div>
-            {isFetchingNextPage && <FetchingNextPage />}
+
+            <div ref={ref}>
+                {hasNextPage ? (
+                    isFetchingNextPage && <FetchingNextPage />
+                ) : (
+                    <p className="text-white text-center mt-3">
+                        No More Results
+                    </p>
+                )}
+            </div>
         </div>
     );
 };

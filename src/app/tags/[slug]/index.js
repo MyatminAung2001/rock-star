@@ -16,13 +16,9 @@ const Details = () => {
         isFetchingNextPage,
     } = useContainer();
 
-    if (isLoading) {
-        return <Loading />;
-    }
+    if (isLoading) return <Loading />;
 
-    if (isError) {
-        return <p>Error...</p>;
-    }
+    if (isError) return <p>Error...</p>;
 
     return (
         <div className="default-section-padding">
