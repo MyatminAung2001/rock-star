@@ -10,6 +10,8 @@ const Genres = () => {
 
     if (isLoading) return <Loading />;
 
+    if (isError) return <p>Error...</p>;
+
     return (
         <div className="default-section-padding">
             <div className="flex items-center justify-center lg:justify-start gap-x-2 mb-5">
@@ -18,6 +20,7 @@ const Genres = () => {
                 </div>
                 <header className="heading">Genres</header>
             </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {genres?.results?.map((data) => (
                     <div
