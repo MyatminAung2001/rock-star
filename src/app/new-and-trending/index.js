@@ -11,6 +11,7 @@ const NewAndTrending = () => {
         isLoading,
         isError,
         isFetchingNextPage,
+        hasNextPage,
         formattedData,
         filterText,
         handleFilterChange,
@@ -19,6 +20,8 @@ const NewAndTrending = () => {
     } = useContainer();
 
     if (isLoading) return <Loading />;
+
+    if (isError) return <p>Error...</p>;
 
     return (
         <div className="default-section-padding">
@@ -74,13 +77,22 @@ const NewAndTrending = () => {
                     )}
                 </div>
             </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {formattedData?.map((data) => (
                     <GameCard key={data.id} data={data} />
                 ))}
             </div>
 
-            <div ref={ref}>{isFetchingNextPage && <FetchingNextPage />}</div>
+            <div ref={ref}>
+                {hasNextPage ? (
+                    isFetchingNextPage && <FetchingNextPage />
+                ) : (
+                    <p className="text-white text-center mt-3">
+                        No More Results
+                    </p>
+                )}
+            </div>
         </div>
     );
 };

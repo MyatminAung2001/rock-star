@@ -59,6 +59,7 @@ const useContainer = () => {
         isLoading,
         isError,
         isFetchingNextPage,
+        hasNextPage,
         formattedData,
         filterText,
         handleFilterChange,
