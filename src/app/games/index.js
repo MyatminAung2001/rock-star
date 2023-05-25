@@ -6,16 +6,17 @@ import useContainer from "./useContainer";
 
 const Games = () => {
     const {
-        router,
         ref,
         isLoading,
         isError,
         isFetchingNextPage,
+        hasNextPage,
         formattedData,
-        Games,
     } = useContainer();
 
     if (isLoading) return <Loading />;
+
+    if (isError) return <p>Error..</p>;
 
     return (
         <div className="default-section-padding">
@@ -26,7 +27,15 @@ const Games = () => {
                 ))}
             </div>
 
-            <div ref={ref}>{isFetchingNextPage && <FetchingNextPage />}</div>
+            <div ref={ref}>
+                {hasNextPage ? (
+                    isFetchingNextPage && <FetchingNextPage />
+                ) : (
+                    <p className="text-white text-center mt-3">
+                        No More Results
+                    </p>
+                )}
+            </div>
         </div>
     );
 };

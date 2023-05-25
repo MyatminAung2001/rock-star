@@ -1,4 +1,3 @@
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
@@ -6,8 +5,6 @@ import { useInView } from "react-intersection-observer";
 import { getAllGames } from "@/services/service.games";
 
 const useContainer = () => {
-    const router = useRouter();
-
     const { ref, inView } = useInView();
 
     const {
@@ -39,13 +36,12 @@ const useContainer = () => {
     const formattedData = gamesData || [];
 
     return {
-        router,
         ref,
         isLoading,
         isError,
         isFetchingNextPage,
+        hasNextPage,
         formattedData,
-        Games,
     };
 };
 
