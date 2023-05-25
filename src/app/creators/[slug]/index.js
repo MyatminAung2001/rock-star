@@ -22,6 +22,8 @@ const Details = () => {
 
     if (isLoading) return <Loading />;
 
+    if (isError) return <p>Error...</p>;
+
     return (
         <div className="default-section-padding">
             <BackgroundImage

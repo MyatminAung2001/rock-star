@@ -12,10 +12,13 @@ const Creators = () => {
         isLoading,
         isError,
         isFetchingNextPage,
+        hasNextPage,
         formattedData,
     } = useContainer();
 
     if (isLoading) return <Loading />;
+
+    if (isError) return <p>Error...</p>;
 
     return (
         <div className="default-section-padding">
@@ -25,18 +28,27 @@ const Creators = () => {
                 </div>
                 <header className="heading">Creators</header>
             </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {formattedData?.map((data) => (
                     <div
                         key={data.id}
-                        ref={ref}
                         onClick={() => router.push(`creators/${data.id}`)}
                     >
                         <CreatorCard data={data} />
                     </div>
                 ))}
             </div>
-            {isFetchingNextPage && <FetchingNextPage />}
+
+            <div ref={ref}>
+                {hasNextPage ? (
+                    isFetchingNextPage && <FetchingNextPage />
+                ) : (
+                    <p className="text-white text-center mt-3">
+                        No More Results
+                    </p>
+                )}
+            </div>
         </div>
     );
 };
