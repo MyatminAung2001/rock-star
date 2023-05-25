@@ -10,6 +10,8 @@ const Stores = () => {
 
     if (isLoading) return <Loading />;
 
+    if (isError) return <p>Error...</p>;
+
     return (
         <div className="default-section-padding">
             <div className="flex items-center justify-center lg:justify-start gap-x-2 mb-5">

@@ -9,11 +9,12 @@ import useContainer from "./useContainer";
 const Details = () => {
     const {
         ref,
-        isLoading,
         isError,
+        isLoading,
+        isFetchingNextPage,
+        hasNextPage,
         tagsDetails,
         formattedData,
-        isFetchingNextPage,
     } = useContainer();
 
     if (isLoading) return <Loading />;
@@ -31,7 +32,15 @@ const Details = () => {
                 ))}
             </div>
 
-            <div ref={ref}>{isFetchingNextPage && <FetchingNextPage />}</div>
+            <div ref={ref}>
+                {hasNextPage ? (
+                    isFetchingNextPage && <FetchingNextPage />
+                ) : (
+                    <p className="text-white text-center mt-3">
+                        No More Results
+                    </p>
+                )}
+            </div>
         </div>
     );
 };
