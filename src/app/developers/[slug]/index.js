@@ -9,15 +9,17 @@ import useContainer from "./useContainer";
 const Details = () => {
     const {
         ref,
-        isLoading,
         isError,
+        isLoading,
+        isFetchingNextPage,
+        hasNextPage,
         developersDetail,
         formattedData,
-        isFetchingNextPage,
-        isFetching,
     } = useContainer();
 
     if (isLoading) return <Loading />;
+
+    if (isError) return <p>Error...</p>;
 
     return (
         <div className="default-section-padding">
@@ -26,13 +28,22 @@ const Details = () => {
                     Developed By {developersDetail?.name}
                 </p>
             </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {formattedData?.map((data) => (
                     <GameCard key={data.id} data={data} />
                 ))}
             </div>
 
-            <div ref={ref}>{isFetchingNextPage && <FetchingNextPage />}</div>
+            <div ref={ref}>
+                {hasNextPage ? (
+                    isFetchingNextPage && <FetchingNextPage />
+                ) : (
+                    <p className="text-white text-center mt-3">
+                        No More Results
+                    </p>
+                )}
+            </div>
         </div>
     );
 };

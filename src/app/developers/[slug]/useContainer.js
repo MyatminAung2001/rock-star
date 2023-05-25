@@ -13,20 +13,12 @@ const useContainer = () => {
 
     const { ref, inView } = useInView();
 
-    const { data: developersDetail } = useQuery({
+    const query = useQuery({
         queryKey: ["developers-detail", slug],
         queryFn: () => getDevelopersDetails(slug),
     });
 
-    const {
-        data: developersGames,
-        isError,
-        isLoading,
-        hasNextPage,
-        fetchNextPage,
-        isFetchingNextPage,
-        isFetching,
-    } = useInfiniteQuery({
+    const infiniteQuery = useInfiniteQuery({
         queryKey: ["developers-games", slug],
         queryFn: ({ pageParam = 1 }) => getDevelopersGames({ slug, pageParam }),
         getNextPageParam: (lastPage, allPages) => {
@@ -36,25 +28,40 @@ const useContainer = () => {
         keepPreviousData: true,
     });
 
+    // for loading
+    const isLoading = query.isLoading || infiniteQuery.isLoading;
+
+    // for error
+    const isError = query.isError || infiniteQuery.isError;
+
+    // useInfiniteQuery
+    const fetchNextPage = infiniteQuery.fetchNextPage;
+    const hasNextPage = infiniteQuery.hasNextPage;
+    const isFetchingNextPage = infiniteQuery.isFetchingNextPage;
+
+    // access data
+    const developersDetail = query.data;
+    const developersRelatedGames = infiniteQuery.data;
+
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {
             fetchNextPage();
         }
     }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-    const gamesData = (developersGames?.pages || []).flatMap(
+    const gamesData = (developersRelatedGames?.pages || []).flatMap(
         (page) => page.results || []
     );
     const formattedData = gamesData || [];
 
     return {
         ref,
-        isLoading,
         isError,
+        isLoading,
+        isFetchingNextPage,
+        hasNextPage,
         developersDetail,
         formattedData,
-        isFetchingNextPage,
-        isFetching,
     };
 };
 
