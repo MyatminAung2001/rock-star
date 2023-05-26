@@ -20,6 +20,7 @@ const CreatorCard = ({ data }) => {
                     position: "absolute",
                     inset: "0px",
                     borderRadius: "0.5rem",
+                    backdropFilter: "blur(10px)",
                 }}
             />
             <div className="w-[100%] px-6 py-3 relative h-full flex flex-col justify-between bg-[#00000030] rounded-lg">

@@ -1,51 +1,30 @@
+import Image from "next/image";
 import { NUMBER_OF_ITEMS } from "@/constants/restrict";
 
 const Card = ({ data }) => {
     return (
-        <div
-            key={data.id}
-            className="w-[100%] h-[280px] flex items-center justify-center relative"
-        >
-            <span style={{
-                content: "",
-                backgroundImage: `
-                    linear-gradient(rgba(32, 32, 32, 0.5), rgb(32, 32, 32) 70%),
-                    url(${data.image_background})
-                `,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                position: "absolute",
-                inset: "0px",
-                borderRadius: "0.5rem",
-            }}/>
-            <div className="w-[100%] p-6 relative h-full flex flex-col justify-between bg-[#00000030] rounded-lg">
-                <p className="text-white text-lg font-semibold tracking-wider text-center underline">
-                    {data.name}
-                </p>
-                <div>
-                    <div className="flex items-center justify-between">
-                        <p className="text-secondary-white text-sm font-semibold">
-                            Total Games:
-                        </p>
-                        <p className="text-secondary-gray text-sm">
-                            {data.games_count}
-                        </p>
-                    </div>
-                    <hr className="my-3" />
-                    {data.games?.slice(0, NUMBER_OF_ITEMS)?.map((data) => (
-                        <div key={data.id} className="flex items-center justify-between gap-y-1">
-                            <p className="text-secondary-white font-light underline text-sm">
-                                {data.name}
-                            </p>
-                            <p className="text-secondary-gray text-sm">
-                                {data.added}
-                            </p>
-                        </div>
-                    ))}
+        <div key={data.id} className="bg-card-bg-color rounded-lg">
+            <Image
+                src={data.image_background}
+                alt="background"
+                width={300}
+                height={300}
+                className="object-cover w-full h-[230px] rounded-t-lg"
+            />
+
+            <div className="w-[100%] p-4 relative h-full flex flex-col justify-between rounded-lg">
+                <p className="game-title">{data.name}</p>
+                <div className="mt-2 flex items-center justify-between">
+                    <p className="text-secondary-white text-sm font-semibold">
+                        Total Games:
+                    </p>
+                    <p className="text-primary-white text-sm">
+                        {data.games_count} Games
+                    </p>
                 </div>
             </div>
         </div>
     );
-}
+};
 
 export default Card;
