@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { format } from "date-fns";
 
 import StarIcon from "@/components/Common/icons/StarIcon";
 import { NUMBER_OF_GENRES } from "@/constants/restrict";
@@ -30,11 +31,7 @@ const GameCard = ({ data }) => {
                 <div className="mb-2 flex items-center justify-between">
                     <p className="game-heading">Release date</p>
                     <p className="text-primary-white text-sm font-light">
-                        {new Date(data.released).toLocaleDateString("en-us", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                        })}
+                        {format(new Date(data.released), "dd, MMMM, yyyy")}
                     </p>
                 </div>
 

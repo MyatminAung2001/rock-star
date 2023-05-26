@@ -18,6 +18,7 @@ import useContainer from "./useContainer";
 
 // assets
 import WebLinkIcon from "@/components/Common/icons/WebLinkIcon";
+import { format } from "date-fns";
 
 const Details = () => {
     const {
@@ -102,13 +103,10 @@ const Details = () => {
                         <div>
                             <p className="detail-heading">Released Date</p>
                             <p className="text-primary-white tracking-wide text-[14px] font-light">
-                                {new Date(
-                                    gameDetails.released
-                                ).toLocaleDateString("en-us", {
-                                    year: "numeric",
-                                    month: "long",
-                                    day: "numeric",
-                                })}
+                                {format(
+                                    new Date(gameDetails.released),
+                                    "dd, MMMM, yyyy"
+                                )}
                             </p>
                         </div>
                     )}
@@ -117,13 +115,10 @@ const Details = () => {
                         <div>
                             <p className="detail-heading">Updated Date</p>
                             <p className="text-primary-white tracking-wide text-[14px] font-light">
-                                {new Date(
-                                    gameDetails.updated
-                                ).toLocaleDateString("en-us", {
-                                    year: "numeric",
-                                    month: "long",
-                                    day: "numeric",
-                                })}
+                                {format(
+                                    new Date(gameDetails.updated),
+                                    "dd, MMMM, yyyy"
+                                )}
                             </p>
                         </div>
                     )}
