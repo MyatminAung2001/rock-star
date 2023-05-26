@@ -1,5 +1,5 @@
+import Image from "next/image";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import { getAchievements } from "@/services/service.details";
 import { Loading } from "../Common/Loading";
@@ -42,12 +42,15 @@ const Achievements = ({ slug, gameDetails }) => {
                                 key={achievement.id}
                                 className="flex items-start gap-x-2"
                             >
-                                <LazyLoadImage
-                                    src={achievement?.image}
-                                    alt={achievement?.name}
-                                    threshold={50}
-                                    className="object-cover w-[50px] h-[50px] rounded-md"
-                                />
+                                {achievement?.image && (
+                                    <Image
+                                        src={achievement.image}
+                                        alt={achievement.name}
+                                        width={50}
+                                        height={50}
+                                        className="object-cover w-[50px] h-[50px] rounded-md"
+                                    />
+                                )}
                                 <div>
                                     <p className="text-xs text-primary-white font-light">
                                         {achievement.percent} %

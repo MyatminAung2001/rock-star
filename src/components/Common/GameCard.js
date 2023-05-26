@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
+import Image from "next/image";
 
 import StarIcon from "@/components/Common/icons/StarIcon";
 import { NUMBER_OF_GENRES } from "@/constants/restrict";
@@ -8,13 +7,15 @@ import { NUMBER_OF_GENRES } from "@/constants/restrict";
 const GameCard = ({ data }) => {
     return (
         <div className="bg-card-bg-color h-full rounded-xl flex flex-col w-[100%]">
-            <LazyLoadImage
-                src={data.background_image}
-                alt={data.name}
-                effect="blur"
-                threshold={50}
-                className="object-cover w-full h-[230px] rounded-t-xl"
-            />
+            {data.background_image && (
+                <Image
+                    src={data.background_image}
+                    alt={data.name}
+                    width={300}
+                    height={300}
+                    className="w-full h-[230px] rounded-t-lg object-cover"
+                />
+            )}
             <div className="pt-2 px-4 w-full flex items-start justify-between gap-x-2">
                 <Link href={`/games/${data.slug}`} className="game-title">
                     {data.name}

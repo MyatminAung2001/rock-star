@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
+import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
@@ -13,7 +12,6 @@ import Tags from "@/components/Details/Tags";
 import Platforms from "@/components/Details/Platforms";
 import Genres from "@/components/Details/Genres";
 import Stores from "@/components/Details/Stores";
-import Achievements from "@/components/Details/Achievements";
 import BackgroundImage from "@/components/Common/BackgroundImage";
 import { Loading } from "@/components/Common/Loading";
 import useContainer from "./useContainer";
@@ -199,11 +197,11 @@ const Details = () => {
                                 key={screenshot.id}
                                 style={{ width: "auto" }}
                             >
-                                <LazyLoadImage
+                                <Image
                                     src={screenshot.image}
                                     alt="screenshot"
-                                    effect="blur"
-                                    threshold={50}
+                                    width={300}
+                                    height={230}
                                     className="object-cover w-[300px] lg:w-[400px] h-[150px] lg:h-[230px] rounded-lg"
                                 />
                             </SwiperSlide>
@@ -236,10 +234,11 @@ const Details = () => {
                                 key={achievement.id}
                                 className="flex items-start gap-x-2"
                             >
-                                <LazyLoadImage
-                                    src={achievement?.image}
-                                    alt={achievement?.name}
-                                    threshold={50}
+                                <Image
+                                    src={achievement.image}
+                                    alt={achievement.name}
+                                    width={50}
+                                    height={50}
                                     className="object-cover w-[50px] h-[50px] rounded-md"
                                 />
                                 <div>
