@@ -1,9 +1,15 @@
 "use client";
 
+import { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import Lightbox from "yet-another-react-lightbox";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import "yet-another-react-lightbox/styles.css";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 // components
 import GameCard from "@/components/Common/GameCard";
@@ -21,6 +27,11 @@ import WebLinkIcon from "@/components/Common/icons/WebLinkIcon";
 import { format } from "date-fns";
 
 const Details = () => {
+    const zoomRef = useRef(null);
+    const thumbnailsRef = useRef(null);
+
+    const [openLightbox, setOpenLightbox] = useState(false);
+
     const {
         isLoading,
         isError,
@@ -197,13 +208,30 @@ const Details = () => {
                                     alt="screenshot"
                                     width={300}
                                     height={230}
-                                    className="object-cover w-[300px] lg:w-[400px] h-[150px] lg:h-[230px] rounded-lg"
+                                    onClick={() => setOpenLightbox(true)}
+                                    className="object-cover w-[300px] lg:w-[400px] h-[150px] lg:h-[230px] rounded-lg cursor-pointer"
                                 />
                             </SwiperSlide>
                         ))}
                     </Swiper>
                 </div>
             )}
+
+            {/* ----- preview ----- */}
+            <Lightbox
+                plugins={[Zoom, Thumbnails]}
+                open={openLightbox}
+                zoom={{ ref: zoomRef }}
+                thumbnails={{ ref: thumbnailsRef }}
+                close={() => setOpenLightbox(false)}
+                slides={gameScreenShots?.results?.map((data) => ({
+                    src: data?.image,
+                }))}
+                toolbar={["close"]}
+                on={{
+                    click: () => zoomRef.current?.zoomIn(),
+                }}
+            />
 
             {gameDLCAndEditions?.count > 0 && (
                 <div className="mb-5">
