@@ -2,10 +2,10 @@ import axiosInstance from "@/utils/axiosInstance";
 import { apiKEY } from "@/constants/api";
 import { GET_GAMES } from "@/constants/api";
 
-export const getAllGames = async (pageParam) => {
+export const getAllGames = async ({ pageParam, filterText }) => {
     return await axiosInstance
         .get(
-            `${GET_GAMES}?key=${apiKEY}&discover=true&ordering=-relevance&page=${pageParam}&page_size=12`
+            `${GET_GAMES}?key=${apiKEY}&discover=true&ordering=-${filterText}&page=${pageParam}&page_size=12`
         )
         .then((res) => res.data);
 };

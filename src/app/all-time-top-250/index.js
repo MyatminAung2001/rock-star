@@ -25,7 +25,7 @@ const AllTimeTop250 = () => {
 
     return (
         <div className="default-section-padding">
-            <div className="flex items-center justify-between">
+            <div className="mb-3 flex flex-col lg:flex-row items-center lg:items-start lg:justify-between">
                 <p className="heading mb-3">All time top 250</p>
                 <div className="relative">
                     <button

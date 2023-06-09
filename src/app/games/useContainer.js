@@ -3,9 +3,13 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
 import { getAllGames } from "@/services/service.games";
+import useFilter from "@/hooks/useFilter";
 
 const useContainer = () => {
     const { ref, inView } = useInView();
+
+    const { filterText, isDropDownOpen, handleDropDown, handleFilter } =
+        useFilter("relevance", false);
 
     const {
         data: Games,
@@ -15,8 +19,8 @@ const useContainer = () => {
         fetchNextPage,
         isFetchingNextPage,
     } = useInfiniteQuery({
-        queryKey: ["games"],
-        queryFn: ({ pageParam = 1 }) => getAllGames(pageParam),
+        queryKey: ["games", filterText],
+        queryFn: ({ pageParam = 1 }) => getAllGames({ pageParam, filterText }),
         getNextPageParam: (lastPage, allPages) => {
             if (lastPage.next === null) return undefined;
             return allPages.length + 1;
@@ -42,6 +46,10 @@ const useContainer = () => {
         isFetchingNextPage,
         hasNextPage,
         formattedData,
+        filterText,
+        isDropDownOpen,
+        handleDropDown,
+        handleFilter,
     };
 };
 
