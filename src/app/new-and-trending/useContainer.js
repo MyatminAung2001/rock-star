@@ -1,29 +1,15 @@
 import { useEffect } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
-import { useSelector, useDispatch } from "react-redux";
 
 import { getNewAndTrending } from "@/services/service.games";
-import { handleFilter, handleDropDown } from "@/store/filter.slice";
+import useFilter from "@/hooks/useFilter";
 
 const useContainer = () => {
     const { ref, inView } = useInView();
 
-    const dispatch = useDispatch();
-
-    const filterText = useSelector((state) => state.filterSlice.filterText);
-    const isDropDownOpen = useSelector(
-        (state) => state.filterSlice.isDropDownOpen
-    );
-
-    const handleFilterChange = (e) => {
-        dispatch(handleFilter(e.target.value));
-        dispatch(handleDropDown(!isDropDownOpen));
-    };
-
-    const handleDropDownFilter = () => {
-        dispatch(handleDropDown(!isDropDownOpen));
-    };
+    const { filterText, isDropDownOpen, handleDropDown, handleFilter } =
+        useFilter("relevance", false);
 
     const {
         data: NewAndTrending,
@@ -62,9 +48,9 @@ const useContainer = () => {
         hasNextPage,
         formattedData,
         filterText,
-        handleFilterChange,
         isDropDownOpen,
-        handleDropDownFilter,
+        handleDropDown,
+        handleFilter,
     };
 };
 

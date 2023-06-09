@@ -2,7 +2,6 @@ import "./globals.css";
 
 // providers
 import { ReactQueryProviders } from "@/utils/reactquery.provider";
-import { ReduxProvider } from "@/utils/redux.provider";
 
 import NavigationWeb from "@/components/Navigation/Navigation.web.js";
 import NavigationMobile from "@/components/Navigation/Navigation.mobile";
@@ -21,20 +20,18 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <body>
-                <NavigationMobile />
-                <section className="lg:flex">
-                    <aside className="hidden lg:block lg:fixed lg:left-0 lg:top-0 lg:h-screen lg:p-4 lg:w-60">
-                        <NavigationWeb />
-                    </aside>
-                    <div className="lg:flex-1 lg:ml-60">
-                        <ReduxProvider>
-                            <ReactQueryProviders>
-                                <SearchBox />
-                                {children}
-                            </ReactQueryProviders>
-                        </ReduxProvider>
-                    </div>
-                </section>
+                <ReactQueryProviders>
+                    <NavigationMobile />
+                    <section className="lg:flex">
+                        <aside className="hidden lg:block lg:fixed lg:left-0 lg:top-0 lg:h-screen lg:p-4 lg:w-60">
+                            <NavigationWeb />
+                        </aside>
+                        <div className="lg:flex-1 lg:ml-60">
+                            <SearchBox />
+                            {children}
+                        </div>
+                    </section>
+                </ReactQueryProviders>
             </body>
         </html>
     );

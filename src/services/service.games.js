@@ -26,10 +26,10 @@ export const getNewAndTrending = async ({ pageParam, filterText }) => {
         .then((res) => res.data);
 };
 
-export const getBestOfTheYear = async (pageParam) => {
+export const getBestOfTheYear = async ({ pageParam, filterText }) => {
     return await axiosInstance
         .get(
-            `${GET_GAMES}/lists/greatest?key=${apiKEY}&discover=true&page=${pageParam}&page_size=12
+            `${GET_GAMES}/lists/greatest?key=${apiKEY}&discover=true&ordering=-${filterText}&page=${pageParam}&page_size=12
     `
         )
         .then((res) => res.data);

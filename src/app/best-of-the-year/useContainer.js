@@ -3,9 +3,13 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
 import { getBestOfTheYear } from "@/services/service.games";
+import useFilter from "@/hooks/useFilter";
 
 const useContainer = () => {
     const { ref, inView } = useInView();
+
+    const { filterText, isDropDownOpen, handleDropDown, handleFilter } =
+        useFilter("relevance", false);
 
     const {
         data: bestOfTheYear,
@@ -15,8 +19,9 @@ const useContainer = () => {
         fetchNextPage,
         isFetchingNextPage,
     } = useInfiniteQuery({
-        queryKey: ["best-of-the-year"],
-        queryFn: ({ pageParam = 1 }) => getBestOfTheYear(pageParam),
+        queryKey: ["best-of-the-year", filterText],
+        queryFn: ({ pageParam = 1 }) =>
+            getBestOfTheYear({ pageParam, filterText }),
         getNextPageParam: (lastPage, allPages) => {
             if (lastPage.next === null) return undefined;
             return allPages.length + 1;
@@ -42,6 +47,10 @@ const useContainer = () => {
         isFetchingNextPage,
         hasNextPage,
         formattedData,
+        filterText,
+        isDropDownOpen,
+        handleDropDown,
+        handleFilter,
     };
 };
 

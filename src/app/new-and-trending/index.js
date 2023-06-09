@@ -14,9 +14,9 @@ const NewAndTrending = () => {
         hasNextPage,
         formattedData,
         filterText,
-        handleFilterChange,
         isDropDownOpen,
-        handleDropDownFilter,
+        handleDropDown,
+        handleFilter,
     } = useContainer();
 
     if (isLoading) return <Loading />;
@@ -35,7 +35,7 @@ const NewAndTrending = () => {
                 <div className="relative">
                     <button
                         type="button"
-                        onClick={handleDropDownFilter}
+                        onClick={handleDropDown}
                         className="text-primary-white w-[210px] flex items-center justify-between bg-[#212529] px-4 py-2 rounded-md"
                     >
                         Order by {filterText}{" "}
@@ -65,7 +65,7 @@ const NewAndTrending = () => {
                                         <button
                                             type="button"
                                             value={opt}
-                                            onClick={handleFilterChange}
+                                            onClick={handleFilter}
                                             className="w-full p-4 capitalize hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                         >
                                             {opt}
