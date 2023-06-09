@@ -3,9 +3,13 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
 import { getAllTimeTop250 } from "@/services/service.games";
+import useFilter from "@/hooks/useFilter";
 
 const useContainer = () => {
     const { ref, inView } = useInView();
+
+    const { filterText, isDropDownOpen, handleDropDown, handleFilter } =
+        useFilter("relevance", false);
 
     const {
         data: AllTimeTop250,
@@ -15,8 +19,9 @@ const useContainer = () => {
         fetchNextPage,
         isFetchingNextPage,
     } = useInfiniteQuery({
-        queryKey: ["all-time-top-200"],
-        queryFn: ({ pageParam = 1 }) => getAllTimeTop250(pageParam),
+        queryKey: ["all-time-top-200", filterText],
+        queryFn: ({ pageParam = 1 }) =>
+            getAllTimeTop250({ pageParam, filterText }),
         getNextPageParam: (lastPage, allPages) => {
             if (lastPage.next === null) return undefined;
             return allPages.length + 1;
@@ -47,6 +52,10 @@ const useContainer = () => {
         isFetchingNextPage,
         hasNextPage,
         formattedData,
+        filterText,
+        isDropDownOpen,
+        handleDropDown,
+        handleFilter,
     };
 };
 
