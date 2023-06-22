@@ -47,6 +47,15 @@ module.exports = {
                 "secondary-bg-gray": "#2d2c2c",
                 "card-bg-color": "#212529",
             },
+            animation: {
+                skeleton: "skeleton 1s infinite steps(10, end) alternate",
+            },
+            keyframes: {
+                skeleton: {
+                    "0%": { opacity: 0.25 },
+                    "100%": { opacity: 1 },
+                },
+            },
         },
     },
     plugins: [require("@tailwindcss/line-clamp")],
