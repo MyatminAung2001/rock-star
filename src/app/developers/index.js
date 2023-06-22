@@ -1,7 +1,8 @@
 "use client";
 
 import { UserIcon } from "@/components/Common/icons/UserIcon";
-import { FetchingNextPage, Loading } from "@/components/Common/Loading";
+import { FetchingNextPage } from "@/components/Common/Loading";
+import Loading from "./loading";
 import Card from "@/components/Common/Card";
 import useContainer from "./useContainer";
 

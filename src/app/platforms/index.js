@@ -1,7 +1,7 @@
 "use client";
 
 import { ConsoleIcon } from "@/components/Common/icons/ConsoleIcon";
-import { Loading } from "@/components/Common/Loading";
+import Loading from "./loading";
 import Card from "@/components/Common/Card";
 import useContainer from "./useContainer";
 

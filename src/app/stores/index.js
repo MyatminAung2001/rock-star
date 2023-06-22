@@ -2,7 +2,7 @@
 
 import { StoreIcon } from "@/components/Common/icons/StoreIcon";
 import Card from "@/components/Common/Card";
-import { Loading } from "@/components/Common/Loading";
+import Loading from "./loading";
 import useContainer from "./useContainer";
 
 const Stores = () => {

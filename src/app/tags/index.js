@@ -2,7 +2,8 @@
 
 import { TagIcon } from "@/components/Common/icons/TagIcon";
 import Card from "@/components/Common/Card";
-import { Loading, FetchingNextPage } from "@/components/Common/Loading";
+import { FetchingNextPage } from "@/components/Common/Loading";
+import Loading from "./loading";
 import useContainer from "./useContainer";
 
 const Tags = () => {

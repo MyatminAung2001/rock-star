@@ -1,7 +1,7 @@
 "use client";
 
 import { GenreIcon } from "@/components/Common/icons/GenreIcon";
-import { Loading } from "@/components/Common/Loading";
+import Loading from "./loading";
 import Card from "@/components/Common/Card";
 import useContainer from "./useContainer";
 
