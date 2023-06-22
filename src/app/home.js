@@ -1,7 +1,7 @@
 "use client";
 
 import useContainer from "./useContainer";
-import { Loading } from "@/components/Common/Loading";
+import Loading from "./loading";
 import SwiperCard from "@/components/Home/SwiperCard";
 
 const Home = () => {
