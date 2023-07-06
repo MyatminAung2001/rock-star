@@ -33,7 +33,8 @@ const useContainer = () => {
         if (inView && hasNextPage && !isFetchingNextPage) {
             fetchNextPage();
         }
-    }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [inView]);
 
     /**
      * flatten the nest array eg.[[1, 2], [3, 4], [5, 6]] to

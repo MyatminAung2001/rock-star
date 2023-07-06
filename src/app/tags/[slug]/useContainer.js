@@ -44,7 +44,8 @@ const useContainer = () => {
         if (inView && hasNextPage && isFetchingNextPage) {
             fetchNextPage();
         }
-    }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [inView]);
 
     const gamesData = (tagsRelatedGames?.pages || []).flatMap(
         (page) => page.results || []
