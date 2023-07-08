@@ -21,8 +21,8 @@ export default async function Page() {
     const dehydrateState = dehydrate(queryClient);
 
     return (
-        <Hydrate state={dehydrateState}>
-            <BestOfTheYear />
-        </Hydrate>
+        // <Hydrate state={dehydrateState}>
+        <BestOfTheYear />
+        // </Hydrate>
     );
 }

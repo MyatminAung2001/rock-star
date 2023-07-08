@@ -1,9 +1,8 @@
 import { useEffect } from "react";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
-import { getBestOfTheYear } from "@/services/service.games";
 import useFilter from "@/hooks/useFilter";
+import { useGetBestOfTheYear } from "@/api/games/best-of-the-year.query";
 
 const useContainer = () => {
     const { ref, inView } = useInView();
@@ -12,22 +11,13 @@ const useContainer = () => {
         useFilter("relevance", false);
 
     const {
-        data: bestOfTheYear,
-        isError,
+        data,
         isLoading,
+        isError,
         hasNextPage,
-        fetchNextPage,
         isFetchingNextPage,
-    } = useInfiniteQuery({
-        queryKey: ["best-of-the-year", filterText],
-        queryFn: ({ pageParam = 1 }) =>
-            getBestOfTheYear({ pageParam, filterText }),
-        getNextPageParam: (lastPage, allPages) => {
-            if (lastPage.next === null) return undefined;
-            return allPages.length + 1;
-        },
-        keepPreviousData: true,
-    });
+        fetchNextPage,
+    } = useGetBestOfTheYear(12);
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {
@@ -36,9 +26,7 @@ const useContainer = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [inView]);
 
-    const gamesData = (bestOfTheYear?.pages || []).flatMap(
-        (page) => page.results || []
-    );
+    const gamesData = (data?.pages || []).flatMap((page) => page.results || []);
     const formattedData = gamesData || [];
 
     return {
