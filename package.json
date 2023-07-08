@@ -12,6 +12,8 @@
         "@tailwindcss/line-clamp": "^0.4.4",
         "@tanstack/react-query": "^4.29.7",
         "@tanstack/react-query-devtools": "^4.29.7",
+        "@types/node": "^20.4.1",
+        "@types/react": "^18.2.14",
         "autoprefixer": "10.4.14",
         "axios": "^1.3.6",
         "date-fns": "^2.30.0",
@@ -30,6 +32,7 @@
         "yet-another-react-lightbox": "^3.10.2"
     },
     "devDependencies": {
-        "prettier": "2.8.8"
+        "prettier": "2.8.8",
+        "typescript": "^5.1.6"
     }
 }
