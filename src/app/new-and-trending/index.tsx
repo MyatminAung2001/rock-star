@@ -8,7 +8,6 @@ import useContainer from "./useContainer";
 
 const NewAndTrending = () => {
     const {
-        ref,
         isLoading,
         isError,
         isFetchingNextPage,
@@ -16,6 +15,7 @@ const NewAndTrending = () => {
         formattedData,
         filterText,
         isDropDownOpen,
+        ref,
         handleDropDown,
         handleFilter,
     } = useContainer();

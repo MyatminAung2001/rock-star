@@ -8,7 +8,6 @@ import options from "@/data/options";
 
 const BestOfTheYear = () => {
     const {
-        ref,
         isLoading,
         isError,
         isFetchingNextPage,
@@ -16,6 +15,7 @@ const BestOfTheYear = () => {
         formattedData,
         filterText,
         isDropDownOpen,
+        ref,
         handleDropDown,
         handleFilter,
     } = useContainer();

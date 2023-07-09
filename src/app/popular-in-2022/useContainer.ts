@@ -4,6 +4,7 @@ import { useInView } from "react-intersection-observer";
 
 import { getPopularIn2022 } from "@/services/service.games";
 import useFilter from "@/hooks/useFilter";
+import { useGetPopularIn2022 } from "@/api/games/popular-in-2022.query";
 
 const useContainer = () => {
     const { ref, inView } = useInView();
@@ -11,23 +12,16 @@ const useContainer = () => {
     const { filterText, isDropDownOpen, handleDropDown, handleFilter } =
         useFilter("relevance", false);
 
+    const previousYear = new Date().getFullYear() - 1;
+
     const {
-        data: PopularIn2022,
-        isError,
+        data,
         isLoading,
+        isError,
         hasNextPage,
-        fetchNextPage,
         isFetchingNextPage,
-    } = useInfiniteQuery({
-        queryKey: ["popular-in-2022", filterText],
-        queryFn: ({ pageParam = 1 }) =>
-            getPopularIn2022({ pageParam, filterText }),
-        getNextPageParam: (lastPage, allPages) => {
-            if (lastPage.next === null) return undefined;
-            return allPages.length + 1;
-        },
-        keepPreviousData: true,
-    });
+        fetchNextPage,
+    } = useGetPopularIn2022(12, filterText, previousYear);
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {
@@ -36,13 +30,10 @@ const useContainer = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [inView]);
 
-    const gamesData = (PopularIn2022?.pages || []).flatMap(
-        (page) => page.results || []
-    );
+    const gamesData = (data?.pages || []).flatMap((page) => page.results || []);
     const formattedData = gamesData || [];
 
     return {
-        ref,
         isLoading,
         isError,
         isFetchingNextPage,
@@ -50,6 +41,7 @@ const useContainer = () => {
         formattedData,
         filterText,
         isDropDownOpen,
+        ref,
         handleDropDown,
         handleFilter,
     };

@@ -101,14 +101,16 @@ type BestOfTheYearResponse = {
     }[];
 };
 
-export const useGetBestOfTheYear = (pageSize: number) => {
+export const useGetBestOfTheYear = (pageSize: number, filterText: string) => {
     return useInfiniteQuery<BestOfTheYearResponse>({
-        queryKey: ["best-of-the-year"],
+        queryKey: ["best-of-the-year", filterText],
         queryFn: async ({ pageParam = 1 }) => {
             return await apiClient
                 .get("/games/lists/greatest", {
                     params: {
                         key: process.env.NEXT_PUBLIC_API_KEY,
+                        discover: true,
+                        ordering: `-${filterText}`,
                         page: pageParam,
                         page_size: pageSize,
                     },

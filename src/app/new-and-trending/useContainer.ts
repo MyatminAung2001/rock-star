@@ -1,9 +1,8 @@
 import { useEffect } from "react";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
-import { getNewAndTrending } from "@/services/service.games";
 import useFilter from "@/hooks/useFilter";
+import { useGetNewAndTrending } from "@/api/games/new-and-trending.query";
 
 const useContainer = () => {
     const { ref, inView } = useInView();
@@ -12,22 +11,13 @@ const useContainer = () => {
         useFilter("relevance", false);
 
     const {
-        data: NewAndTrending,
-        isError,
+        data,
         isLoading,
+        isError,
         hasNextPage,
-        fetchNextPage,
         isFetchingNextPage,
-    } = useInfiniteQuery({
-        queryKey: ["new-and-trending", filterText],
-        queryFn: ({ pageParam = 1 }) =>
-            getNewAndTrending({ pageParam, filterText }),
-        getNextPageParam: (lastPage, allPages) => {
-            if (lastPage.next === null) return undefined;
-            return allPages.length + 1;
-        },
-        keepPreviousData: true,
-    });
+        fetchNextPage,
+    } = useGetNewAndTrending(12, filterText);
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {
@@ -36,13 +26,10 @@ const useContainer = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [inView]);
 
-    const gamesData = (NewAndTrending?.pages || []).flatMap(
-        (page) => page.results || []
-    );
+    const gamesData = (data?.pages || []).flatMap((page) => page.results || []);
     const formattedData = gamesData || [];
 
     return {
-        ref,
         isLoading,
         isError,
         isFetchingNextPage,
@@ -50,6 +37,7 @@ const useContainer = () => {
         formattedData,
         filterText,
         isDropDownOpen,
+        ref,
         handleDropDown,
         handleFilter,
     };

@@ -8,7 +8,6 @@ import options from "@/data/options";
 
 const PopularIn2022 = () => {
     const {
-        ref,
         isLoading,
         isError,
         isFetchingNextPage,
@@ -16,6 +15,7 @@ const PopularIn2022 = () => {
         formattedData,
         filterText,
         isDropDownOpen,
+        ref,
         handleDropDown,
         handleFilter,
     } = useContainer();

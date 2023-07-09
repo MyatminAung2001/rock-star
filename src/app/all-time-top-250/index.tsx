@@ -8,7 +8,6 @@ import options from "@/data/options";
 
 const AllTimeTop250 = () => {
     const {
-        ref,
         isLoading,
         isError,
         isFetchingNextPage,
@@ -16,6 +15,7 @@ const AllTimeTop250 = () => {
         formattedData,
         filterText,
         isDropDownOpen,
+        ref,
         handleDropDown,
         handleFilter,
     } = useContainer();

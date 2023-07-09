@@ -17,7 +17,7 @@ const useContainer = () => {
         hasNextPage,
         isFetchingNextPage,
         fetchNextPage,
-    } = useGetAllTimeTop250(12);
+    } = useGetAllTimeTop250(12, filterText);
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {
@@ -26,11 +26,6 @@ const useContainer = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [inView]);
 
-    /**
-     * flatten the nest array eg.[[1, 2], [3, 4], [5, 6]] to
-     * single array [1, 2, 3, 4, 5, 6]
-     * and map the results
-     */
     const gamesData = (data?.pages || []).flatMap((page) => page.results || []);
     const formattedData = gamesData || [];
 

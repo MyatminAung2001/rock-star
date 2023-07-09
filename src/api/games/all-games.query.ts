@@ -2,7 +2,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 
 import apiClient from "../apiClient";
 
-type AllTimeTop250Response = {
+type AllGamesResponse = {
     count: number;
     next: string | null;
     previous: null | string;
@@ -101,12 +101,12 @@ type AllTimeTop250Response = {
     }[];
 };
 
-export const useGetAllTimeTop250 = (pageSize: number, filterText: string) => {
-    return useInfiniteQuery<AllTimeTop250Response>({
-        queryKey: ["all-time-top-250", filterText],
+export const useGetAllGames = (pageSize: number, filterText: string) => {
+    return useInfiniteQuery<AllGamesResponse>({
+        queryKey: ["all-games", filterText],
         queryFn: async ({ pageParam = 1 }) => {
             return await apiClient
-                .get("/games/lists/popular", {
+                .get("/games", {
                     params: {
                         key: process.env.NEXT_PUBLIC_API_KEY,
                         discover: true,

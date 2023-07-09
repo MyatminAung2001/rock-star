@@ -17,7 +17,7 @@ const useContainer = () => {
         hasNextPage,
         isFetchingNextPage,
         fetchNextPage,
-    } = useGetBestOfTheYear(12);
+    } = useGetBestOfTheYear(12, filterText);
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {
