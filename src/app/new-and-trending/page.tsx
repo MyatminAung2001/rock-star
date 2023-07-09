@@ -1,7 +1,7 @@
 import { dehydrate } from "@tanstack/react-query";
 
 import getQueryClient from "@/utils/getQueryCilent";
-import Hydrate from "@/utils/hydrateOnClient";
+// import Hydrate from "@/utils/hydrateOnClient";
 import { getNewAndTrending } from "@/services/service.games";
 import NewAndTrending from ".";
 
@@ -21,8 +21,8 @@ export default async function Page() {
     const dehydrateState = dehydrate(queryClient);
 
     return (
-        <Hydrate state={dehydrateState}>
-            <NewAndTrending />
-        </Hydrate>
+        // <Hydrate state={dehydrateState}>
+        <NewAndTrending />
+        // </Hydrate>
     );
 }

@@ -1,4 +1,4 @@
-import { 
+import {
     AppleStore,
     EpicGamesStore,
     Steam,
@@ -7,7 +7,7 @@ import {
     GooglePlayStore,
     NintendoStore,
     ItchIo,
-    GogStore
+    GogStore,
 } from "@/utils/storeSVG";
 
 const storesData = [

@@ -1,7 +1,7 @@
 import { dehydrate } from "@tanstack/react-query";
 
 import getQueryClient from "@/utils/getQueryCilent";
-import Hydrate from "@/utils/hydrateOnClient";
+// import Hydrate from "@/utils/hydrateOnClient";
 import { getBestOfTheYear } from "@/services/service.games";
 import BestOfTheYear from ".";
 

@@ -21,8 +21,8 @@ export default async function Page() {
     const dehydrateState = dehydrate(queryClient);
 
     return (
-        // <Hydrate state={dehydrateState}>
-        <AllTimeTop250 />
-        // </Hydrate>
+        <Hydrate state={dehydrateState}>
+            <AllTimeTop250 />
+        </Hydrate>
     );
 }

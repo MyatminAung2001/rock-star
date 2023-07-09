@@ -1,13 +1,13 @@
-export const getSVG = (name) => {
-    if (name === "app-store") return <AppleStore />
-    if (name === "epic-games-store") return <EpicGamesStore />
-    if (name === "steam") return <Steam />
-    if (name === "playstation-store") return <PlayStationStore />
-    if (name === "xbox-store") return <XboxStore />
-    if (name === "google-playstore") return <GooglePlayStore />
-    if (name === "nintendo-store") return <NintendoStore />
-    if (name === "itchio") return <ItchIo />
-    if (name === "gog-store") return <GogStore />
+export const getSVG = (name: string) => {
+    if (name === "app-store") return <AppleStore />;
+    if (name === "epic-games-store") return <EpicGamesStore />;
+    if (name === "steam") return <Steam />;
+    if (name === "playstation-store") return <PlayStationStore />;
+    if (name === "xbox-store") return <XboxStore />;
+    if (name === "google-playstore") return <GooglePlayStore />;
+    if (name === "nintendo-store") return <NintendoStore />;
+    if (name === "itchio") return <ItchIo />;
+    if (name === "gog-store") return <GogStore />;
 };
 
 export function AppleStore() {
@@ -59,7 +59,7 @@ export function Steam() {
             ></path>
         </svg>
     );
-};
+}
 
 export function PlayStationStore() {
     return (
@@ -76,7 +76,7 @@ export function PlayStationStore() {
             ></path>
         </svg>
     );
-};
+}
 
 export function XboxStore() {
     return (
@@ -93,7 +93,7 @@ export function XboxStore() {
             ></path>
         </svg>
     );
-};
+}
 
 export function GooglePlayStore() {
     return (
@@ -110,7 +110,7 @@ export function GooglePlayStore() {
             ></path>
         </svg>
     );
-};
+}
 
 export function NintendoStore() {
     return (
@@ -127,7 +127,7 @@ export function NintendoStore() {
             ></path>
         </svg>
     );
-};
+}
 
 export function ItchIo() {
     return (
@@ -144,8 +144,8 @@ export function ItchIo() {
             ></path>
         </svg>
     );
-};
-  
+}
+
 export function GogStore() {
     return (
         <svg
