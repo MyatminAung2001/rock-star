@@ -16,7 +16,11 @@ export const metadata = {
         ensuring that you never run out of exciting games to play.`,
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
     return (
         <html lang="en">
             <body>

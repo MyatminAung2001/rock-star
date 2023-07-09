@@ -1,37 +1,41 @@
-import { dehydrate } from "@tanstack/react-query";
+"use client";
 
-import getQueryClient from "@/utils/getQueryCilent";
-import Hydrate from "@/utils/hydrateOnClient";
-import {
-    getLast30Days,
-    getNextWeek,
-    getThisWeek,
-    getUpcomingGames,
-} from "@/services/service.games";
-import Home from "./home";
+import Loading from "./loading";
+import useContainer from "./useContainer";
+import SwiperCard from "@/components/Home/SwiperCard";
 
-export default async function Page() {
-    const queryClient = getQueryClient();
+export default function Page() {
+    const {
+        isLoading,
+        UpcomingGames,
+        Last30DaysGames,
+        ThisWeekGames,
+        NextWeekGames,
+    } = useContainer();
 
-    const queryConfig = {
-        upcoming: () => getUpcomingGames(),
-        "last-30days": () => getLast30Days(),
-        "this-week": () => getThisWeek(),
-        "next-week": () => getNextWeek(),
-    };
-
-    const prefetchPromises = Object.entries(queryConfig).map(
-        ([queryKey, fetchDataFn]) =>
-            queryClient.prefetchQuery(queryKey, fetchDataFn)
-    );
-
-    await Promise.all(prefetchPromises);
-
-    const dehydrateState = dehydrate(queryClient);
+    if (isLoading) return <Loading />;
 
     return (
-        <Hydrate state={dehydrateState}>
-            <Home />
-        </Hydrate>
+        <div className="mb-5 xl:w-[73rem] 2xl:w-[105rem]">
+            <div className="p-4">
+                <p className="heading mb-3">Upcoming Games</p>
+                <SwiperCard gamesData={UpcomingGames?.results} />
+            </div>
+
+            <div className="p-4">
+                <p className="heading mb-3">Last 30 Days</p>
+                <SwiperCard gamesData={Last30DaysGames?.results} />
+            </div>
+
+            <div className="p-4">
+                <p className="heading mb-3">This Week</p>
+                <SwiperCard gamesData={ThisWeekGames?.results} />
+            </div>
+
+            <div className="p-4">
+                <p className="heading mb-3">Next Week</p>
+                <SwiperCard gamesData={NextWeekGames?.results} />
+            </div>
+        </div>
     );
 }

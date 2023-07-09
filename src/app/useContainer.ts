@@ -1,21 +1,7 @@
-import { useQueries } from "@tanstack/react-query";
-
-import {
-    getLast30Days,
-    getNextWeek,
-    getThisWeek,
-    getUpcomingGames,
-} from "@/services/service.games";
+import { useGetUpcomingGames } from "@/api/games/upcoming-games.query";
 
 const useContainer = () => {
-    const queryResults = useQueries({
-        queries: [
-            { queryKey: ["upcoming"], queryFn: () => getUpcomingGames() },
-            { queryKey: ["last-30days"], queryFn: () => getLast30Days() },
-            { queryKey: ["this-week"], queryFn: () => getThisWeek() },
-            { queryKey: ["next-week"], queryFn: () => getNextWeek() },
-        ],
-    });
+    const queryResults = useGetUpcomingGames(12);
 
     const UpcomingGames = queryResults[0].data;
 
@@ -25,7 +11,6 @@ const useContainer = () => {
 
     const NextWeekGames = queryResults[3].data;
 
-    // loading
     const isLoading = queryResults.some((result) => result.isLoading);
 
     return {
