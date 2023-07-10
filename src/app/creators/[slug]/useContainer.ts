@@ -1,32 +1,18 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
-import {
-    getCreatorsDetails,
-    getCreatorsGames,
-} from "@/services/service.creator";
+import { useGetCreatorDetails } from "@/api/creator/creator-detail.query";
+import { useGetRelatedGames } from "@/api/creator/related-games.query";
 
 const useContainer = () => {
     const { slug } = useParams();
 
     const { ref, inView } = useInView();
 
-    const query = useQuery({
-        queryKey: ["creators-detail", slug],
-        queryFn: () => getCreatorsDetails(slug),
-    });
+    const query = useGetCreatorDetails(slug);
 
-    const infiniteQuery = useInfiniteQuery({
-        queryKey: ["creator-games", slug],
-        queryFn: ({ pageParam = 1 }) => getCreatorsGames({ slug, pageParam }),
-        getNextPageParam: (lastPage, allPages) => {
-            if (lastPage.next === null) return undefined;
-            return allPages.length + 1;
-        },
-        keepPreviousData: true,
-    });
+    const infiniteQuery = useGetRelatedGames(slug, 12);
 
     // for loading
     const isLoading = query.isLoading || infiniteQuery.isLoading;
