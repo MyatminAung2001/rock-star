@@ -3,7 +3,7 @@ import "./globals.css";
 // providers
 import { ReactQueryProviders } from "@/utils/reactquery.provider";
 
-import NavigationWeb from "@/components/Navigation/Navigation.web.js";
+import NavigationWeb from "@/components/Navigation/Navigation.web";
 import NavigationMobile from "@/components/Navigation/Navigation.mobile";
 import SearchBox from "@/components/Common/SearchBox";
 
