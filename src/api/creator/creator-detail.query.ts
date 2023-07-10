@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+
 import apiClient from "../apiClient";
 
 type CreatorDetailsResponse = {
@@ -45,7 +46,7 @@ type CreatorDetailsResponse = {
 
 export const useGetCreatorDetails = (slug: string) => {
     return useQuery<CreatorDetailsResponse>({
-        queryKey: ["creatorDetails", slug],
+        queryKey: ["creator-details", slug],
         queryFn: async () => {
             return await apiClient
                 .get(`/creators/${slug}`, {
