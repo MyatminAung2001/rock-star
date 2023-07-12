@@ -3,10 +3,10 @@
 import GameCard from "@/components/Common/GameCard";
 import { FetchingNextPage } from "@/components/Common/Loading";
 import Loading from "./loading";
-import useContainer from "./useContainer";
+import useAllTimeTop from "./useAllTimeTop";
 import options from "@/constants/options";
 
-const BestOfTheYear = () => {
+const AllTimeTop = () => {
     const {
         isLoading,
         isError,
@@ -18,7 +18,7 @@ const BestOfTheYear = () => {
         ref,
         handleDropDown,
         handleFilter,
-    } = useContainer();
+    } = useAllTimeTop();
 
     if (isLoading) return <Loading />;
 
@@ -27,7 +27,7 @@ const BestOfTheYear = () => {
     return (
         <div className="default-section-padding">
             <div className="mb-3 flex flex-col lg:flex-row items-center lg:items-start lg:justify-between">
-                <p className="heading mb-3">Best Of The Year</p>
+                <p className="heading mb-3">All time top 250</p>
                 <div className="relative">
                     <button
                         type="button"
@@ -92,4 +92,4 @@ const BestOfTheYear = () => {
     );
 };
 
-export default BestOfTheYear;
+export default AllTimeTop;

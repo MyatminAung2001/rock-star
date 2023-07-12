@@ -1,9 +1,9 @@
 import { dehydrate } from "@tanstack/react-query";
 
 import getQueryClient from "@/utils/getQueryCilent";
-// import Hydrate from "@/utils/hydrateOnClient";
+import Hydrate from "@/utils/hydrateOnClient";
 import { getBestOfTheYear } from "@/services/service.games";
-import BestOfTheYear from ".";
+import BestOfTheYear from "./bestOfTheYear";
 
 export const metadata = {
     title: "Best of the year",
@@ -21,8 +21,8 @@ export default async function Page() {
     const dehydrateState = dehydrate(queryClient);
 
     return (
-        // <Hydrate state={dehydrateState}>
-        <BestOfTheYear />
-        // </Hydrate>
+        <Hydrate state={dehydrateState}>
+            <BestOfTheYear />
+        </Hydrate>
     );
 }

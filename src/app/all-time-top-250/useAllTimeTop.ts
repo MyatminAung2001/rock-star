@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import useFilter from "@/hooks/useFilter";
 import { useGetAllTimeTop250 } from "@/api/games/all-time-top-250.query";
 
-const useContainer = () => {
+const useAllTimeTop = () => {
     const { ref, inView } = useInView();
 
     const { filterText, isDropDownOpen, handleDropDown, handleFilter } =
@@ -43,4 +43,4 @@ const useContainer = () => {
     };
 };
 
-export default useContainer;
+export default useAllTimeTop;

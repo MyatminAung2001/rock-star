@@ -3,7 +3,7 @@ import { dehydrate } from "@tanstack/react-query";
 import getQueryClient from "@/utils/getQueryCilent";
 import Hydrate from "@/utils/hydrateOnClient";
 import { getAllTimeTop250 } from "@/services/service.games";
-import AllTimeTop250 from "./index";
+import AllTimeTop from "./allTimeTop";
 
 export const metadata = {
     title: "All time top 250",
@@ -22,7 +22,7 @@ export default async function Page() {
 
     return (
         <Hydrate state={dehydrateState}>
-            <AllTimeTop250 />
+            <AllTimeTop />
         </Hydrate>
     );
 }

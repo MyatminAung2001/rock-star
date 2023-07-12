@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import useFilter from "@/hooks/useFilter";
 import { useGetBestOfTheYear } from "@/api/games/best-of-the-year.query";
 
-const useContainer = () => {
+const useBestOfTheYear = () => {
     const { ref, inView } = useInView();
 
     const { filterText, isDropDownOpen, handleDropDown, handleFilter } =
@@ -30,7 +30,6 @@ const useContainer = () => {
     const formattedData = gamesData || [];
 
     return {
-        ref,
         isLoading,
         isError,
         isFetchingNextPage,
@@ -38,9 +37,10 @@ const useContainer = () => {
         formattedData,
         filterText,
         isDropDownOpen,
+        ref,
         handleDropDown,
         handleFilter,
     };
 };
 
-export default useContainer;
+export default useBestOfTheYear;
