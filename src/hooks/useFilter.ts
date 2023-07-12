@@ -9,9 +9,9 @@ const useFilter = (inititalFilter = "relevance", initailDropDrown = false) => {
         setIsDropDownOpen((prev) => !prev);
     };
 
-    const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFilter = (opt: string) => {
         setIsDropDownOpen((prev) => !prev);
-        setFilterText(e.target.value);
+        setFilterText(opt);
     };
 
     return {

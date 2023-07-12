@@ -60,8 +60,7 @@ const Games = () => {
                                     <li key={opt} className="w-full">
                                         <button
                                             type="button"
-                                            value={opt}
-                                            onClick={handleFilter}
+                                            onClick={() => handleFilter(opt)}
                                             className="w-full p-4 capitalize hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                         >
                                             {opt}
