@@ -18,7 +18,7 @@ import {
     CREATORS,
     NEW_AND_TRENDING,
     GAMES,
-    POPULAR_IN_2022,
+    POPULAR_LAST_YEAR,
     All_TIME_TOP_250,
 } from "@/constants/locationPathname";
 
@@ -34,6 +34,8 @@ import { TrophyIcon, TrophyActiveIcon } from "../Common/icons/TrophyIcon";
 import { TrendingIcon, TrendingActiveIcon } from "../Common/icons/TrendingIcon";
 import { PopularIcon, PopularActiveIcon } from "../Common/icons/PopularIcon";
 import { CrownIcon, CrownActiveIcon } from "../Common/icons/CrownIcon";
+
+const previousYear = new Date().getFullYear() - 1;
 
 const TopNavigation = [
     {
@@ -52,10 +54,10 @@ const TopNavigation = [
     },
     {
         id: 3,
-        link: POPULAR_IN_2022,
+        link: POPULAR_LAST_YEAR,
         icon: <PopularIcon />,
         activeIcon: <PopularActiveIcon />,
-        label: "Popular in 2022",
+        label: `Popular in ${previousYear}`,
     },
     {
         id: 4,

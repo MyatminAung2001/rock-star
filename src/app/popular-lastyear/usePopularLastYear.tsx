@@ -1,12 +1,10 @@
 import { useEffect } from "react";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
-import { getPopularIn2022 } from "@/services/service.games";
 import useFilter from "@/hooks/useFilter";
 import { useGetPopularIn2022 } from "@/api/games/popular-in-2022.query";
 
-const useContainer = () => {
+const usePopularLastYear = () => {
     const { ref, inView } = useInView();
 
     const { filterText, isDropDownOpen, handleDropDown, handleFilter } =
@@ -41,10 +39,11 @@ const useContainer = () => {
         formattedData,
         filterText,
         isDropDownOpen,
+        previousYear,
         ref,
         handleDropDown,
         handleFilter,
     };
 };
 
-export default useContainer;
+export default usePopularLastYear;

@@ -6,9 +6,9 @@ export const NEW_AND_TRENDING = "/new-and-trending";
 
 export const BEST_OF_THE_YEARS = "/best-of-the-year";
 
-export const POPULAR_IN_2022 = "/popular-in-2022";
+export const POPULAR_LAST_YEAR = "/popular-lastyear";
 
-export const All_TIME_TOP_250 = "/all-time-top-250"
+export const All_TIME_TOP_250 = "/all-time-top-250";
 
 export const GENRES = "/genres";
 

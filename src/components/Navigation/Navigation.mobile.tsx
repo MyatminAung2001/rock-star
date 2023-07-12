@@ -15,7 +15,7 @@ import {
     NEW_AND_TRENDING,
     HOME,
     BEST_OF_THE_YEARS,
-    POPULAR_IN_2022,
+    POPULAR_LAST_YEAR,
     All_TIME_TOP_250,
     GAMES,
 } from "@/constants/locationPathname";
@@ -33,6 +33,8 @@ import { TrendingIcon } from "../Common/icons/TrendingIcon";
 import { PopularIcon } from "../Common/icons/PopularIcon";
 import { CrownIcon } from "../Common/icons/CrownIcon";
 
+const previousYear = new Date().getFullYear() - 1;
+
 const TopNavigation = [
     {
         id: 1,
@@ -48,9 +50,9 @@ const TopNavigation = [
     },
     {
         id: 3,
-        link: POPULAR_IN_2022,
+        link: POPULAR_LAST_YEAR,
         icon: <PopularIcon />,
-        label: "Popular in 2022",
+        label: `Popular in ${previousYear}`,
     },
     {
         id: 4,

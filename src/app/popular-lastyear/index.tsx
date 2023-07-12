@@ -3,10 +3,10 @@
 import GameCard from "@/components/Common/GameCard";
 import { FetchingNextPage } from "@/components/Common/Loading";
 import Loading from "./loading";
-import useContainer from "./useContainer";
+import usePopularLastYear from "./usePopularLastYear";
 import options from "@/constants/options";
 
-const PopularIn2022 = () => {
+const PopularInLastYear = () => {
     const {
         isLoading,
         isError,
@@ -15,10 +15,11 @@ const PopularIn2022 = () => {
         formattedData,
         filterText,
         isDropDownOpen,
+        previousYear,
         ref,
         handleDropDown,
         handleFilter,
-    } = useContainer();
+    } = usePopularLastYear();
 
     if (isLoading) return <Loading />;
 
@@ -27,7 +28,7 @@ const PopularIn2022 = () => {
     return (
         <div className="default-section-padding">
             <div className="mb-3 flex flex-col lg:flex-row items-center lg:items-start lg:justify-between">
-                <p className="heading mb-3">Popular in 2022</p>
+                <p className="heading mb-3">Popular in {previousYear}</p>
                 <div className="relative">
                     <button
                         type="button"
@@ -92,4 +93,4 @@ const PopularIn2022 = () => {
     );
 };
 
-export default PopularIn2022;
+export default PopularInLastYear;
