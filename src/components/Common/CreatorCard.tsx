@@ -1,8 +1,28 @@
 import Image from "next/image";
 
-import { NUMBER_OF_ITEMS } from "@/constants/restrict";
+interface Props {
+    data: {
+        id: number;
+        name: string;
+        slug: string;
+        image: string;
+        image_background: string;
+        games_count: number;
+        positions: {
+            id: number;
+            name: string;
+            slug: string;
+        }[];
+        games: {
+            id: number;
+            slug: string;
+            name: string;
+            added: number;
+        }[];
+    };
+}
 
-const CreatorCard = ({ data }) => {
+const CreatorCard = ({ data }: Props) => {
     return (
         <div key={data.id} className="w-[100%] bg-card-bg-color rounded-lg">
             <Image

@@ -35,7 +35,6 @@ const Details = () => {
     const {
         isLoading,
         isError,
-        fetchNextPage,
         hasNextPage,
         isFetchingNextPage,
         gameDetails,
@@ -45,6 +44,7 @@ const Details = () => {
         gameStores,
         gameDLCAndEditions,
         formattedData,
+        fetchNextPage,
     } = useContainer();
 
     if (isLoading) return <Loading />;

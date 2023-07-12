@@ -1,12 +1,16 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 
-const Description = ({ description, title }) => {
+interface Props {
+    description: string;
+    title: string;
+}
 
+const Description = ({ description, title }: Props) => {
     const [isSeeMore, setIsSeeMore] = useState(false);
 
-    const handleFormatDescription = (desc) => {
+    const handleFormatDescription = (desc: string) => {
         const newDes = desc.replace(/#{3}\w+/g, (match) => {
             return match.replace(/#{3}/g, "").toUpperCase();
         });
@@ -25,7 +29,7 @@ const Description = ({ description, title }) => {
                 </p>
             </div>
             {description && (
-                <button 
+                <button
                     onClick={() => setIsSeeMore(!isSeeMore)}
                     className="text-[12px] bg-primary-bg-white text-primary-bg-black px-2 rounded"
                 >
@@ -34,6 +38,6 @@ const Description = ({ description, title }) => {
             )}
         </div>
     );
-}
+};
 
 export default Description;

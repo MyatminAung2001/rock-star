@@ -3,7 +3,7 @@ import { useGetUpcomingGames } from "@/api/games/upcoming-games.query";
 const useContainer = () => {
     const queryResults = useGetUpcomingGames(12);
 
-    const UpcomingGames = queryResults[0].data;
+    const UpcomingGames = queryResults[0]?.data;
 
     const Last30DaysGames = queryResults[1].data;
 

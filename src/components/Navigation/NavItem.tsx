@@ -1,7 +1,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const NavItem = ({ href, activeIcon, icon, title = "" }) => {
+interface Props {
+    href: string;
+    activeIcon: any;
+    icon: any;
+    title: string;
+}
+
+const NavItem = ({ href, activeIcon, icon, title }: Props) => {
     const pathname = usePathname();
 
     return (

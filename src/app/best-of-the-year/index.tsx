@@ -4,7 +4,7 @@ import GameCard from "@/components/Common/GameCard";
 import { FetchingNextPage } from "@/components/Common/Loading";
 import Loading from "./loading";
 import useContainer from "./useContainer";
-import options from "@/data/options";
+import options from "@/constants/options";
 
 const BestOfTheYear = () => {
     const {

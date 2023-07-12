@@ -8,7 +8,6 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import SearchIcon from "./icons/SearchIcon";
 import { getSearchGames } from "@/services/service.games";
 import useDebounce from "@/hooks/useDebounce";
-import { Loading } from "./Loading";
 
 const SearchBox = () => {
     const [searchTerm, setSearchTerm] = useState("");

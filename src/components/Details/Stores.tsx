@@ -2,7 +2,21 @@ import Link from "next/link";
 
 import storesData from "@/data/storesData";
 
-const Stores = ({ stores }) => {
+interface Props {
+    stores: {
+        count: 1;
+        next: null | string;
+        previous: null | string;
+        results: {
+            id: number;
+            game_id: number;
+            store_id: number;
+            url: string;
+        }[];
+    };
+}
+
+const Stores = ({ stores }: Props) => {
     return (
         <>
             {stores?.count > 0 && (
@@ -22,9 +36,9 @@ const Stores = ({ stores }) => {
                                     className="flex items-center gap-x-2 px-4 py-2 bg-secondary-bg-black rounded-md"
                                 >
                                     <p className="text-primary-white text-sm font-light">
-                                        {storeItem.name}
+                                        {storeItem?.name}
                                     </p>
-                                    <span>{storeItem.icon}</span>
+                                    <span>{storeItem?.icon}</span>
                                 </Link>
                             );
                         })}

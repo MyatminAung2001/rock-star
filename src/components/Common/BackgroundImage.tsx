@@ -1,4 +1,8 @@
-const BackgroundImage = ({ image_background }) => {
+interface Props {
+    image_background: string;
+}
+
+const BackgroundImage = ({ image_background }: Props) => {
     return (
         <span
             style={{

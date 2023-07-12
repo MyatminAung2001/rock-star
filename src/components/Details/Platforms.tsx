@@ -1,6 +1,23 @@
 import Link from "next/link";
 
-const Platforms = ({ platforms }) => {
+interface Props {
+    platforms: {
+        platform: {
+            id: number;
+            name: string;
+            slug: string;
+            image: null;
+            year_end: null;
+            year_start: number;
+            games_count: number;
+            image_background: string;
+        };
+        released_at: string;
+        requirements: object;
+    }[];
+}
+
+const Platforms = ({ platforms }: Props) => {
     return (
         <div className="mb-3">
             <p className="detail-heading">Platforms</p>

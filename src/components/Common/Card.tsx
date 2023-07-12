@@ -1,7 +1,23 @@
 import Image from "next/image";
-import { NUMBER_OF_ITEMS } from "@/constants/restrict";
 
-const Card = ({ data }) => {
+interface Props {
+    data: {
+        id: number;
+        name: string;
+        slug: string;
+        games_count: number;
+        image_background: string;
+        language: string;
+        games: {
+            id: number;
+            slug: string;
+            name: string;
+            added: number;
+        }[];
+    };
+}
+
+const Card = ({ data }: Props) => {
     return (
         <div key={data.id} className="bg-card-bg-color rounded-lg">
             <Image

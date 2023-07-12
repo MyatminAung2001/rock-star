@@ -2,7 +2,17 @@
 
 import Link from "next/link";
 
-const Genres = ({ genres }) => {
+interface Props {
+    genres: {
+        games_count: number;
+        id: number;
+        image_background: string;
+        name: string;
+        slug: string;
+    }[];
+}
+
+const Genres = ({ genres }: Props) => {
     return (
         <div className="mb-3">
             <p className="detail-heading">Genres</p>

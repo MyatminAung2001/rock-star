@@ -1,6 +1,17 @@
 import Link from "next/link";
 
-const Tags = ({ tags }) => {
+interface Props {
+    tags: {
+        games_count: number;
+        id: number;
+        image_background: string;
+        language: string;
+        name: string;
+        slug: string;
+    }[];
+}
+
+const Tags = ({ tags }: Props) => {
     return (
         <div className="mb-2">
             <p className="detail-heading mb-3">Tags</p>
