@@ -5,7 +5,7 @@ import { useInView } from "react-intersection-observer";
 
 import { getTagsGames, getTagsDetails } from "@/services/service.tags";
 
-const useContainer = () => {
+const useTagDetails = () => {
     const { slug } = useParams();
 
     const { ref, inView } = useInView();
@@ -63,4 +63,4 @@ const useContainer = () => {
     };
 };
 
-export default useContainer;
+export default useTagDetails;

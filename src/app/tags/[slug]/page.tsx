@@ -1,4 +1,4 @@
-import Details from ".";
+import TagDetails from "./tagDetails";
 
 export const metadata = {
     title: "Tags",
@@ -6,7 +6,7 @@ export const metadata = {
 };
 
 const TagsGames = () => {
-    return <Details />;
+    return <TagDetails />;
 };
 
 export default TagsGames;

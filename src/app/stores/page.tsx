@@ -1,4 +1,4 @@
-import Stores from ".";
+import Stores from "./stores";
 
 export const metadata = {
     title: "Stores",

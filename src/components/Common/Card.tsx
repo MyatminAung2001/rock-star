@@ -4,10 +4,10 @@ interface Props {
     data: {
         id: number;
         name: string;
+        domain: string;
         slug: string;
         games_count: number;
         image_background: string;
-        language: string;
         games: {
             id: number;
             slug: string;

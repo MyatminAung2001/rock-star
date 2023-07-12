@@ -1,10 +1,8 @@
 "use client";
 
-import Link from "next/link";
-
+import useStoreDetails from "./useStoreDetails";
 import GameCard from "@/components/Common/GameCard";
 import { Loading, FetchingNextPage } from "@/components/Common/Loading";
-import useContainer from "./useContainer";
 
 const Details = () => {
     const {
@@ -20,7 +18,7 @@ const Details = () => {
         description,
         cutOff,
         formattedData,
-    } = useContainer();
+    } = useStoreDetails();
 
     if (isLoading) return <Loading />;
 

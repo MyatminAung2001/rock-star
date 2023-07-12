@@ -5,7 +5,7 @@ import { useInView } from "react-intersection-observer";
 
 import { getTags } from "@/services/service.tags";
 
-const useContainer = () => {
+const useTags = () => {
     const router = useRouter();
 
     const { ref, inView } = useInView();
@@ -48,4 +48,4 @@ const useContainer = () => {
     };
 };
 
-export default useContainer;
+export default useTags;

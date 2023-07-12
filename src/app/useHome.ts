@@ -1,6 +1,6 @@
 import { useGetUpcomingGames } from "@/api/games/upcoming-games.query";
 
-const useContainer = () => {
+const useHome = () => {
     const queryResults = useGetUpcomingGames(12);
 
     const UpcomingGames = queryResults[0]?.data;
@@ -22,4 +22,4 @@ const useContainer = () => {
     };
 };
 
-export default useContainer;
+export default useHome;

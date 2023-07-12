@@ -1,4 +1,4 @@
-import Tags from ".";
+import Tags from "./tags";
 
 export const metadata = {
     title: "Tags",

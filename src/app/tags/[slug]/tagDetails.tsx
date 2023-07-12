@@ -1,12 +1,10 @@
 "use client";
 
-import Link from "next/link";
-
+import useTagDetails from "./useTagDetails";
 import GameCard from "@/components/Common/GameCard";
 import { Loading, FetchingNextPage } from "@/components/Common/Loading";
-import useContainer from "./useContainer";
 
-const Details = () => {
+const TagDetails = () => {
     const {
         ref,
         isError,
@@ -15,7 +13,7 @@ const Details = () => {
         hasNextPage,
         tagsDetails,
         formattedData,
-    } = useContainer();
+    } = useTagDetails();
 
     if (isLoading) return <Loading />;
 
@@ -45,4 +43,4 @@ const Details = () => {
     );
 };
 
-export default Details;
+export default TagDetails;

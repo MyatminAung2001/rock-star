@@ -1,12 +1,12 @@
 "use client";
 
-import { StoreIcon } from "@/components/Common/icons/StoreIcon";
-import Card from "@/components/Common/Card";
 import Loading from "./loading";
-import useContainer from "./useContainer";
+import useStores from "./useStores";
+import Card from "@/components/Common/Card";
+import { StoreIcon } from "@/components/Common/icons/StoreIcon";
 
 const Stores = () => {
-    const { router, isLoading, isError, stores } = useContainer();
+    const { router, isLoading, isError, data } = useStores();
 
     if (isLoading) return <Loading />;
 
@@ -21,7 +21,7 @@ const Stores = () => {
                 <header className="heading">Stores</header>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
-                {stores?.results?.map((data) => (
+                {data?.results?.map((data) => (
                     <div
                         key={data.id}
                         onClick={() => router.push(`stores/${data.id}`)}

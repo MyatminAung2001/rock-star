@@ -1,10 +1,10 @@
 "use client";
 
-import { TagIcon } from "@/components/Common/icons/TagIcon";
-import Card from "@/components/Common/Card";
-import { FetchingNextPage } from "@/components/Common/Loading";
 import Loading from "./loading";
-import useContainer from "./useContainer";
+import useTags from "./useTags";
+import Card from "@/components/Common/Card";
+import { TagIcon } from "@/components/Common/icons/TagIcon";
+import { FetchingNextPage } from "@/components/Common/Loading";
 
 const Tags = () => {
     const {
@@ -15,7 +15,7 @@ const Tags = () => {
         isFetchingNextPage,
         hasNextPage,
         formattedData,
-    } = useContainer();
+    } = useTags();
 
     if (isLoading) return <Loading />;
 

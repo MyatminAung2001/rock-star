@@ -5,7 +5,7 @@ import { useInView } from "react-intersection-observer";
 
 import { getStoresDetails, getStoresGames } from "@/services/service.stores";
 
-const useContainer = () => {
+const useStoreDetails = () => {
     const { id } = useParams();
 
     const { ref, inView } = useInView();
@@ -81,4 +81,4 @@ const useContainer = () => {
     };
 };
 
-export default useContainer;
+export default useStoreDetails;

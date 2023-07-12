@@ -1,7 +1,8 @@
 "use client";
 
 import Loading from "./loading";
-import useContainer from "./useContainer";
+import useHome from "./useHome";
+
 import SwiperCard from "@/components/Home/SwiperCard";
 
 export default function Page() {
@@ -11,7 +12,7 @@ export default function Page() {
         Last30DaysGames,
         ThisWeekGames,
         NextWeekGames,
-    } = useContainer();
+    } = useHome();
 
     if (isLoading) return <Loading />;
 
