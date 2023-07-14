@@ -1,44 +1,33 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
-import { getTagsGames, getTagsDetails } from "@/services/service.tags";
+import { useGetTagDetails } from "@/api/tags/tag-details.query";
+import { useGetTagRelatedGames } from "@/api/tags/tag-related-games.query";
 
 const useTagDetails = () => {
     const { slug } = useParams();
 
     const { ref, inView } = useInView();
 
-    const query = useQuery({
-        queryKey: ["tags-detail", slug],
-        queryFn: () => getTagsDetails(slug),
-    });
+    const tagDetails = useGetTagDetails(slug);
 
-    const infiniteQuery = useInfiniteQuery({
-        queryKey: ["tags-games", slug],
-        queryFn: ({ pageParam = 1 }) => getTagsGames({ slug, pageParam }),
-        getNextPageParam: (lastPage, allPages) => {
-            if (lastPage.next === null) return undefined;
-            return allPages.length + 1;
-        },
-        keepPreviousData: true,
-    });
+    const tagRelatedGames = useGetTagRelatedGames(slug, 12);
 
     // for loading
-    const isLoading = query.isLoading || infiniteQuery.isLoading;
+    const isLoading = tagDetails.isLoading || tagRelatedGames.isLoading;
 
     // for error
-    const isError = query.isError || infiniteQuery.isError;
+    const isError = tagDetails.isError || tagRelatedGames.isError;
 
     // useInfiniteQuery
-    const fetchNextPage = infiniteQuery.fetchNextPage;
-    const hasNextPage = infiniteQuery.hasNextPage;
-    const isFetchingNextPage = infiniteQuery.isFetchingNextPage;
+    const fetchNextPage = tagRelatedGames.fetchNextPage;
+    const hasNextPage = tagRelatedGames.hasNextPage;
+    const isFetchingNextPage = tagRelatedGames.isFetchingNextPage;
 
     // access data
-    const tagsDetails = query.data;
-    const tagsRelatedGames = infiniteQuery.data;
+    const tagsDetails = tagDetails.data;
+    const tagsRelatedGames = tagRelatedGames.data;
 
     useEffect(() => {
         if (inView && hasNextPage && isFetchingNextPage) {

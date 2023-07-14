@@ -1,4 +1,4 @@
-import Details from ".";
+import StoreDetails from "./storeDetails";
 
 export const metadata = {
     title: "Stores Games",
@@ -6,7 +6,7 @@ export const metadata = {
 };
 
 const StoresGames = () => {
-    return <Details />;
+    return <StoreDetails />;
 };
 
 export default StoresGames;

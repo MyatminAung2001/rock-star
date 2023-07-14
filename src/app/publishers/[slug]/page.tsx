@@ -1,4 +1,4 @@
-import Details from ".";
+import PublisherDetails from "./publisherDetails";
 
 export const metadata = {
     title: "Publishers Games",
@@ -6,7 +6,7 @@ export const metadata = {
 };
 
 const Page = () => {
-    return <Details />;
+    return <PublisherDetails />;
 };
 
 export default Page;

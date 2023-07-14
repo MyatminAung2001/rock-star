@@ -1,4 +1,4 @@
-import Platforms from ".";
+import Platforms from "./platforms";
 
 export const metadata = {
     title: "Platorms",

@@ -1,42 +1,31 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
-import { getStoresDetails, getStoresGames } from "@/services/service.stores";
+import { useGetStoreDetails } from "@/api/stores/store-detail.query";
+import { useGetStoresRelatedGames } from "@/api/stores/store-related-games.query";
 
 const useStoreDetails = () => {
     const { id } = useParams();
 
     const { ref, inView } = useInView();
 
-    const query = useQuery({
-        queryKey: ["stores-detail", id],
-        queryFn: () => getStoresDetails(id),
-    });
+    const storeDetails = useGetStoreDetails(id);
 
-    const infiniteQuery = useInfiniteQuery({
-        queryKey: ["stores-games", id],
-        queryFn: ({ pageParam = 1 }) => getStoresGames({ id, pageParam }),
-        getNextPageParam: (lastPage, allPages) => {
-            if (lastPage.next === null) return undefined;
-            return allPages.length + 1;
-        },
-        keepPreviousData: true,
-    });
+    const storeRelatedGames = useGetStoresRelatedGames(id, 12);
 
-    const isLoading = query.isLoading || infiniteQuery.isLoading;
+    const isLoading = storeDetails.isLoading || storeRelatedGames.isLoading;
 
-    const isError = query.isError || infiniteQuery.isError;
+    const isError = storeDetails.isError || storeRelatedGames.isError;
 
     // infinite query state
-    const hasNextPage = infiniteQuery.hasNextPage;
-    const isFetchingNextPage = infiniteQuery.isFetchingNextPage;
-    const fetchNextPage = infiniteQuery.fetchNextPage;
+    const hasNextPage = storeRelatedGames.hasNextPage;
+    const isFetchingNextPage = storeRelatedGames.isFetchingNextPage;
+    const fetchNextPage = storeRelatedGames.fetchNextPage;
 
     // access data
-    const storesDetail = query.data;
-    const storesRelatedGames = infiniteQuery.data;
+    const storesDetail = storeDetails.data;
+    const storesRelatedGames = storeRelatedGames.data;
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {
@@ -66,18 +55,18 @@ const useStoreDetails = () => {
             : `${description?.substring(0, cutOff)}`;
 
     return {
-        ref,
         isLoading,
         isError,
         isFetchingNextPage,
         hasNextPage,
         storesDetail,
         showFullContent,
-        setShowFullContent,
         displayContent,
         description,
         cutOff,
         formattedData,
+        ref,
+        setShowFullContent,
     };
 };
 

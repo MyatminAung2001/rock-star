@@ -10,7 +10,7 @@ type DeveloperDetailsResponse = {
     description: string;
 };
 
-export const useGetPlatformDetails = (slug: string) => {
+export const useGetDeveloperDetails = (slug: string) => {
     return useQuery<DeveloperDetailsResponse>({
         queryKey: ["developer-detail", slug],
         queryFn: async () => {

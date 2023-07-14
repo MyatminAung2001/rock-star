@@ -1,47 +1,34 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
-import {
-    getPlatformsDetails,
-    getPlatformsGames,
-} from "@/services/service.platform";
+import { useGetPlatformDetails } from "@/api/platform/platform-detail.query";
+import { useGetPlatormsRelatedGames } from "@/api/platform/platform-related-games.query";
 
-const useContainer = () => {
+const usePlatformDetails = () => {
     const { id } = useParams();
 
     const { ref, inView } = useInView();
 
-    const query = useQuery({
-        queryKey: ["platforms-detail", id],
-        queryFn: () => getPlatformsDetails(id),
-    });
+    const platformDetails = useGetPlatformDetails(id);
 
-    const infiniteQuery = useInfiniteQuery({
-        queryKey: ["platforms-games", id],
-        queryFn: ({ pageParam = 1 }) => getPlatformsGames({ id, pageParam }),
-        getNextPageParam: (lastPage, allPages) => {
-            if (lastPage.next === null) return undefined;
-            return allPages.length + 1;
-        },
-        keepPreviousData: true,
-    });
+    const platformRelatedGames = useGetPlatormsRelatedGames(id, 12);
 
     // for loading
-    const isLoading = query.isLoading || infiniteQuery.isLoading;
+    const isLoading =
+        platformDetails.isLoading || platformRelatedGames.isLoading;
 
     // for error
-    const isError = query.isError || infiniteQuery.isError;
+    const isError = platformDetails.isError || platformRelatedGames.isError;
 
     // useInfiniteQuery
-    const fetchNextPage = infiniteQuery.fetchNextPage;
-    const hasNextPage = infiniteQuery.hasNextPage;
-    const isFetchingNextPage = infiniteQuery.isFetchingNextPage;
+    const fetchNextPage = platformRelatedGames.fetchNextPage;
+    const hasNextPage = platformRelatedGames.hasNextPage;
+    const isFetchingNextPage = platformRelatedGames.isFetchingNextPage;
 
     // access data
-    const platformsDetail = query.data;
-    const platformsRelatedGames = infiniteQuery.data;
+    const platformsDetail = platformDetails.data;
+    const platformsRelatedGames = platformRelatedGames.data;
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {
@@ -86,4 +73,4 @@ const useContainer = () => {
     };
 };
 
-export default useContainer;
+export default usePlatformDetails;

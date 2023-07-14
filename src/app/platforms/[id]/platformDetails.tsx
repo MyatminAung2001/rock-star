@@ -1,10 +1,11 @@
 "use client";
 
+import Loading from "./loading";
 import GameCard from "@/components/Common/GameCard";
-import { Loading, FetchingNextPage } from "@/components/Common/Loading";
-import useContainer from "./useContainer";
+import { FetchingNextPage } from "@/components/Common/Loading";
+import usePlatformDetails from "./usePlatformDetails";
 
-const Details = () => {
+const PlatformDetails = () => {
     const {
         ref,
         isLoading,
@@ -18,7 +19,7 @@ const Details = () => {
         description,
         cutOff,
         formattedData,
-    } = useContainer();
+    } = usePlatformDetails();
 
     if (isLoading) return <Loading />;
 
@@ -62,4 +63,4 @@ const Details = () => {
     );
 };
 
-export default Details;
+export default PlatformDetails;

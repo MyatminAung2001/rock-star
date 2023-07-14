@@ -4,7 +4,7 @@ import GameCard from "@/components/Common/GameCard";
 import { FetchingNextPage } from "@/components/Common/Loading";
 import Loading from "./loading";
 import options from "@/constants/options";
-import useContainer from "./useContainer";
+import useNewAndTrending from "./useNewAndTrending";
 
 const NewAndTrending = () => {
     const {
@@ -18,7 +18,7 @@ const NewAndTrending = () => {
         ref,
         handleDropDown,
         handleFilter,
-    } = useContainer();
+    } = useNewAndTrending();
 
     if (isLoading) return <Loading />;
 

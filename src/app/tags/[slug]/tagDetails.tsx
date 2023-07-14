@@ -1,8 +1,9 @@
 "use client";
 
 import useTagDetails from "./useTagDetails";
+import Loading from "./loading";
 import GameCard from "@/components/Common/GameCard";
-import { Loading, FetchingNextPage } from "@/components/Common/Loading";
+import { FetchingNextPage } from "@/components/Common/Loading";
 
 const TagDetails = () => {
     const {

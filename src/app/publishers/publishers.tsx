@@ -1,21 +1,21 @@
 "use client";
 
-import Loading from "./loading";
-import useTags from "./useTags";
+import { PublishIcon } from "@/components/Common/icons/PublishIcon";
 import Card from "@/components/Common/Card";
-import { TagIcon } from "@/components/Common/icons/TagIcon";
 import { FetchingNextPage } from "@/components/Common/Loading";
+import Loading from "./loading";
+import usePublishers from "./usePublishers";
 
-const Tags = () => {
+const Publishers = () => {
     const {
         router,
+        ref,
         isLoading,
         isError,
         isFetchingNextPage,
         hasNextPage,
         formattedData,
-        ref,
-    } = useTags();
+    } = usePublishers();
 
     if (isLoading) return <Loading />;
 
@@ -25,15 +25,16 @@ const Tags = () => {
         <div className="default-section-padding">
             <div className="flex items-center justify-center lg:justify-start gap-x-2 mb-5">
                 <div className="lg:hidden">
-                    <TagIcon />
+                    <PublishIcon />
                 </div>
-                <header className="heading">Tags</header>
+                <header className="heading">Publishers</header>
             </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {formattedData?.map((data) => (
                     <div
                         key={data.id}
-                        onClick={() => router.push(`tags/${data.id}`)}
+                        onClick={() => router.push(`publishers/${data.id}`)}
                     >
                         <Card data={data} />
                     </div>
@@ -53,4 +54,4 @@ const Tags = () => {
     );
 };
 
-export default Tags;
+export default Publishers;

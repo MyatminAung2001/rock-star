@@ -1,23 +1,24 @@
 "use client";
 
 import useStoreDetails from "./useStoreDetails";
+import Loading from "./loading";
 import GameCard from "@/components/Common/GameCard";
-import { Loading, FetchingNextPage } from "@/components/Common/Loading";
+import { FetchingNextPage } from "@/components/Common/Loading";
 
-const Details = () => {
+const StoreDetails = () => {
     const {
-        ref,
         isLoading,
         isError,
         isFetchingNextPage,
         hasNextPage,
         storesDetail,
         showFullContent,
-        setShowFullContent,
         displayContent,
         description,
         cutOff,
         formattedData,
+        ref,
+        setShowFullContent,
     } = useStoreDetails();
 
     if (isLoading) return <Loading />;
@@ -62,4 +63,4 @@ const Details = () => {
     );
 };
 
-export default Details;
+export default StoreDetails;

@@ -1,13 +1,14 @@
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
-import { useGetTags } from "@/api/tags/tags.query";
+import useFilter from "@/hooks/useFilter";
+import { useGetNewAndTrending } from "@/api/games/new-and-trending.query";
 
-const useTags = () => {
-    const router = useRouter();
-
+const useNewAndTrending = () => {
     const { ref, inView } = useInView();
+
+    const { filterText, isDropDownOpen, handleDropDown, handleFilter } =
+        useFilter("relevance", false);
 
     const {
         data,
@@ -16,7 +17,7 @@ const useTags = () => {
         hasNextPage,
         isFetchingNextPage,
         fetchNextPage,
-    } = useGetTags(12);
+    } = useGetNewAndTrending(12, filterText);
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {
@@ -29,14 +30,17 @@ const useTags = () => {
     const formattedData = gamesData || [];
 
     return {
-        router,
         isLoading,
         isError,
         isFetchingNextPage,
         hasNextPage,
         formattedData,
+        filterText,
+        isDropDownOpen,
         ref,
+        handleDropDown,
+        handleFilter,
     };
 };
 
-export default useTags;
+export default useNewAndTrending;

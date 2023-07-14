@@ -21,7 +21,7 @@ type TagsResponse = {
     }[];
 };
 
-export const useGetTags = (pageSize: string) => {
+export const useGetTags = (pageSize: number) => {
     return useInfiniteQuery<TagsResponse>({
         queryKey: ["tags"],
         queryFn: async ({ pageParam = 1 }) => {

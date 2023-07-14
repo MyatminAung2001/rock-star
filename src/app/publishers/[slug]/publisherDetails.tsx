@@ -1,19 +1,20 @@
 "use client";
 
+import Loading from "./loading";
 import GameCard from "@/components/Common/GameCard";
-import { Loading, FetchingNextPage } from "@/components/Common/Loading";
-import useContainer from "./useContainer";
+import { FetchingNextPage } from "@/components/Common/Loading";
+import usePublisherDetails from "./usePublisherDetails";
 
-const Details = () => {
+const PublisherDetails = () => {
     const {
-        ref,
         isError,
         isLoading,
         isFetchingNextPage,
         hasNextPage,
         publishersDetail,
         formattedData,
-    } = useContainer();
+        ref,
+    } = usePublisherDetails();
 
     if (isLoading) return <Loading />;
 
@@ -46,4 +47,4 @@ const Details = () => {
     );
 };
 
-export default Details;
+export default PublisherDetails;

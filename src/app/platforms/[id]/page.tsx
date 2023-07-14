@@ -1,4 +1,4 @@
-import Details from ".";
+import PlatformDetails from "./platformDetails";
 
 export const metadata = {
     title: "PC Games",
@@ -6,7 +6,7 @@ export const metadata = {
 };
 
 const PlatformsGames = () => {
-    return <Details />;
+    return <PlatformDetails />;
 };
 
 export default PlatformsGames;

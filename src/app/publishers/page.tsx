@@ -1,4 +1,4 @@
-import Publishers from ".";
+import Publishers from "./publishers";
 
 export const metadata = {
     title: "Publishers",

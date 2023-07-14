@@ -20,7 +20,7 @@ type DevelopersResponse = {
     }[];
 };
 
-export const useGetPlatforms = (pageSize: number) => {
+export const useGetDevelopers = (pageSize: number) => {
     return useInfiniteQuery<DevelopersResponse>({
         queryKey: ["developers"],
         queryFn: async ({ pageParam = 1 }) => {

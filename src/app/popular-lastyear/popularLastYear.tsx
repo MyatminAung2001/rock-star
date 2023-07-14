@@ -6,7 +6,7 @@ import Loading from "./loading";
 import usePopularLastYear from "./usePopularLastYear";
 import options from "@/constants/options";
 
-const PopularInLastYear = () => {
+const PopularLastYear = () => {
     const {
         isLoading,
         isError,
@@ -93,4 +93,4 @@ const PopularInLastYear = () => {
     );
 };
 
-export default PopularInLastYear;
+export default PopularLastYear;
