@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "next/navigation";
 import { useInView } from "react-intersection-observer";
 
@@ -44,29 +44,15 @@ const useStoreDetails = () => {
     const myString = storesDetail?.description;
     const description = myString?.replace(/<p>|<\/p>/gi, "");
 
-    // control read more state
-    const [showFullContent, setShowFullContent] = useState(false);
-
-    const cutOff = 165;
-
-    const displayContent =
-        description?.length <= cutOff || showFullContent
-            ? description
-            : `${description?.substring(0, cutOff)}`;
-
     return {
         isLoading,
         isError,
         isFetchingNextPage,
         hasNextPage,
         storesDetail,
-        showFullContent,
-        displayContent,
         description,
-        cutOff,
         formattedData,
         ref,
-        setShowFullContent,
     };
 };
 

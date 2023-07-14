@@ -8,14 +8,51 @@ interface Props {
 }
 
 const Description = ({ description, title }: Props) => {
-    const [isSeeMore, setIsSeeMore] = useState(false);
+    const [showFullDescription, setShowFullDescription] = useState(false);
 
-    const handleFormatDescription = (desc: string) => {
-        const newDes = desc.replace(/#{3}\w+/g, (match) => {
-            return match.replace(/#{3}/g, "").toUpperCase();
-        });
+    const toggleDescription = () => {
+        setShowFullDescription(!showFullDescription);
+    };
 
-        return newDes;
+    const renderDescription = () => {
+        if (description.length <= 200) {
+            return description;
+        }
+
+        if (description.length > 200) {
+            if (showFullDescription) {
+                return (
+                    <>
+                        {description}
+                        <button
+                            onClick={toggleDescription}
+                            className="ml-2 text-sm text-primary-yellow"
+                        >
+                            See less
+                        </button>
+                    </>
+                );
+            } else {
+                const truncDescription = description.substring(0, 200) + "...";
+                return (
+                    <>
+                        {truncDescription.length === 200 ? (
+                            truncDescription
+                        ) : (
+                            <>
+                                {truncDescription}
+                                <button
+                                    onClick={toggleDescription}
+                                    className="ml-2 text-sm text-primary-yellow"
+                                >
+                                    See more
+                                </button>
+                            </>
+                        )}
+                    </>
+                );
+            }
+        }
     };
 
     return (
@@ -23,19 +60,7 @@ const Description = ({ description, title }: Props) => {
             <p className="mb-2 text-primary-white text-lg tracking-wide">
                 {title}
             </p>
-            <div className={isSeeMore ? "descirption full" : "description"}>
-                <p className="text-primary-white tracking-wide text-sm font-light whitespace-pre-wrap">
-                    {description ? handleFormatDescription(description) : "N/A"}
-                </p>
-            </div>
-            {description && (
-                <button
-                    onClick={() => setIsSeeMore(!isSeeMore)}
-                    className="text-[12px] bg-primary-bg-white text-primary-bg-black px-2 rounded"
-                >
-                    {isSeeMore ? "Show Less" : "Show More"}
-                </button>
-            )}
+            <div className="text-primary-white">{renderDescription()}</div>
         </div>
     );
 };

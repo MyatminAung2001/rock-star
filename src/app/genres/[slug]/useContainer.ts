@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "next/navigation";
 import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
@@ -57,16 +57,6 @@ const useContainer = () => {
     const myString = genresDetail?.description;
     const description = myString?.replace(/<p>|<\/p>/gi, "");
 
-    // control read more state
-    const [showFullContent, setShowFullContent] = useState(false);
-
-    const cutOff = 200;
-
-    const displayContent =
-        description?.length <= cutOff || showFullContent
-            ? description
-            : `${description?.substring(0, cutOff)}`;
-
     return {
         ref,
         isLoading,
@@ -74,11 +64,7 @@ const useContainer = () => {
         isFetchingNextPage,
         hasNextPage,
         genresDetail,
-        showFullContent,
-        setShowFullContent,
-        displayContent,
         description,
-        cutOff,
         formattedData,
     };
 };

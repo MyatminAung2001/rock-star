@@ -7,6 +7,7 @@ import BackgroundImage from "@/components/Common/BackgroundImage";
 import GameCard from "@/components/Common/GameCard";
 import { FetchingNextPage, Loading } from "@/components/Common/Loading";
 import useContainer from "./useContainer";
+import Description from "@/components/Common/Description";
 
 const Details = () => {
     const {
@@ -56,9 +57,9 @@ const Details = () => {
                         </div>
                     )}
                 </div>
-                <p className="text-primary-white text-[14px] lg:text-[16px] font-light">
-                    {description}
-                </p>
+                {description && (
+                    <Description description={description} title="" />
+                )}
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">

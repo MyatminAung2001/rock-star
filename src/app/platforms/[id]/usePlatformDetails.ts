@@ -47,16 +47,6 @@ const usePlatformDetails = () => {
     const myString = platformsDetail?.description;
     const description = myString?.replace(/<p>|<\/p>/gi, "");
 
-    // control read more state
-    const [showFullContent, setShowFullContent] = useState(false);
-
-    const cutOff = 165;
-
-    const displayContent =
-        description?.length <= cutOff || showFullContent
-            ? description
-            : `${description?.substring(0, cutOff)}`;
-
     return {
         ref,
         isLoading,
@@ -64,11 +54,7 @@ const usePlatformDetails = () => {
         isFetchingNextPage,
         hasNextPage,
         platformsDetail,
-        showFullContent,
-        setShowFullContent,
-        displayContent,
         description,
-        cutOff,
         formattedData,
     };
 };

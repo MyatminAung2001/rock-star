@@ -4,6 +4,7 @@ import useStoreDetails from "./useStoreDetails";
 import Loading from "./loading";
 import GameCard from "@/components/Common/GameCard";
 import { FetchingNextPage } from "@/components/Common/Loading";
+import Description from "@/components/Common/Description";
 
 const StoreDetails = () => {
     const {
@@ -12,13 +13,9 @@ const StoreDetails = () => {
         isFetchingNextPage,
         hasNextPage,
         storesDetail,
-        showFullContent,
-        displayContent,
         description,
-        cutOff,
         formattedData,
         ref,
-        setShowFullContent,
     } = useStoreDetails();
 
     if (isLoading) return <Loading />;
@@ -29,18 +26,8 @@ const StoreDetails = () => {
         <div className="default-section-padding">
             <div className="mb-5">
                 <p className="heading mb-5">{storesDetail?.name} Games</p>
-                {storesDetail?.description && (
-                    <p className="text-primary-white text-[16px] font-light">
-                        {displayContent}...{" "}
-                        {!showFullContent && description?.length > cutOff && (
-                            <button
-                                onClick={() => setShowFullContent(true)}
-                                className="text-[12px] bg-primary-bg-white text-primary-bg-black px-2 rounded"
-                            >
-                                read more
-                            </button>
-                        )}
-                    </p>
+                {description && (
+                    <Description description={description} title="" />
                 )}
             </div>
 
