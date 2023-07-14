@@ -1,5 +1,5 @@
 interface Props {
-    image_background: string;
+    image_background: string | undefined;
 }
 
 const BackgroundImage = ({ image_background }: Props) => {

@@ -1,10 +1,10 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
+import { useGetDevelopers } from "@/api/developers/developer.query";
 
-import { useGetCreators } from "@/api/creator/creator.query";
-
-const useContainer = () => {
+const useDevelopers = () => {
     const router = useRouter();
 
     const { ref, inView } = useInView();
@@ -16,7 +16,7 @@ const useContainer = () => {
         hasNextPage,
         isFetchingNextPage,
         fetchNextPage,
-    } = useGetCreators(12);
+    } = useGetDevelopers(12);
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {
@@ -30,13 +30,13 @@ const useContainer = () => {
 
     return {
         router,
+        ref,
         isLoading,
         isError,
         isFetchingNextPage,
         hasNextPage,
         formattedData,
-        ref,
     };
 };
 
-export default useContainer;
+export default useDevelopers;

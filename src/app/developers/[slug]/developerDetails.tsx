@@ -1,12 +1,11 @@
 "use client";
 
-import Link from "next/link";
-
-import { Loading, FetchingNextPage } from "@/components/Common/Loading";
+import Loading from "./loading";
+import { FetchingNextPage } from "@/components/Common/Loading";
 import GameCard from "@/components/Common/GameCard";
-import useContainer from "./useContainer";
+import useContainer from "./useDeveloperDetails";
 
-const Details = () => {
+const DeveloperDetails = () => {
     const {
         ref,
         isError,
@@ -48,4 +47,4 @@ const Details = () => {
     );
 };
 
-export default Details;
+export default DeveloperDetails;

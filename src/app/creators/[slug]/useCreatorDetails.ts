@@ -1,32 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
-import {
-    getDevelopersDetails,
-    getDevelopersGames,
-} from "@/services/service.developers";
+import { useGetCreatorDetails } from "@/api/creator/creator-detail.query";
+import { useGetRelatedGames } from "@/api/creator/related-games.query";
 
-const useContainer = () => {
+const useCreatorDetails = () => {
     const { slug } = useParams();
 
     const { ref, inView } = useInView();
 
-    const query = useQuery({
-        queryKey: ["developers-detail", slug],
-        queryFn: () => getDevelopersDetails(slug),
-    });
+    const query = useGetCreatorDetails(slug);
 
-    const infiniteQuery = useInfiniteQuery({
-        queryKey: ["developers-games", slug],
-        queryFn: ({ pageParam = 1 }) => getDevelopersGames({ slug, pageParam }),
-        getNextPageParam: (lastPage, allPages) => {
-            if (lastPage.next === null) return undefined;
-            return allPages.length + 1;
-        },
-        keepPreviousData: true,
-    });
+    const infiniteQuery = useGetRelatedGames(slug, 12);
 
     // for loading
     const isLoading = query.isLoading || infiniteQuery.isLoading;
@@ -40,8 +26,8 @@ const useContainer = () => {
     const isFetchingNextPage = infiniteQuery.isFetchingNextPage;
 
     // access data
-    const developersDetail = query.data;
-    const developersRelatedGames = infiniteQuery.data;
+    const creatorsDetail = query.data;
+    const creatorsRelatedGames = infiniteQuery.data;
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetchingNextPage) {
@@ -50,20 +36,26 @@ const useContainer = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [inView]);
 
-    const gamesData = (developersRelatedGames?.pages || []).flatMap(
+    const gamesData = (creatorsRelatedGames?.pages || []).flatMap(
         (page) => page.results || []
     );
     const formattedData = gamesData || [];
 
+    // content
+    // remove p tag from a string
+    const myString = creatorsDetail?.description;
+    const description = myString?.replaceAll(/<\/?[^>]+(>|$)/gi, "");
+
     return {
         ref,
-        isError,
         isLoading,
+        isError,
         isFetchingNextPage,
         hasNextPage,
-        developersDetail,
+        creatorsDetail,
+        description,
         formattedData,
     };
 };
 
-export default useContainer;
+export default useCreatorDetails;

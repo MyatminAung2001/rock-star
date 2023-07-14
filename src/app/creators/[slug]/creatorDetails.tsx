@@ -1,15 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 
+import Loading from "./loading";
 import BackgroundImage from "@/components/Common/BackgroundImage";
 import GameCard from "@/components/Common/GameCard";
-import { FetchingNextPage, Loading } from "@/components/Common/Loading";
-import useContainer from "./useContainer";
+import { FetchingNextPage } from "@/components/Common/Loading";
+import useCreatorDetails from "./useCreatorDetails";
 import Description from "@/components/Common/Description";
 
-const Details = () => {
+const CreatorDetails = () => {
     const {
         ref,
         isLoading,
@@ -19,7 +19,7 @@ const Details = () => {
         creatorsDetail,
         formattedData,
         description,
-    } = useContainer();
+    } = useCreatorDetails();
 
     if (isLoading) return <Loading />;
 
@@ -28,7 +28,7 @@ const Details = () => {
     return (
         <div className="default-section-padding">
             <BackgroundImage
-                image_background={creatorsDetail.image_background}
+                image_background={creatorsDetail?.image_background}
             />
 
             <div className="mb-5">
@@ -81,4 +81,4 @@ const Details = () => {
     );
 };
 
-export default Details;
+export default CreatorDetails;

@@ -3,10 +3,10 @@
 import { GenreIcon } from "@/components/Common/icons/GenreIcon";
 import Loading from "./loading";
 import Card from "@/components/Common/Card";
-import useContainer from "./useContainer";
+import useGenres from "./useGenres";
 
 const Genres = () => {
-    const { router, isLoading, isError, genres } = useContainer();
+    const { router, isLoading, isError, data } = useGenres();
 
     if (isLoading) return <Loading />;
 
@@ -22,7 +22,7 @@ const Genres = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
-                {genres?.results?.map((data) => (
+                {data?.results?.map((data) => (
                     <div
                         key={data.id}
                         onClick={() => router.push(`genres/${data.slug}`)}

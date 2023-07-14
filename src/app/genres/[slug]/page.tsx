@@ -1,4 +1,4 @@
-import Detail from ".";
+import GenreDetails from "./genreDetails";
 
 export const metadata = {
     title: "Action Games",
@@ -6,7 +6,7 @@ export const metadata = {
 };
 
 const GenreGames = () => {
-    return <Detail />;
+    return <GenreDetails />;
 };
 
 export default GenreGames;

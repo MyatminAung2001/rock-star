@@ -4,7 +4,7 @@ import { UserIcon } from "@/components/Common/icons/UserIcon";
 import { FetchingNextPage } from "@/components/Common/Loading";
 import Loading from "./loading";
 import CreatorCard from "@/components/Common/CreatorCard";
-import useContainer from "./useContainer";
+import useCreators from "./useCreators";
 
 const Creators = () => {
     const {
@@ -15,7 +15,7 @@ const Creators = () => {
         isFetchingNextPage,
         hasNextPage,
         formattedData,
-    } = useContainer();
+    } = useCreators();
 
     if (isLoading) return <Loading />;
 

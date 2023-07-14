@@ -1,11 +1,12 @@
 "use client";
 
+import Loading from "./loading";
 import GameCard from "@/components/Common/GameCard";
-import { FetchingNextPage, Loading } from "@/components/Common/Loading";
-import useContainer from "./useContainer";
+import { FetchingNextPage } from "@/components/Common/Loading";
 import Description from "@/components/Common/Description";
+import useGenreDetails from "./useGenreDetails";
 
-const Detail = () => {
+const GenreDetails = () => {
     const {
         ref,
         isLoading,
@@ -15,7 +16,7 @@ const Detail = () => {
         genresDetail,
         description,
         formattedData,
-    } = useContainer();
+    } = useGenreDetails();
 
     if (isLoading) return <Loading />;
 
@@ -25,7 +26,9 @@ const Detail = () => {
         <div className="default-section-padding">
             <div className="mb-5">
                 <p className="heading mb-5">{genresDetail?.name} Games</p>
-                <Description description={description} title="" />
+                {description && (
+                    <Description description={description} title="" />
+                )}
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
@@ -47,4 +50,4 @@ const Detail = () => {
     );
 };
 
-export default Detail;
+export default GenreDetails;

@@ -1,4 +1,4 @@
-import Creators from ".";
+import Creators from "./creators";
 
 export const metadata = {
     title: "Creators",

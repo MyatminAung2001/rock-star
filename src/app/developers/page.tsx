@@ -1,4 +1,4 @@
-import Developers from ".";
+import Developers from "./developers";
 
 export const metadata = {
     title: "Developers",
