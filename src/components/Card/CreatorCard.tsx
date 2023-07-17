@@ -1,25 +1,8 @@
 import Image from "next/image";
+import { CreatorsData } from "@/types/creator";
 
 interface Props {
-    data: {
-        id: number;
-        name: string;
-        slug: string;
-        image: string;
-        image_background: string;
-        games_count: number;
-        positions: {
-            id: number;
-            name: string;
-            slug: string;
-        }[];
-        games: {
-            id: number;
-            slug: string;
-            name: string;
-            added: number;
-        }[];
-    };
+    data: CreatorsData;
 }
 
 const CreatorCard = ({ data }: Props) => {

@@ -1,26 +1,28 @@
+export interface CreatorsData {
+    id: number;
+    name: string;
+    slug: string;
+    image: string;
+    image_background: string;
+    games_count: number;
+    positions: {
+        id: number;
+        name: string;
+        slug: string;
+    }[];
+    games: {
+        id: number;
+        slug: string;
+        name: string;
+        added: number;
+    }[];
+}
+
 export interface Creators {
     count: number;
     next: string | null;
     previous: null | string;
-    results: {
-        id: number;
-        name: string;
-        slug: string;
-        image: string;
-        image_background: string;
-        games_count: number;
-        positions: {
-            id: number;
-            name: string;
-            slug: string;
-        }[];
-        games: {
-            id: number;
-            slug: string;
-            name: string;
-            added: number;
-        }[];
-    }[];
+    results: CreatorsData[];
 }
 
 export interface CreatorDetails {
