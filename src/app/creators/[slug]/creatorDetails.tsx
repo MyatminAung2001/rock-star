@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import Loading from "./loading";
 import BackgroundImage from "@/components/Common/BackgroundImage";
-import GameCard from "@/components/Common/GameCard";
+import GameCard from "@/components/Card/GameCard";
 import { FetchingNextPage } from "@/components/Common/Loading";
 import useCreatorDetails from "./useCreatorDetails";
 import Description from "@/components/Common/Description";

@@ -2,7 +2,7 @@
 
 import useStoreDetails from "./useStoreDetails";
 import Loading from "./loading";
-import GameCard from "@/components/Common/GameCard";
+import GameCard from "@/components/Card/GameCard";
 import { FetchingNextPage } from "@/components/Common/Loading";
 import Description from "@/components/Common/Description";
 

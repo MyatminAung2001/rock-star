@@ -1,6 +1,6 @@
 "use client";
 
-import GameCard from "@/components/Common/GameCard";
+import GameCard from "@/components/Card/GameCard";
 import { FetchingNextPage } from "@/components/Common/Loading";
 import Loading from "./loading";
 import useBestOfTheYear from "./useBestOfTheYear";

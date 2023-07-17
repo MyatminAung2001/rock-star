@@ -12,7 +12,7 @@ import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 // components
-import GameCard from "@/components/Common/GameCard";
+import GameCard from "@/components/Card/GameCard";
 import Description from "@/components/Common/Description";
 import Tags from "@/components/Details/Tags";
 import Platforms from "@/components/Details/Platforms";

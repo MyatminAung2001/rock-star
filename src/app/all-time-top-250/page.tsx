@@ -2,7 +2,7 @@ import { dehydrate } from "@tanstack/react-query";
 
 import getQueryClient from "@/utils/getQueryCilent";
 import Hydrate from "@/utils/hydrateOnClient";
-import { getAllTimeTop250 } from "@/services/service.games";
+import { getAllTimeTop250 } from "@/api/games/all-time-top-250.query";
 import AllTimeTop from "./allTimeTop";
 
 export const metadata = {
@@ -14,8 +14,8 @@ export default async function Page() {
     const queryClient = getQueryClient();
 
     await queryClient.prefetchInfiniteQuery({
-        queryKey: ["all-time-top-200"],
-        queryFn: ({ pageParam = 1 }) => getAllTimeTop250(pageParam),
+        queryKey: ["all-time-top-250"],
+        queryFn: ({ pageParam = 1 }) => getAllTimeTop250(pageParam, 12),
     });
 
     const dehydrateState = dehydrate(queryClient);

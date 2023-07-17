@@ -2,7 +2,7 @@
 
 import Loading from "./loading";
 import { FetchingNextPage } from "@/components/Common/Loading";
-import GameCard from "@/components/Common/GameCard";
+import GameCard from "@/components/Card/GameCard";
 import useContainer from "./useDeveloperDetails";
 
 const DeveloperDetails = () => {

@@ -3,7 +3,7 @@
 import { UserIcon } from "@/components/Common/icons/UserIcon";
 import { FetchingNextPage } from "@/components/Common/Loading";
 import Loading from "./loading";
-import CreatorCard from "@/components/Common/CreatorCard";
+import CreatorCard from "@/components/Card/CreatorCard";
 import useCreators from "./useCreators";
 
 const Creators = () => {
