@@ -90,7 +90,7 @@ interface Props {
     };
 }
 
-const CreatorRelatedGamesCard = ({ data }: Props) => {
+const RelatedCard = ({ data }: Props) => {
     return (
         <div className="bg-card-bg-color h-full rounded-xl flex flex-col w-[100%]">
             {data.background_image && (
@@ -157,4 +157,4 @@ const CreatorRelatedGamesCard = ({ data }: Props) => {
     );
 };
 
-export default CreatorRelatedGamesCard;
+export default RelatedCard;

@@ -3,7 +3,7 @@
 import { GenreIcon } from "@/components/Common/icons/GenreIcon";
 import Loading from "./loading";
 import useGenres from "./useGenres";
-import TagCard from "@/components/Card/TagCard";
+import OtherCard from "@/components/Card/OtherCard";
 
 const Genres = () => {
     const { router, isLoading, isError, data } = useGenres();
@@ -27,7 +27,7 @@ const Genres = () => {
                         key={data.id}
                         onClick={() => router.push(`genres/${data.slug}`)}
                     >
-                        <TagCard data={data} />
+                        <OtherCard data={data} />
                     </div>
                 ))}
             </div>

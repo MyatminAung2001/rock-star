@@ -4,7 +4,7 @@ import { ConsoleIcon } from "@/components/Common/icons/ConsoleIcon";
 import Loading from "./loading";
 import usePlatforms from "./usePlatforms";
 import { FetchingNextPage } from "@/components/Common/Loading";
-import TagCard from "@/components/Card/TagCard";
+import OtherCard from "@/components/Card/OtherCard";
 
 const Platforms = () => {
     const {
@@ -35,7 +35,7 @@ const Platforms = () => {
                         key={data.id}
                         onClick={() => router.push(`platforms/${data.id}`)}
                     >
-                        <TagCard data={data} />
+                        <OtherCard data={data} />
                     </div>
                 ))}
             </div>

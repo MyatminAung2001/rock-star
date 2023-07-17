@@ -1,11 +1,10 @@
 "use client";
 
 import Loading from "./loading";
-import GameCard from "@/components/Card/GameCard";
 import { FetchingNextPage } from "@/components/Common/Loading";
 import usePlatformDetails from "./usePlatformDetails";
 import Description from "@/components/Common/Description";
-import CreatorRelatedGamesCard from "@/components/Card/CreatorRelatedGameCard";
+import RelatedCard from "@/components/Card/RelatedCard";
 
 const PlatformDetails = () => {
     const {
@@ -34,7 +33,7 @@ const PlatformDetails = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {formattedData?.map((data) => (
-                    <CreatorRelatedGamesCard key={data.id} data={data} />
+                    <RelatedCard key={data.id} data={data} />
                 ))}
             </div>
 

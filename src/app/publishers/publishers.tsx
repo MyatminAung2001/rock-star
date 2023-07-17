@@ -1,7 +1,7 @@
 "use client";
 
 import { PublishIcon } from "@/components/Common/icons/PublishIcon";
-import TagCard from "@/components/Card/TagCard";
+import OtherCard from "@/components/Card/OtherCard";
 import { FetchingNextPage } from "@/components/Common/Loading";
 import Loading from "./loading";
 import usePublishers from "./usePublishers";
@@ -36,7 +36,7 @@ const Publishers = () => {
                         key={data.id}
                         onClick={() => router.push(`publishers/${data.id}`)}
                     >
-                        <TagCard data={data} />
+                        <OtherCard data={data} />
                     </div>
                 ))}
             </div>

@@ -17,7 +17,7 @@ interface Props {
     };
 }
 
-const TagCard = ({ data }: Props) => {
+const OtherCard = ({ data }: Props) => {
     return (
         <div key={data.id} className="bg-card-bg-color rounded-lg">
             <Image
@@ -43,4 +43,4 @@ const TagCard = ({ data }: Props) => {
     );
 };
 
-export default TagCard;
+export default OtherCard;
