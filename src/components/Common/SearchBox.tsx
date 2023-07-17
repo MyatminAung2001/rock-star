@@ -29,7 +29,7 @@ const SearchBox = () => {
     useEffect(() => {
         return () => {
             // Clear the query cache when the component is unmounted or the search text changes
-            queryClient.removeQueries("search-games");
+            queryClient.removeQueries(["search-games"]);
         };
     }, [searchTerm, queryClient]);
 
@@ -56,7 +56,7 @@ const SearchBox = () => {
             )} */}
             {searchGames?.results.length > 0 && (
                 <div className="absolute z-40 w-[100%] right-0 bg-[#212529] px-4 py-3 rounded-md grid grid-cols-1 lg:grid-cols-3 gap-y-2 mt-3">
-                    {searchGames?.results.map((data) => (
+                    {searchGames?.results.map((data: any) => (
                         <Link
                             href={`/games/${data.slug}`}
                             key={data.id}
