@@ -3,8 +3,8 @@
 import { UserIcon } from "@/components/Common/icons/UserIcon";
 import { FetchingNextPage } from "@/components/Common/Loading";
 import Loading from "./loading";
-import Card from "@/components/Common/Card";
 import useDevelopers from "./useDevelopers";
+import TagCard from "@/components/Card/TagCard";
 
 const Developers = () => {
     const {
@@ -36,7 +36,7 @@ const Developers = () => {
                         key={data.id}
                         onClick={() => router.push(`developers/${data.id}`)}
                     >
-                        <Card data={data} />
+                        <TagCard data={data} />
                     </div>
                 ))}
             </div>

@@ -2,7 +2,7 @@
 
 import Loading from "./loading";
 import useTags from "./useTags";
-import Card from "@/components/Common/Card";
+import TagCard from "@/components/Card/TagCard";
 import { TagIcon } from "@/components/Common/icons/TagIcon";
 import { FetchingNextPage } from "@/components/Common/Loading";
 
@@ -35,7 +35,7 @@ const Tags = () => {
                         key={data.id}
                         onClick={() => router.push(`tags/${data.id}`)}
                     >
-                        <Card data={data} />
+                        <TagCard data={data} />
                     </div>
                 ))}
             </div>

@@ -2,9 +2,9 @@
 
 import { ConsoleIcon } from "@/components/Common/icons/ConsoleIcon";
 import Loading from "./loading";
-import Card from "@/components/Common/Card";
 import usePlatforms from "./usePlatforms";
 import { FetchingNextPage } from "@/components/Common/Loading";
+import TagCard from "@/components/Card/TagCard";
 
 const Platforms = () => {
     const {
@@ -35,7 +35,7 @@ const Platforms = () => {
                         key={data.id}
                         onClick={() => router.push(`platforms/${data.id}`)}
                     >
-                        <Card data={data} />
+                        <TagCard data={data} />
                     </div>
                 ))}
             </div>
