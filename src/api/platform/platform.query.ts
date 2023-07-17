@@ -1,30 +1,9 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import apiClient from "../apiClient";
-
-type PlatformsResponse = {
-    count: number;
-    next: string;
-    previous: null;
-    results: {
-        id: number;
-        name: string;
-        slug: string;
-        games_count: number;
-        image_background: string;
-        image: null;
-        year_start: null;
-        year_end: null;
-        games: {
-            id: number;
-            slug: string;
-            name: string;
-            added: number;
-        }[];
-    }[];
-};
+import { Platform } from "@/types/platform";
 
 export const useGetPlatforms = (pageSize: number) => {
-    return useInfiniteQuery<PlatformsResponse>({
+    return useInfiniteQuery<Platform>({
         queryKey: ["platforms"],
         queryFn: async ({ pageParam = 1 }) => {
             return await apiClient

@@ -1,20 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "../apiClient";
-
-type PlatformDetailsResponse = {
-    id: number;
-    name: string;
-    slug: string;
-    games_count: number;
-    image_background: string;
-    description: string;
-    image: null;
-    year_start: null;
-    year_end: null;
-};
+import { PlatformDetails } from "@/types/platform";
 
 export const useGetPlatformDetails = (id: string) => {
-    return useQuery<PlatformDetailsResponse>({
+    return useQuery<PlatformDetails>({
         queryKey: ["platform-detail", id],
         queryFn: async () => {
             return await apiClient

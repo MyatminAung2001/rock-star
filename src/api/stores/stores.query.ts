@@ -1,28 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "../apiClient";
-
-type StoresResponse = {
-    count: number;
-    next: null | string;
-    previous: null | string;
-    results: {
-        id: number;
-        name: string;
-        domain: string;
-        slug: string;
-        games_count: number;
-        image_background: string;
-        games: {
-            id: number;
-            slug: string;
-            name: string;
-            added: number;
-        }[];
-    }[];
-};
+import { Store } from "@/types/store";
 
 export const useGetStores = () => {
-    return useQuery<StoresResponse>({
+    return useQuery<Store>({
         queryKey: ["stores"],
         queryFn: async () => {
             return await apiClient

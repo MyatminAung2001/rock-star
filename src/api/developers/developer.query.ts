@@ -1,27 +1,9 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import apiClient from "../apiClient";
-
-type DevelopersResponse = {
-    count: number;
-    next: string;
-    previous: null;
-    results: {
-        id: number;
-        name: string;
-        slug: string;
-        games_count: number;
-        image_background: string;
-        games: {
-            id: number;
-            slug: string;
-            name: string;
-            added: number;
-        }[];
-    }[];
-};
+import { Developers } from "@/types/developer";
 
 export const useGetDevelopers = (pageSize: number) => {
-    return useInfiniteQuery<DevelopersResponse>({
+    return useInfiniteQuery<Developers>({
         queryKey: ["developers"],
         queryFn: async ({ pageParam = 1 }) => {
             return await apiClient

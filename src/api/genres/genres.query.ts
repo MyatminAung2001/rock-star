@@ -1,28 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 
 import apiClient from "../apiClient";
-
-type GenresResponse = {
-    count: number;
-    next: null;
-    previous: null;
-    results: {
-        id: number;
-        name: string;
-        slug: string;
-        games_count: number;
-        image_background: string;
-        games: {
-            id: number;
-            slug: string;
-            name: string;
-            added: number;
-        }[];
-    }[];
-};
+import { Genre } from "@/types/genre";
 
 export const useGetGenres = () => {
-    return useQuery<GenresResponse>({
+    return useQuery<Genre>({
         queryKey: ["genres"],
         queryFn: async () => {
             return await apiClient

@@ -1,27 +1,9 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import apiClient from "../apiClient";
-
-type PublishersResponse = {
-    count: number;
-    next: string | null;
-    previous: null | string;
-    results: {
-        id: number;
-        name: string;
-        slug: string;
-        games_count: number;
-        image_background: string;
-        games: {
-            id: number;
-            slug: string;
-            name: string;
-            added: number;
-        }[];
-    }[];
-};
+import { Publisher } from "@/types/publisher";
 
 export const useGetPublishers = (pageSize: number) => {
-    return useInfiniteQuery<PublishersResponse>({
+    return useInfiniteQuery<Publisher>({
         queryKey: ["publishers"],
         queryFn: async ({ pageParam = 1 }) => {
             return await apiClient

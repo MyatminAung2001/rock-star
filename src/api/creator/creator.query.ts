@@ -1,33 +1,9 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import apiClient from "../apiClient";
-
-type CreatorsResponse = {
-    count: number;
-    next: string | null;
-    previous: null | string;
-    results: {
-        id: number;
-        name: string;
-        slug: string;
-        image: string;
-        image_background: string;
-        games_count: number;
-        positions: {
-            id: number;
-            name: string;
-            slug: string;
-        }[];
-        games: {
-            id: number;
-            slug: string;
-            name: string;
-            added: number;
-        }[];
-    }[];
-};
+import { Creators } from "@/types/creator";
 
 export const useGetCreators = (pageSize: number) => {
-    return useInfiniteQuery<CreatorsResponse>({
+    return useInfiniteQuery<Creators>({
         queryKey: ["creators"],
         queryFn: async ({ pageParam = 1 }) => {
             return await apiClient

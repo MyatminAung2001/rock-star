@@ -1,18 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "../apiClient";
-
-type StoreDetailsResponse = {
-    id: number;
-    name: string;
-    domain: string;
-    slug: string;
-    games_count: number;
-    image_background: string;
-    description: string;
-};
+import { StoreDetails } from "@/types/store";
 
 export const useGetStoreDetails = (id: string) => {
-    return useQuery<StoreDetailsResponse>({
+    return useQuery<StoreDetails>({
         queryKey: ["stores-detail", id],
         queryFn: async () => {
             return await apiClient
