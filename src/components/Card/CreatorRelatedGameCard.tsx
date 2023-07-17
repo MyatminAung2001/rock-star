@@ -7,9 +7,23 @@ import { NUMBER_OF_GENRES } from "@/constants/restrict";
 
 interface Props {
     data: {
-        id: number;
         slug: string;
         name: string;
+        playtime: number;
+        platforms: {
+            platform: {
+                id: number;
+                name: string;
+                slug: string;
+            };
+        }[];
+        stores: {
+            store: {
+                id: number;
+                name: string;
+                slug: string;
+            };
+        }[];
         released: string;
         tba: boolean;
         background_image: string;
@@ -32,54 +46,11 @@ interface Props {
             dropped: number;
             playing: number;
         };
-        metacritic: number | null;
-        playtime: number;
+        metacritic: null | number;
         suggestions_count: number;
         updated: string;
-        user_game: null;
-        reviews_count: number;
-        saturated_color: string;
-        dominant_color: string;
-        platforms: {
-            platform: {
-                id: number;
-                name: string;
-                slug: string;
-                image?: null;
-                year_end?: null;
-                year_start?: number;
-                games_count?: number;
-                image_background?: string;
-            };
-            released_at: string;
-            requirements_en: null;
-            requirements_ru: null;
-        }[];
-        parent_platforms: {
-            platform: {
-                id: number;
-                name: string;
-                slug: string;
-            };
-        }[];
-        genres: {
-            id: number;
-            name: string;
-            slug: string;
-            games_count: number;
-            image_background: string;
-        }[];
-        stores: {
-            id: number;
-            store: {
-                id: number;
-                name: string;
-                slug: string;
-                domain: string;
-                games_count: number;
-                image_background: string;
-            };
-        }[];
+        id: number;
+        score: null;
         clip: null;
         tags: {
             id: number;
@@ -93,15 +64,33 @@ interface Props {
             id: number;
             name: string;
             slug: string;
+            name_en: string;
+            name_ru: string;
         };
+        user_game: null;
+        reviews_count: number;
+        saturated_color: string;
+        dominant_color: string;
         short_screenshots: {
             id: number;
             image: string;
         }[];
+        parent_platforms: {
+            platform: {
+                id: number;
+                name: string;
+                slug: string;
+            };
+        }[];
+        genres: {
+            id: number;
+            name: string;
+            slug: string;
+        }[];
     };
 }
 
-const GameCard = ({ data }: Props) => {
+const CreatorRelatedGamesCard = ({ data }: Props) => {
     return (
         <div className="bg-card-bg-color h-full rounded-xl flex flex-col w-[100%]">
             {data.background_image && (
@@ -168,4 +157,4 @@ const GameCard = ({ data }: Props) => {
     );
 };
 
-export default GameCard;
+export default CreatorRelatedGamesCard;

@@ -2,8 +2,8 @@
 
 import useTagDetails from "./useTagDetails";
 import Loading from "./loading";
-import GameCard from "@/components/Card/GameCard";
 import { FetchingNextPage } from "@/components/Common/Loading";
+import CreatorRelatedGamesCard from "@/components/Card/CreatorRelatedGameCard";
 
 const TagDetails = () => {
     const {
@@ -27,7 +27,7 @@ const TagDetails = () => {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {formattedData?.map((data) => (
-                    <GameCard key={data.id} data={data} />
+                    <CreatorRelatedGamesCard key={data.id} data={data} />
                 ))}
             </div>
 

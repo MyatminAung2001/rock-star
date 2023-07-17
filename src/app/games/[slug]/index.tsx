@@ -138,7 +138,7 @@ const Details = () => {
                         <div>
                             <p className="detail-heading">Developer</p>
                             {gameDetails?.developers.map(
-                                (developer, i, arr) => (
+                                (developer: any, i: any, arr: any) => (
                                     <Link
                                         key={developer.id}
                                         href={`/developers/${developer.slug}`}
@@ -158,7 +158,7 @@ const Details = () => {
                         <div>
                             <p className="detail-heading">Publisher</p>
                             {gameDetails?.publishers.map(
-                                (publisher, i, arr) => (
+                                (publisher: any, i: any, arr: any) => (
                                     <Link
                                         key={publisher.id}
                                         href={`/publishers/${publisher.slug}`}
@@ -198,7 +198,7 @@ const Details = () => {
                         spaceBetween={10}
                         slidesPerView={"auto"}
                     >
-                        {gameScreenShots?.results.map((screenshot) => (
+                        {gameScreenShots?.results.map((screenshot: any) => (
                             <SwiperSlide
                                 key={screenshot.id}
                                 style={{ width: "auto" }}
@@ -224,13 +224,13 @@ const Details = () => {
                 zoom={{ ref: zoomRef }}
                 thumbnails={{ ref: thumbnailsRef }}
                 close={() => setOpenLightbox(false)}
-                slides={gameScreenShots?.results?.map((data) => ({
+                slides={gameScreenShots?.results?.map((data: any) => ({
                     src: data?.image,
                 }))}
-                toolbar={["close"]}
-                on={{
-                    click: () => zoomRef.current?.zoomIn(),
-                }}
+                // toolbar={["close"]}
+                // on={{
+                //     click: () => zoomRef.current?.zoomIn(),
+                // }}
             />
 
             {gameDLCAndEditions?.count > 0 && (
@@ -239,7 +239,7 @@ const Details = () => {
                         {"DLC's and editions"}
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
-                        {gameDLCAndEditions?.results.map((edition) => (
+                        {gameDLCAndEditions?.results.map((edition: any) => (
                             <GameCard key={edition.id} data={edition} />
                         ))}
                     </div>
@@ -303,7 +303,7 @@ const Details = () => {
                         Other games in the series
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
-                        {gameSeries?.results.map((series) => (
+                        {gameSeries?.results.map((series: any) => (
                             <GameCard key={series.id} data={series} />
                         ))}
                     </div>
