@@ -1,9 +1,8 @@
 import { useState } from "react";
 
 const useFilter = (inititalFilter = "relevance", initailDropDrown = false) => {
-    const [filterText, setFilterText] = useState<string>(inititalFilter);
-    const [isDropDownOpen, setIsDropDownOpen] =
-        useState<boolean>(initailDropDrown);
+    const [filterText, setFilterText] = useState(inititalFilter);
+    const [isDropDownOpen, setIsDropDownOpen] = useState(initailDropDrown);
 
     const handleDropDown = () => {
         setIsDropDownOpen((prev) => !prev);
