@@ -1,16 +1,11 @@
 import { Metadata } from "next";
-import Stores from "./page";
 
 export const metadata: Metadata = {
     title: "Stores",
 };
 
-const Layout = () => {
-    return (
-        <div>
-            <Stores />
-        </div>
-    );
+const Layout = ({ children }: { children: React.ReactNode }) => {
+    return <div>{children}</div>;
 };
 
 export default Layout;
