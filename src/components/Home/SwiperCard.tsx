@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-import { NUMBER_OF_GENRES } from "@/constants/restrict";
+import { CardRestrict } from "@/constants/restrict";
 
 interface Props {
     gamesData: {
@@ -133,7 +133,7 @@ const SwiperCard = ({ gamesData }: Props) => {
                                 <p className="game-heading">Genres</p>
                                 <div className="flex items-center gap-x-1">
                                     {data?.genres
-                                        ?.slice(0, NUMBER_OF_GENRES)
+                                        ?.slice(0, CardRestrict.NumberOfGenres)
                                         .map((data, i, arr) => (
                                             <p
                                                 key={data.id}

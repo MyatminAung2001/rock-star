@@ -3,7 +3,7 @@ import Image from "next/image";
 import { format } from "date-fns";
 
 import StarIcon from "@/components/Common/icons/StarIcon";
-import { NUMBER_OF_GENRES } from "@/constants/restrict";
+import { CardRestrict } from "@/constants/restrict";
 import { GameData } from "@/types/games";
 
 interface Props {
@@ -58,7 +58,7 @@ const GameCard = ({ data }: Props) => {
                     <p className="game-heading">Genres</p>
                     <div className="flex items-center gap-x-1">
                         {data?.genres
-                            ?.slice(0, NUMBER_OF_GENRES)
+                            ?.slice(0, CardRestrict.NumberOfGenres)
                             .map((data, i, arr) => (
                                 <p
                                     key={data.id}

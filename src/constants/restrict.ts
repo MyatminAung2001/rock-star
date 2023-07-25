@@ -1,3 +1,4 @@
-export const NUMBER_OF_ITEMS = 3;
-
-export const NUMBER_OF_GENRES = 2;
+export enum CardRestrict {
+    NumberOfGenres = 2,
+    NumberOfItem,
+}
