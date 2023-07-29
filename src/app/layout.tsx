@@ -2,7 +2,6 @@ import "./globals.css";
 
 // providers
 import { ReactQueryProviders } from "@/utils/reactquery.provider";
-import AuthProvider from "@/context/AuthProvider";
 
 import NavigationWeb from "@/components/Navigation/Navigation.web";
 import NavigationMobile from "@/components/Navigation/Navigation.mobile";
@@ -25,20 +24,18 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
-                <AuthProvider>
-                    <ReactQueryProviders>
-                        <NavigationMobile />
-                        <section className="lg:flex">
-                            <aside className="hidden lg:block lg:fixed lg:left-0 lg:top-0 lg:h-screen lg:p-4 lg:w-60">
-                                <NavigationWeb />
-                            </aside>
-                            <div className="lg:flex-1 lg:ml-60">
-                                <SearchBox />
-                                {children}
-                            </div>
-                        </section>
-                    </ReactQueryProviders>
-                </AuthProvider>
+                <ReactQueryProviders>
+                    <NavigationMobile />
+                    <section className="lg:flex">
+                        <aside className="hidden lg:block lg:fixed lg:left-0 lg:top-0 lg:h-screen lg:p-4 lg:w-60">
+                            <NavigationWeb />
+                        </aside>
+                        <div className="lg:flex-1 lg:ml-60">
+                            <SearchBox />
+                            {children}
+                        </div>
+                    </section>
+                </ReactQueryProviders>
             </body>
         </html>
     );
