@@ -28,13 +28,13 @@ BitBazaar offers an extensive and diverse collection of games and also have a wi
 Clone the project
 
 ```bash
-git clone https://github.com/satnaing/e-commerce.git
+git clone https://github.com/myatminag/BitBazaar.git
 ```
 
 Go to the project directory
 
 ```bash
-cd e-commerce
+cd Bitbazaar
 ```
 
 Remove remote origin
