@@ -13,7 +13,6 @@ BitBazaar offers an extensive and diverse collection of games and also have a wi
 
 **Deployment:** Vercel
 
-
 ## Features
 
 - Different Categories
